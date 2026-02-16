@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; The history of agent development – 从零开始学习Agent</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter3.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-5ea8f22911a6df30576a2a25a24cdd7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The history of agent development</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">从零开始学习Agent</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The history of agent development</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Foundation of Large Language Models</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Construction of the classical agent paradigm</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Framework Development Practice</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build your agent framework</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Memory and Retrieval</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><strong>Context Engineering</strong></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Intelligent Agent Communication Protocol</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Agentic-RL</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Intelligent Agent Performance Evaluation</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#基于符号与逻辑的早期智能体" id="toc-基于符号与逻辑的早期智能体" class="nav-link active" data-scroll-target="#基于符号与逻辑的早期智能体"><span class="header-section-number">2.1</span> 基于符号与逻辑的早期智能体</a>
+  <ul class="collapse">
+  <li><a href="#物理符号系统假说" id="toc-物理符号系统假说" class="nav-link" data-scroll-target="#物理符号系统假说"><span class="header-section-number">2.1.1</span> 物理符号系统假说</a></li>
+  <li><a href="#专家系统" id="toc-专家系统" class="nav-link" data-scroll-target="#专家系统"><span class="header-section-number">2.1.2</span> 专家系统</a></li>
+  </ul></li>
+  <li><a href="#构建基于规则的聊天机器人" id="toc-构建基于规则的聊天机器人" class="nav-link" data-scroll-target="#构建基于规则的聊天机器人"><span class="header-section-number">2.2</span> 构建基于规则的聊天机器人</a>
+  <ul class="collapse">
+  <li><a href="#模式匹配与文本替换" id="toc-模式匹配与文本替换" class="nav-link" data-scroll-target="#模式匹配与文本替换"><span class="header-section-number">2.2.1</span> 模式匹配与文本替换</a></li>
+  <li><a href="#核心逻辑的实现" id="toc-核心逻辑的实现" class="nav-link" data-scroll-target="#核心逻辑的实现"><span class="header-section-number">2.2.2</span> 核心逻辑的实现</a></li>
+  </ul></li>
+  <li><a href="#马文明斯基的心智社会" id="toc-马文明斯基的心智社会" class="nav-link" data-scroll-target="#马文明斯基的心智社会"><span class="header-section-number">2.3</span> 马文·明斯基的心智社会</a>
+  <ul class="collapse">
+  <li><a href="#对单一整体智能模型的反思" id="toc-对单一整体智能模型的反思" class="nav-link" data-scroll-target="#对单一整体智能模型的反思"><span class="header-section-number">2.3.1</span> 对单一整体智能模型的反思</a></li>
+  <li><a href="#作为协作体的智能" id="toc-作为协作体的智能" class="nav-link" data-scroll-target="#作为协作体的智能"><span class="header-section-number">2.3.2</span> 作为协作体的智能</a></li>
+  <li><a href="#对多智能体系统的理论启发" id="toc-对多智能体系统的理论启发" class="nav-link" data-scroll-target="#对多智能体系统的理论启发"><span class="header-section-number">2.3.3</span> 对多智能体系统的理论启发</a></li>
+  </ul></li>
+  <li><a href="#学习范式的演进与现代智能体" id="toc-学习范式的演进与现代智能体" class="nav-link" data-scroll-target="#学习范式的演进与现代智能体"><span class="header-section-number">2.4</span> 学习范式的演进与现代智能体</a>
+  <ul class="collapse">
+  <li><a href="#从符号到联结" id="toc-从符号到联结" class="nav-link" data-scroll-target="#从符号到联结"><span class="header-section-number">2.4.1</span> 从符号到联结</a></li>
+  <li><a href="#基于强化学习的智能体" id="toc-基于强化学习的智能体" class="nav-link" data-scroll-target="#基于强化学习的智能体"><span class="header-section-number">2.4.2</span> 基于强化学习的智能体</a></li>
+  <li><a href="#基于大规模数据的预训练" id="toc-基于大规模数据的预训练" class="nav-link" data-scroll-target="#基于大规模数据的预训练"><span class="header-section-number">2.4.3</span> 基于大规模数据的预训练</a></li>
+  <li><a href="#基于大语言模型的智能体" id="toc-基于大语言模型的智能体" class="nav-link" data-scroll-target="#基于大语言模型的智能体"><span class="header-section-number">2.4.4</span> 基于大语言模型的智能体</a></li>
+  <li><a href="#智能体发展关键节点概览" id="toc-智能体发展关键节点概览" class="nav-link" data-scroll-target="#智能体发展关键节点概览"><span class="header-section-number">2.4.5</span> 智能体发展关键节点概览</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The history of agent development</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-00.png" class="img-fluid"></p>
+<section id="基于符号与逻辑的早期智能体" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="基于符号与逻辑的早期智能体"><span class="header-section-number">2.1</span> 基于符号与逻辑的早期智能体</h2>
+<p>人工智能的早期研究深受数理逻辑与计算机科学基础理论的影响。研究者普遍认为，人类智能，尤其是逻辑推理能力，可以通过形式化的符号体系加以刻画和实现。这一理念催生了人工智能的首个重要范式——符号主义（Symbolicism），亦称“逻辑 AI”或“传统 AI”。</p>
+<p>在符号主义框架下，智能被视为对符号依据明确规则进行操作的过程。智能体被建模为物理符号系统：利用内部符号表示外部世界，并通过逻辑推理来规划和决策。此类智能体的能力完全来源于设计者预先编写的知识与规则，而非通过自主学习获得。</p>
+<section id="物理符号系统假说" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="物理符号系统假说"><span class="header-section-number">2.1.1</span> 物理符号系统假说</h3>
+<p>符号主义时代的理论基础，是 1976 年艾伦·纽厄尔（Allen Newell）与赫伯特·西蒙（Herbert A. Simon）提出的物理符号系统假说（Physical Symbol System Hypothesis，PSSH）[1]。这一假说为在计算机上实现通用人工智能提供了重要的理论框架与判定标准。</p>
+<p>该假说包含两个核心观点：</p>
+<ul>
+<li><p>充分性：任何物理符号系统都具备产生通用智能行为的充分条件。</p></li>
+<li><p>必要性：凡是能够展现通用智能行为的系统，其本质必然是物理符号系统。</p></li>
+</ul>
+<p>所谓物理符号系统，是指一种可在物理世界中实现的系统，由可区分的符号集合及一系列对符号进行操作的过程构成 ）。符号可以组合成更复杂的结构，而这些过程能够创建、修改、复制或销毁符号结构。</p>
+<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-0.png" class="img-fluid"></p>
+</section>
+<section id="专家系统" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="专家系统"><span class="header-section-number">2.1.2</span> 专家系统</h3>
+<p>在物理符号系统假说的推动下，专家系统成为符号主义时代最具代表性、也最成功的应用。其核心目标是模拟人类专家在特定领域中的问题解决能力。通过将专家的知识与经验形式化并编码为程序，专家系统能够在类似情境下给出接近甚至超过人类专家水平的判断与建议。</p>
+<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-1.png" class="img-fluid"></p>
+<p>专家系统的智能主要来源于两大核心组件：知识库与推理机。</p>
+<ol type="1">
+<li><p>知识库（Knowledge Base）：用于存储领域专家的知识与经验，其构建关键在于知识表示。专家系统中最常见的表示方式是产生式规则，即“IF–THEN”形式的条件语句，用于将特定情境与相应结论或行动关联起来。例如：IF 出现发烧且咳嗽 THEN 可能为呼吸道感染。大量规则相互关联，构成完整的知识体系。</p></li>
+<li><p>推理机（Inference Engine）：作为系统的核心计算模块，推理机依据用户提供的事实，在知识库中匹配并应用规则，从而推导新结论。其主要推理方式包括：</p></li>
+</ol>
+<ul>
+<li>正向链：从已知事实出发，逐步触发规则并生成新事实，属于数据驱动推理。</li>
+<li>反向链：从目标假设出发，反向寻找支持该目标的规则并验证条件，属于目标驱动推理。</li>
+</ul>
+<p>比较著名的专家系统:</p>
+<ol type="1">
+<li>MYCIN系统</li>
+<li>SHRDLU</li>
+</ol>
+</section>
+</section>
+<section id="构建基于规则的聊天机器人" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="构建基于规则的聊天机器人"><span class="header-section-number">2.2</span> 构建基于规则的聊天机器人</h2>
+<p>ELIZA 是由麻省理工学院计算机科学家约瑟夫·魏泽鲍姆（Joseph Weizenbaum）于 1966 年推出的计算机程序，是早期自然语言处理的重要尝试之一。它并非单一应用，而是一个可运行不同“脚本”的框架，其中最著名的是 “DOCTOR” 脚本，用以模拟罗杰斯学派的非指导性心理治疗师。</p>
+<p>ELIZA 的机制十分简洁：它不直接回答问题，而是识别用户输入中的关键词，并依据预设的转换规则，将陈述改写为开放式提问。例如，当用户说“我为我的男朋友感到难过”时，系统可能生成回应：“你为什么会为你的男朋友感到难过？”</p>
+<p>魏泽鲍姆并不试图让机器真正理解人类情感，相反，他希望借此说明：即便完全不理解对话内容，简单的句式转换也能制造出“智能”与“共情”的表象。然而，令他意外的是，许多用户在与 ELIZA 交互后产生了情感依赖，甚至相信它能够理解自己。</p>
+<section id="模式匹配与文本替换" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="模式匹配与文本替换"><span class="header-section-number">2.2.1</span> 模式匹配与文本替换</h3>
+<p>ELIZA 的算法核心基于模式匹配与文本替换，其流程可概括为四个步骤：</p>
+<ol type="1">
+<li><p>关键词识别与排序：系统为每个关键词设定优先级，当输入中包含多个关键词时，优先匹配优先级最高者对应的规则。</p></li>
+<li><p>分解规则：确定关键词后，利用包含通配符（）的分解规则提取句子其余部分。</p></li>
+</ol>
+<ul>
+<li>示例：</li>
+<li>规则： my *</li>
+<li>输入：“My mother is afraid of me”</li>
+<li>结果：[““,”mother is afraid of me”]</li>
+</ul>
+<ol start="3" type="1">
+<li>重组规则：从与分解规则关联的多条重组规则中选择一条生成回复，通常随机选取以增强多样性，并可引用已捕获的内容。</li>
+</ol>
+<ul>
+<li>示例：</li>
+<li>规则：“Tell me more about your family.”</li>
+<li>输出：“Tell me more about your family.”</li>
+</ul>
+<ol start="4" type="1">
+<li>代词转换：在生成回复前进行简单的代词替换（如 I→you，my→your），以保持对话自然连贯。</li>
+</ol>
+</section>
+<section id="核心逻辑的实现" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="核心逻辑的实现"><span class="header-section-number">2.2.2</span> 核心逻辑的实现</h3>
+<pre><code>library(stringr)
+
+# ---------------------------
+# 1. 定义规则库（pattern -&gt; responses）
+# ---------------------------
+
+rules &lt;- list(
+  "I need (.*)" = c(
+    "Why do you need {0}?",
+    "Would it really help you to get {0}?",
+    "Are you sure you need {0}?"
+  ),
+
+  "Why don't you (.*)\\?" = c(
+    "Do you really think I don't {0}?",
+    "Perhaps eventually I will {0}.",
+    "Do you really want me to {0}?"
+  ),
+
+  "Why can't I (.*)\\?" = c(
+    "Do you think you should be able to {0}?",
+    "If you could {0}, what would you do?",
+    "I don't know -- why can't you {0}?"
+  ),
+
+  "I am (.*)" = c(
+    "Did you come to me because you are {0}?",
+    "How long have you been {0}?",
+    "How do you feel about being {0}?"
+  ),
+
+  ".* mother .*" = c(
+    "Tell me more about your mother.",
+    "What was your relationship with your mother like?",
+    "How do you feel about your mother?"
+  ),
+
+  ".* father .*" = c(
+    "Tell me more about your father.",
+    "How did your father make you feel?",
+    "What has your father taught you?"
+  ),
+
+  ".*" = c(
+    "Please tell me more.",
+    "Let's change focus a bit... Tell me about your family.",
+    "Can you elaborate on that?"
+  )
+)
+
+# ---------------------------
+# 2. 代词转换规则
+# ---------------------------
+
+pronoun_swap &lt;- c(
+  "i" = "you",
+  "you" = "i",
+  "me" = "you",
+  "my" = "your",
+  "am" = "are",
+  "are" = "am",
+  "was" = "were",
+  "i'd" = "you would",
+  "i've" = "you have",
+  "i'll" = "you will",
+  "yours" = "mine",
+  "mine" = "yours"
+)
+
+swap_pronouns &lt;- function(phrase) {
+  words &lt;- str_split(tolower(phrase), "\\s+")[[1]]
+  swapped &lt;- sapply(words, function(w) {
+    if (w %in% names(pronoun_swap)) pronoun_swap[[w]] else w
+  })
+  paste(swapped, collapse = " ")
+}
+
+# ---------------------------
+# 3. 生成回应
+# ---------------------------
+
+respond &lt;- function(user_input) {
+
+  for (pattern in names(rules)) {
+
+    match &lt;- str_match(user_input, regex(pattern, ignore_case = TRUE))
+
+    if (!is.na(match[1, 1])) {
+
+      # 捕获分组（如果有）
+      captured &lt;- if (ncol(match) &gt; 1) match[1, 2] else ""
+      swapped  &lt;- swap_pronouns(captured)
+
+      # 随机选一个模板
+      template &lt;- sample(rules[[pattern]], 1)
+
+      # 替换 {0}
+      response &lt;- str_replace(template, "\\{0\\}", swapped)
+
+      return(response)
+    }
+  }
+
+  # 理论上不会走到这里（因为有 .*）
+  sample(rules[[".*"]], 1)
+}
+
+# ---------------------------
+# 4. 主聊天循环
+# ---------------------------
+
+cat("Therapist: Hello! How can I help you today?\n")
+
+repeat {
+  user_input &lt;- readline("You: ")
+
+  if (tolower(user_input) %in% c("quit", "exit", "bye")) {
+    cat("Therapist: Goodbye. It was nice talking to you.\n")
+    break
+  }
+
+  response &lt;- respond(user_input)
+  cat("Therapist:", response, "\n")
+}</code></pre>
+<p>运行效果类似:</p>
+<p>··· Therapist: Hello! How can I help you today? You: I am feeling sad today. Therapist: How long have you been feeling sad today? You: I need some help with my project. Therapist: Are you sure you need some help with your project? You: My mother is not happy with my work. Therapist: Tell me more about your mother. You: quit Therapist: Goodbye. It was nice talking to you. ···</p>
+<p>通过上述实践，可以直观总结出规则驱动系统的根本局限，这些问题正好印证了符号主义的理论挑战：</p>
+<ul>
+<li><p>缺乏语义理解：系统不具备词义层面的理解能力。例如面对“I am not happy”，仍会机械匹配规则并生成不合语义的回应，无法识别否定关系。</p></li>
+<li><p>缺少上下文记忆：系统是无状态的，每次响应仅依赖当前输入，无法支持连贯的多轮对话。</p></li>
+<li><p>规则扩展困难：随着规则数量增加，规则库规模迅速膨胀，冲突与优先级管理变得复杂，系统难以维护。</p></li>
+</ul>
+<p>尽管存在明显缺陷，ELIZA 在当时却引发了著名的“ELIZA 效应”，许多用户误以为它能够理解自己。这种智能幻觉主要源于其对话策略（如被动提问、开放式模板）以及人类天然的情感投射。</p>
+<p>ELIZA 的实践揭示了符号主义的核心矛盾：表面上的智能完全依赖人工编码的规则。面对真实语言的无限变化，这种穷举式方法不可扩展。系统并不理解意义，只是在操作符号，这正是其根本脆弱性的来源。</p>
+</section>
+</section>
+<section id="马文明斯基的心智社会" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="马文明斯基的心智社会"><span class="header-section-number">2.3</span> 马文·明斯基的心智社会</h2>
+<p>符号主义的发展与 ELIZA 的实践共同揭示了一个核心问题：依赖预设规则、由单一集中式推理引擎驱动的系统，难以通向真正的智能。无论规则库多么庞大，在面对现实世界的模糊性、复杂性与无限变化时，这类系统始终显得僵硬而脆弱。</p>
+<p>这一困境促使部分思想家开始反思人工智能的根本设计理念。马文·明斯基并未选择继续强化单一推理核心，而是在《心智社会》中提出了颠覆性的观点：“让我们变得智能的并非某种神奇技巧，而恰恰是没有单一技巧；智能的力量源于高度多样性，而非某个完美原则。”</p>
+<section id="对单一整体智能模型的反思" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="对单一整体智能模型的反思"><span class="header-section-number">2.3.1</span> 对单一整体智能模型的反思</h3>
+<p>20 世纪 70 至 80 年代，符号主义的局限逐渐暴露。专家系统虽在垂直领域有效，却缺乏常识；SHRDLU只能理解封闭的积木世界；ELIZA能够模仿对话，却不理解内容本身。这些系统都采用自上而下的设计：由一个集中式的“全能”推理核心，依据统一规则处理信息并决策，结果在真实世界的复杂性面前显得僵化而脆弱。</p>
+<p>在此背景下，明斯基提出了一系列根本性反思：</p>
+<ul>
+<li><p>什么是理解：理解是否是一种单一能力，还是多种心智过程（视觉、推理、情感、社会常识等）的协同结果？</p></li>
+<li><p>什么是常识：它是庞大的逻辑规则库，还是由分布式经验与简单规则片段交织而成的网络？</p></li>
+<li><p>智能体如何构建：应追求统一完美的逻辑系统，还是承认智能本质上由多样、甚至相互冲突的简单模块构成？</p></li>
+</ul>
+<p>这些问题直指整体式智能模型的缺陷：试图用统一表示与推理机制解决一切，与自然智能的实际运作方式相悖。明斯基认为，将多样化心智活动强行纳入僵硬逻辑框架，正是早期 AI 停滞的根源。</p>
+<p>基于此，他提出了颠覆性构想：不再将心智视为层级金字塔，而是看作一个扁平、由大量相互作用与协作单元构成的“社会”。</p>
+</section>
+<section id="作为协作体的智能" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="作为协作体的智能"><span class="header-section-number">2.3.2</span> 作为协作体的智能</h3>
+<p>在明斯基的框架中，智能体的含义不同于第一章所述的现代智能体。这里的智能体是极其简单且高度专门化的心智过程，本身并不具备“理解”能力。例如，负责线条识别的 LINE-FINDER，或负责抓握动作的 GRASP。</p>
+<p>这些简单智能体通过组织形成更高层次的机构（Agency）。机构是一组协同运作的智能体，用于完成更复杂的任务。例如，用于搭积木的 BUILD 机构，可能由 SEE、FIND、GET、PUT 等多个下层智能体或子机构组成。它们通过去中心化的激活与抑制信号相互作用，形成动态的控制过程。</p>
+<p>涌现是理解心智社会理论的核心。复杂且有目的的智能行为，并非由某个高层模块统一规划，而是源自大量简单智能体之间的局部交互。</p>
+<p>以“搭建积木塔”为例 ：当高层目标“搭一个塔”出现时，会激活 BUILD-TOWER 机构。</p>
+<ul>
+<li>BUILD-TOWER 本身不执行具体动作，只负责激活下属的 BUILDER 机构。</li>
+<li>BUILDER 的逻辑同样简单：只要任务未完成，就反复激活 ADD-BLOCK 机构。</li>
+<li>ADD-BLOCK 进一步协调 FIND-BLOCK、GET-BLOCK 和 PUT-ON-TOP 等子机构。 这些子机构又由更底层的智能体组成，例如 GET-BLOCK 会激活 SEE-SHAPE、REACH 和 GRASP 等智能体。</li>
+</ul>
+<p>在整个过程中，没有任何单一智能体掌握全局计划。GRASP 只负责抓取，BUILDER 只负责循环控制。然而，当这些“无心”的智能体依照简单规则相互作用时，搭建积木塔这一看似复杂的智能行为便自然涌现出来。</p>
+<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-4.png" class="img-fluid"></p>
+</section>
+<section id="对多智能体系统的理论启发" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="对多智能体系统的理论启发"><span class="header-section-number">2.3.3</span> 对多智能体系统的理论启发</h3>
+</section>
+</section>
+<section id="学习范式的演进与现代智能体" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="学习范式的演进与现代智能体"><span class="header-section-number">2.4</span> 学习范式的演进与现代智能体</h2>
+<p>前文所述的“心智社会”理论在哲学层面为群体智能与去中心化协作提供了方向，但具体实现仍不清晰。与此同时，符号主义在真实世界复杂性面前暴露出的根本缺陷，也表明单靠预先编码的规则难以构建真正鲁棒的智能。</p>
+<p>这两条思路共同引出了一个关键问题：如果智能无法被完整设计，是否可以通过学习获得？</p>
+<p>由此，人工智能进入了“学习”范式。研究重点从手工编写知识，转向构建能够从经验与数据中自动获取能力的系统。本节将回顾这一范式的演进：从联结主义奠定学习基础，到强化学习实现交互式学习，再到当今由大语言模型驱动的现代智能体。</p>
+<section id="从符号到联结" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="从符号到联结"><span class="header-section-number">2.4.1</span> 从符号到联结</h3>
+<p>作为对符号主义局限的直接回应，联结主义在 20 世纪 80 年代重新兴起。不同于符号主义自上而下、依赖明确规则的设计思路，联结主义采用自下而上的方法，灵感源自对生物神经网络结构的模拟，其核心观点包括：</p>
+<ul>
+<li>分布式知识表示：知识不再以显式符号或规则存储，而是以连接权重的形式分散存在于大量人工神经元之间，网络整体的连接结构即构成知识。</li>
+<li>简单处理单元：单个神经元仅执行简单计算，对加权输入进行激活处理并输出结果。</li>
+<li>通过学习调整权重：系统能力来源于学习过程，通过样本数据和学习算法不断调整连接权重，使输出逐步逼近期望目标。</li>
+</ul>
+<p>在这一范式下，智能体不再是被动执行规则的推理机器，而是能够通过经验持续优化的适应性系统。这标志着智能体构建思想的根本转变：符号主义强调“教会机器知识”，而联结主义则致力于“让机器学会知识”。</p>
+<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-5.png" class="img-fluid"></p>
+</section>
+<section id="基于强化学习的智能体" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="基于强化学习的智能体"><span class="header-section-number">2.4.2</span> 基于强化学习的智能体</h3>
+<p>联结主义主要擅长解决感知问题（如“图像中是什么”），而智能体更核心的任务在于决策（如“此时应采取什么行动”）。强化学习（Reinforcement Learning, RL）正是面向序贯决策的学习范式。它不依赖标注好的静态数据，而是通过智能体与环境的交互，在试错过程中学习如何最大化长期回报。</p>
+<p>以 AlphaGo 为例，其自我对弈过程是强化学习的典型实践。AlphaGo 作为智能体，根据棋盘状态选择落子行动；对局结束后，根据胜负获得奖励或惩罚。通过数百万次自我对弈，系统不断调整内部策略，逐步学会在不同局面下选择最有利于取胜的行动，这一过程无需人类棋谱的直接指导。</p>
+<p>这种通过与环境互动、依据反馈信号优化行为的机制，构成了强化学习的核心思想。其基本框架可概括为以下要素：</p>
+<ul>
+<li>智能体（Agent）：学习与决策的主体。</li>
+<li>环境（Environment）：智能体所处并与之交互的外部系统。</li>
+<li>状态（State）：对环境当前情况的描述，是决策依据。</li>
+<li>行动（Action）：智能体在给定状态下可采取的操作。</li>
+<li>奖励（Reward）：环境对行动结果的反馈信号，用于评估行动优劣。</li>
+</ul>
+<p>基于上述核心要素，强化学习智能体在一个“感知-行动-学习”的闭环中持续迭代</p>
+<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-6.png" class="img-fluid"></p>
+<p>该循环可具体表述为以下步骤，可直接用于 Rmarkdown：</p>
+<p>在时间步 <span class="math inline">\(t\)</span>，智能体观察环境的当前状态 <span class="math inline">\(S_t\)</span>。</p>
+<p>基于状态 <span class="math inline">\(S_t\)</span>，智能体依据其策略（Policy，<span class="math inline">\(\pi\)</span>）选择并执行一个行动 <span class="math inline">\(A_t\)</span>。策略本质上是从状态到行动的映射，决定了智能体的行为方式。</p>
+<p>环境接收到行动 <span class="math inline">\(A_t\)</span> 后，转移到新的状态 <span class="math inline">\(S_{t+1}\)</span>。</p>
+<p>同时，环境向智能体反馈一个即时奖励 <span class="math inline">\(R_{t+1}\)</span>。</p>
+<p>智能体利用新的状态 <span class="math inline">\(S_{t+1}\)</span> 与奖励 <span class="math inline">\(R_{t+1}\)</span> 更新其内部策略，以在未来做出更优决策，这一过程即为学习。</p>
+<p>强化学习的目标不是最大化单一时间步的即时奖励，而是最大化从当前时刻开始的累积奖励（回报，Return），其定义为：</p>
+<p><span class="math display">\[
+G_t = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}
+\]</span></p>
+<p>其中，<span class="math inline">\(\gamma \in [0,1]\)</span> 为折扣因子，用于权衡即时奖励与未来奖励。</p>
+<p>因此，智能体需要具备长期视角，有时需牺牲短期收益以换取更大的未来回报（例如围棋中的“弃子”）。通过不断重复上述交互—学习循环，智能体最终能够在复杂动态环境中实现自主决策与长期规划。</p>
+</section>
+<section id="基于大规模数据的预训练" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="基于大规模数据的预训练"><span class="header-section-number">2.4.3</span> 基于大规模数据的预训练</h3>
+<p>强化学习使智能体能够通过交互学习决策策略，但这一过程往往依赖大量面向特定任务的数据，使智能体在初期几乎没有先验认知，需要从零建立对任务的理解。无论是符号主义中人工编码的常识，还是人类决策所依赖的背景知识，在 RL 智能体中通常都是缺失的。由此引出了一个关键问题：如何在学习具体任务之前，就让智能体具备对世界的广泛理解？这一答案最终在自然语言处理领域中出现，其核心便是大规模数据驱动的预训练。</p>
+<section id="从特定任务到通用模型" class="level4" data-number="2.4.3.1">
+<h4 data-number="2.4.3.1" class="anchored" data-anchor-id="从特定任务到通用模型"><span class="header-section-number">2.4.3.1</span> 从特定任务到通用模型</h4>
+<p>在预训练范式出现之前，传统 NLP 模型通常针对单一任务（如情感分析或机器翻译），在规模有限、专门标注的数据集上从头训练。这种方式导致模型知识面狭窄、跨任务泛化能力弱，且每个新任务都需要高昂的数据标注成本。</p>
+<ul>
+<li>预训练—微调范式彻底改变了这一局面，其核心包括两个阶段：</li>
+<li>预训练阶段：在包含海量文本的通用语料上，通过自监督学习训练大规模神经网络模型。目标并非解决具体任务，而是学习语言的统计规律、语法结构、事实知识与上下文关系，常见任务是预测下一个词。</li>
+</ul>
+<p>微调阶段：在完成预训练后，模型已具备丰富的通用知识，只需利用少量下游任务的标注数据进行微调，即可高效适配具体任务。</p>
+<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-7.png" class="img-fluid"></p>
+</section>
+<section id="大型语言模型的诞生与涌现能力" class="level4" data-number="2.4.3.2">
+<h4 data-number="2.4.3.2" class="anchored" data-anchor-id="大型语言模型的诞生与涌现能力"><span class="header-section-number">2.4.3.2</span> 大型语言模型的诞生与涌现能力</h4>
+<p>通过在数万亿级文本上的预训练，大型语言模型的神经网络权重形成了一个高度压缩的、关于世界知识的隐式模型，从根本上缓解了符号主义时代最棘手的“知识获取瓶颈”。更为关键的是，当模型规模（参数、数据与计算）跨越临界点后，会涌现出并未被显式训练的能力，例如：</p>
+<ul>
+<li>上下文学习：无需更新权重，仅通过输入中的少量示例甚至零示例，模型即可完成新任务。</li>
+<li>思维链推理：引导模型先输出逐步推理过程，可显著提升其在逻辑、算术与常识推理中的表现。</li>
+</ul>
+<p>这些现象表明，LLM 已不再只是语言建模工具，而是同时扮演了大规模知识库与通用推理引擎的角色。</p>
+<p>至此，智能体发展的关键技术要素已逐步齐备：符号主义奠定逻辑推理框架，联结主义与强化学习赋予学习与决策能力，而大型语言模型则提供了通过预训练获得的广泛世界知识与通用推理能力。下一节将展示这些技术如何在现代智能体设计中实现融合。</p>
+</section>
+</section>
+<section id="基于大语言模型的智能体" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="基于大语言模型的智能体"><span class="header-section-number">2.4.4</span> 基于大语言模型的智能体</h3>
+<p>随着大型语言模型的快速演进，以 LLM 为核心的智能体正成为人工智能的新范式。它们不仅具备强大的语言理解与生成能力，更能够在与环境的交互中，自主完成感知、规划、决策与执行等关键任务。</p>
+<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-8.png" class="img-fluid"></p>
+<p>智能体与环境的交互可抽象为一个核心闭环。LLM 驱动的智能体通过多模块协同、持续迭代的流程完成任务，其整体架构如图 2.10 所示，主要包括以下步骤：</p>
+<ol type="1">
+<li>感知（Perception）：流程始于感知模块。智能体通过传感器从环境中获取原始输入，形成观察信息，如用户指令、API 返回结果或环境状态变化。这些处理后的观察将作为后续决策的基础。</li>
+<li>思考（Thought）：这是智能体的认知核心，由规划模块与 LLM 协同完成。</li>
+</ol>
+<ul>
+<li>规划与分解：规划模块基于观察进行高层策略制定，通过反思与自我批判，将宏观目标拆解为可执行的子步骤。</li>
+<li>推理与决策：LLM 在整合规划指令与记忆信息后进行推理，最终决定下一步行动，通常以工具调用的形式给出。</li>
+</ul>
+<ol start="3" type="1">
+<li>行动（Action）：执行模块接收 LLM 生成的指令，从工具箱中选择并调用合适的工具（如代码执行、搜索或 API），与环境进行实际交互，从而完成行动。</li>
+<li>观察与循环（Observation &amp; Loop）：行动会改变环境并产生结果。工具返回的执行结果与更新后的环境状态共同构成新的观察。一方面，这些信息被感知模块捕获；另一方面，LLM 根据结果更新记忆，从而启动下一轮“感知—思考—行动”的循环。</li>
+</ol>
+<p>正是这种模块化协作与持续迭代的闭环机制，构成了 LLM 驱动智能体解决复杂问题的核心工作流程。</p>
+</section>
+<section id="智能体发展关键节点概览" class="level3" data-number="2.4.5">
+<h3 data-number="2.4.5" class="anchored" data-anchor-id="智能体发展关键节点概览"><span class="header-section-number">2.4.5</span> 智能体发展关键节点概览</h3>
+<p>人工智能体的发展并非线性演进，而是多种核心思想在半个多世纪中相互交织、竞争并逐步融合的过程。理解这一历史，有助于把握当代智能体架构形成的深层原因。</p>
+<p>其中，三大思潮在不同时期主导了研究范式：</p>
+<ul>
+<li>符号主义（Symbolism）：以赫伯特·西蒙和马文·明斯基为代表，认为智能源于符号操作与逻辑推理，催生了 SHRDLU、专家系统以及在国际象棋领域取得突破的“深蓝”。</li>
+<li>联结主义（Connectionism）：受神经网络启发，在反向传播算法推动下复兴，并在深度学习时代通过卷积神经网络与 Transformer 成为主流方法。</li>
+<li>行为主义（Behaviorism）：强调通过与环境交互和试错学习策略，其现代形式为强化学习，从 TD-Gammon 到 AlphaGo，赋予智能体从经验中习得复杂决策的能力。</li>
+</ul>
+<p>进入 21 世纪 20 年代，这些思想以前所未有的方式融合。以 GPT 系列为代表的大语言模型，虽源自联结主义，却承担起符号推理、工具调用与规划决策的核心角色，形成神经—符号结合的现代智能体架构。图 2.11 系统梳理了自 20 世纪 50 年代以来人工智能体发展的关键理论、项目与事件，为本章提供整体脉络的总结。</p>
+<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-9.png" class="img-fluid"></p>
+<p>得益于大语言模型的突破，智能体技术栈呈现出前所未有的活跃度和多样性。</p>
+<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-10.png" class="img-fluid"></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter3.html" class="pagination-link" aria-label="Foundation of Large Language Models">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Foundation of Large Language Models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
