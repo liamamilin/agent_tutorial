@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Framework Development Practice – 从零开始学习Agent</title>
+<title>4&nbsp; 让 Agent 学会思考：推理范式 – 从零开始学习Agent</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./chapter4.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5ea8f22911a6df30576a2a25a24cdd7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -118,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Framework Development Practice</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter5.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">让 Agent 学会思考：推理范式</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -131,9 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">从零开始学习Agent</a> 
     </div>
@@ -148,67 +148,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text">认识智能体</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The history of agent development</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">智能体简史</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Foundation of Large Language Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">大语言模型基础</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Construction of the classical agent paradigm</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">给 Agent 装上手脚：工具系统</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter5.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Framework Development Practice</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">让 Agent 学会思考：推理范式</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build your agent framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">自建轻量 Agent 框架</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Memory and Retrieval</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory and Retrieval</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><strong>Context Engineering</strong></span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Context Engineering</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Intelligent Agent Communication Protocol</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">多智能体协作</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Agentic-RL</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">评估与持续改进</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Intelligent Agent Performance Evaluation</span></span></a>
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">总结与展望</span></a>
   </div>
 </li>
     </ul>
@@ -221,42 +221,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#从手动实现到框架开发" id="toc-从手动实现到框架开发" class="nav-link active" data-scroll-target="#从手动实现到框架开发"><span class="header-section-number">5.1</span> 从手动实现到框架开发</a>
+  <li><a href="#react边想边做" id="toc-react边想边做" class="nav-link active" data-scroll-target="#react边想边做"><span class="header-section-number">4.1</span> ReAct：边想边做</a>
   <ul class="collapse">
-  <li><a href="#为何需要智能体框架" id="toc-为何需要智能体框架" class="nav-link" data-scroll-target="#为何需要智能体框架"><span class="header-section-number">5.1.1</span> 为何需要智能体框架</a></li>
-  <li><a href="#流框架的选型与对比" id="toc-流框架的选型与对比" class="nav-link" data-scroll-target="#流框架的选型与对比"><span class="header-section-number">5.1.2</span> 流框架的选型与对比</a></li>
+  <li><a href="#与简单工具调用的区别" id="toc-与简单工具调用的区别" class="nav-link" data-scroll-target="#与简单工具调用的区别"><span class="header-section-number">4.1.1</span> 与简单工具调用的区别</a></li>
+  <li><a href="#完整实现" id="toc-完整实现" class="nav-link" data-scroll-target="#完整实现"><span class="header-section-number">4.1.2</span> 完整实现</a></li>
+  <li><a href="#react-的特点" id="toc-react-的特点" class="nav-link" data-scroll-target="#react-的特点"><span class="header-section-number">4.1.3</span> ReAct 的特点</a></li>
   </ul></li>
-  <li><a href="#autogen" id="toc-autogen" class="nav-link" data-scroll-target="#autogen"><span class="header-section-number">5.2</span> AutoGen</a>
+  <li><a href="#plan-and-solve先规划再执行" id="toc-plan-and-solve先规划再执行" class="nav-link" data-scroll-target="#plan-and-solve先规划再执行"><span class="header-section-number">4.2</span> Plan-and-Solve：先规划，再执行</a>
   <ul class="collapse">
-  <li><a href="#对象主流程main-flow" id="toc-对象主流程main-flow" class="nav-link" data-scroll-target="#对象主流程main-flow"><span class="header-section-number">5.2.1</span> 对象主流程（Main Flow）</a></li>
-  <li><a href="#主流程高度抽象" id="toc-主流程高度抽象" class="nav-link" data-scroll-target="#主流程高度抽象"><span class="header-section-number">5.2.2</span> 主流程（高度抽象）</a></li>
-  <li><a href="#状态与状态变化states-transitions" id="toc-状态与状态变化states-transitions" class="nav-link" data-scroll-target="#状态与状态变化states-transitions"><span class="header-section-number">5.2.3</span> 状态与状态变化（States &amp; Transitions）</a></li>
-  <li><a href="#状态是如何变化的" id="toc-状态是如何变化的" class="nav-link" data-scroll-target="#状态是如何变化的"><span class="header-section-number">5.2.4</span> 状态是如何变化的？</a></li>
-  <li><a href="#功能机制操作" id="toc-功能机制操作" class="nav-link" data-scroll-target="#功能机制操作"><span class="header-section-number">5.2.5</span> 「功能—机制—操作」</a></li>
-  <li><a href="#autogen-教学案例多-agent-协作自动化候选项优先级-backlogrice-实施计划" id="toc-autogen-教学案例多-agent-协作自动化候选项优先级-backlogrice-实施计划" class="nav-link" data-scroll-target="#autogen-教学案例多-agent-协作自动化候选项优先级-backlogrice-实施计划"><span class="header-section-number">5.2.6</span> AutoGen 教学案例｜多 Agent 协作：自动化候选项优先级 Backlog（RICE + 实施计划）</a></li>
+  <li><a href="#工作原理" id="toc-工作原理" class="nav-link" data-scroll-target="#工作原理"><span class="header-section-number">4.2.1</span> 工作原理</a></li>
+  <li><a href="#plan-and-solve-vs-react" id="toc-plan-and-solve-vs-react" class="nav-link" data-scroll-target="#plan-and-solve-vs-react"><span class="header-section-number">4.2.2</span> Plan-and-Solve vs ReAct</a></li>
   </ul></li>
-  <li><a href="#agentscope" id="toc-agentscope" class="nav-link" data-scroll-target="#agentscope"><span class="header-section-number">5.3</span> AgentScope</a>
+  <li><a href="#reflection自我反思与改进" id="toc-reflection自我反思与改进" class="nav-link" data-scroll-target="#reflection自我反思与改进"><span class="header-section-number">4.3</span> Reflection：自我反思与改进</a>
   <ul class="collapse">
-  <li><a href="#agentscope-作为一个系统是什么" id="toc-agentscope-作为一个系统是什么" class="nav-link" data-scroll-target="#agentscope-作为一个系统是什么"><span class="header-section-number">5.3.1</span> AgentScope 作为一个系统是什么</a></li>
-  <li><a href="#多角色协作的-ai-研究助理系统" id="toc-多角色协作的-ai-研究助理系统" class="nav-link" data-scroll-target="#多角色协作的-ai-研究助理系统"><span class="header-section-number">5.3.2</span> 多角色协作的 AI 研究助理系统</a></li>
+  <li><a href="#reflection-的成本与收益" id="toc-reflection-的成本与收益" class="nav-link" data-scroll-target="#reflection-的成本与收益"><span class="header-section-number">4.3.1</span> Reflection 的成本与收益</a></li>
   </ul></li>
-  <li><a href="#camel" id="toc-camel" class="nav-link" data-scroll-target="#camel"><span class="header-section-number">5.4</span> CAMEL</a>
-  <ul class="collapse">
-  <li><a href="#camel-作为一个系统是什么" id="toc-camel-作为一个系统是什么" class="nav-link" data-scroll-target="#camel-作为一个系统是什么"><span class="header-section-number">5.4.1</span> CAMEL 作为一个系统是什么</a></li>
-  <li><a href="#系统对象camel-真正反复处理的核心对象" id="toc-系统对象camel-真正反复处理的核心对象" class="nav-link" data-scroll-target="#系统对象camel-真正反复处理的核心对象"><span class="header-section-number">5.4.2</span> 系统对象：CAMEL 真正反复处理的核心对象</a></li>
-  <li><a href="#对象主流程一段-camel-对话是如何被生成的" id="toc-对象主流程一段-camel-对话是如何被生成的" class="nav-link" data-scroll-target="#对象主流程一段-camel-对话是如何被生成的"><span class="header-section-number">5.4.3</span> 对象主流程：一段 CAMEL 对话是如何被生成的</a></li>
-  <li><a href="#状态与状态变化对话而非-agent-的状态机" id="toc-状态与状态变化对话而非-agent-的状态机" class="nav-link" data-scroll-target="#状态与状态变化对话而非-agent-的状态机"><span class="header-section-number">5.4.4</span> 状态与状态变化：对话而非 Agent 的状态机</a></li>
-  <li><a href="#功能体系camel-系统真正需要的能力" id="toc-功能体系camel-系统真正需要的能力" class="nav-link" data-scroll-target="#功能体系camel-系统真正需要的能力"><span class="header-section-number">5.4.5</span> 功能体系：CAMEL 系统真正需要的能力</a></li>
-  <li><a href="#映射到具体操作camel-的操作在系统中意味着什么" id="toc-映射到具体操作camel-的操作在系统中意味着什么" class="nav-link" data-scroll-target="#映射到具体操作camel-的操作在系统中意味着什么"><span class="header-section-number">5.4.6</span> 映射到具体操作：CAMEL 的操作在系统中意味着什么</a></li>
-  </ul></li>
-  <li><a href="#langgraph" id="toc-langgraph" class="nav-link" data-scroll-target="#langgraph"><span class="header-section-number">5.5</span> LangGraph</a>
-  <ul class="collapse">
-  <li><a href="#系统对象" id="toc-系统对象" class="nav-link" data-scroll-target="#系统对象"><span class="header-section-number">5.5.1</span> 系统对象</a></li>
-  <li><a href="#对象主流程" id="toc-对象主流程" class="nav-link" data-scroll-target="#对象主流程"><span class="header-section-number">5.5.2</span> 对象主流程</a></li>
-  <li><a href="#状态与状态变化" id="toc-状态与状态变化" class="nav-link" data-scroll-target="#状态与状态变化"><span class="header-section-number">5.5.3</span> 状态与状态变化</a></li>
-  <li><a href="#功能体系包含命令清单" id="toc-功能体系包含命令清单" class="nav-link" data-scroll-target="#功能体系包含命令清单"><span class="header-section-number">5.5.4</span> 功能体系（包含命令清单）</a></li>
-  <li><a href="#映射到具体操作完整示例" id="toc-映射到具体操作完整示例" class="nav-link" data-scroll-target="#映射到具体操作完整示例"><span class="header-section-number">5.5.5</span> 映射到具体操作（完整示例）</a></li>
-  </ul></li>
+  <li><a href="#三种范式对比总结" id="toc-三种范式对比总结" class="nav-link" data-scroll-target="#三种范式对比总结"><span class="header-section-number">4.4</span> 三种范式对比总结</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">4.5</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -265,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Framework Development Practice</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">让 Agent 学会思考：推理范式</span></h1>
 </div>
 
 
@@ -282,1539 +263,613 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><img src="images/clipboard-1083313928.png" class="img-fluid" width="350"></p>
-<section id="从手动实现到框架开发" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="从手动实现到框架开发"><span class="header-section-number">5.1</span> 从手动实现到框架开发</h2>
-<p>从一次性脚本迈向成熟框架，是软件工程中的重要思维转变。第四章中的代码主要用于教学与理解，虽能完成特定任务，但在构建多类型、复杂逻辑的智能体应用时，很快会暴露出扩展性瓶颈。</p>
-<p>框架的本质在于提供一套经过验证的规范：将智能体共性的重复工作（如主循环、状态管理、工具调用、日志记录等）进行抽象与封装，使开发者在构建新智能体时，能够聚焦于核心业务逻辑，而非底层通用实现。</p>
-<section id="为何需要智能体框架" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="为何需要智能体框架"><span class="header-section-number">5.1.1</span> 为何需要智能体框架</h3>
-<p>在实战之前，需先明确为何使用框架。相较于直接编写独立智能体脚本，框架的价值主要体现在以下方面：</p>
-<ul>
-<li>提升复用性与开发效率：框架通常提供通用的 Agent 基类或执行器，封装核心运行循环。无论 ReAct 还是 Plan-and-Solve，都可基于标准组件快速搭建，避免重复实现。</li>
-<li>实现解耦与可扩展性：健壮系统应模块化设计，框架促使关注点分离：
-<ul>
-<li>模型层（Model Layer）：负责与 LLM 交互，便于替换不同模型。</li>
-<li>工具层（Tool Layer）：统一工具定义、注册与执行，新增工具不影响其他模块。</li>
-<li>记忆层（Memory Layer）：管理短期与长期记忆，可灵活切换策略。 这种设计使系统具备高度可扩展性，组件升级成本低。</li>
-</ul></li>
-<li>标准化复杂状态管理：真实的长时运行智能体需应对上下文限制、历史持久化与多轮状态跟踪。框架提供通用而稳定的状态管理机制，避免重复造轮子。</li>
-<li>简化可观测性与调试：通过内置回调与事件机制（如关键生命周期节点触发日志或上报），可系统化追踪智能体行为，比手动打印更高效可靠。</li>
-</ul>
-<p>因此，从手写实现迈向框架化开发，不只是代码组织的升级，更是构建复杂、可靠、可维护智能体应用的必经之路。</p>
-</section>
-<section id="流框架的选型与对比" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="流框架的选型与对比"><span class="header-section-number">5.1.2</span> 流框架的选型与对比</h3>
-<p>智能体框架生态正以空前速度演进。若说 LangChain 与 LlamaIndex 奠定了第一代通用 LLM 应用框架范式，那么新一代框架更聚焦于特定领域的深层问题，尤其是多智能体协作与复杂工作流控制。</p>
-<p>在本章后续实战中，我们将重点介绍四个代表性框架：AutoGen、AgentScope、CAMEL 和 LangGraph。它们理念各异，分别体现了构建复杂智能体系统的不同技术路径</p>
-<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/6-figures/01.png" class="img-fluid"></p>
-</section>
-</section>
-<section id="autogen" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="autogen"><span class="header-section-number">5.2</span> AutoGen</h2>
-<p>AutoGen, 让多个大模型角色，在明确规则下协作完成任务的系统。 AutoGen 中，被持续处理、被反复推进的核心对象是什么？一个任务在多个智能体之间不断演化的对话状态（Conversation State）</p>
-<p>一个 AutoGen 任务的主流程，永远长这样：</p>
-<pre><code>任务被提出
-   ↓
-角色被激活（Agent 初始化）
-   ↓
-角色之间对话（消息传递）
-   ↓
-角色各自推理 / 行动
-   ↓
-对话状态更新
-   ↓
-是否达成目标？
-   ├─ 否 → 继续对话
-   └─ 是 → 终止</code></pre>
-<section id="对象主流程main-flow" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="对象主流程main-flow"><span class="header-section-number">5.2.1</span> 对象主流程（Main Flow）</h3>
-<p>从系统视角看，一个任务在 AutoGen 中通常经历：</p>
-</section>
-<section id="主流程高度抽象" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="主流程高度抽象"><span class="header-section-number">5.2.2</span> 主流程（高度抽象）</h3>
-<ol type="1">
-<li><strong>任务被提出（Task Initialization）</strong></li>
-<li><strong>角色被激活并参与（Agent Engagement）</strong></li>
-<li><strong>对话推进任务（Interaction Loop）</strong></li>
-<li><strong>任务分解 / 决策 / 生成（Reasoning &amp; Action）</strong></li>
-<li><strong>结果评估或终止（Termination / Handoff）</strong></li>
-</ol>
-<p>你可以把它想成：</p>
-<blockquote class="blockquote">
-<p><strong>一个“以对话为驱动的状态机”</strong></p>
-</blockquote>
-<p>而不是一问一答。</p>
-</section>
-<section id="状态与状态变化states-transitions" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="状态与状态变化states-transitions"><span class="header-section-number">5.2.3</span> 状态与状态变化（States &amp; Transitions）</h3>
-<p>围绕「任务」这个对象，常见状态包括：</p>
-<ul>
-<li><p><strong>Unclear / Raw</strong></p>
-<ul>
-<li>任务刚被提出，目标模糊</li>
-</ul></li>
-<li><p><strong>Assigned</strong></p>
-<ul>
-<li>某个 agent 开始主导</li>
-</ul></li>
-<li><p><strong>In-Progress</strong></p>
-<ul>
-<li>多轮对话中，任务被逐步处理</li>
-</ul></li>
-<li><p><strong>Blocked / Conflict</strong></p>
-<ul>
-<li>意见冲突、信息不足、死循环</li>
-</ul></li>
-<li><p><strong>Refined</strong></p>
-<ul>
-<li>任务被拆解、澄清或重构</li>
-</ul></li>
-<li><p><strong>Completed</strong></p>
-<ul>
-<li>目标达成</li>
-</ul></li>
-<li><p><strong>Terminated</strong></p>
-<ul>
-<li>人为终止 / 失败退出</li>
-</ul></li>
-</ul>
-</section>
-<section id="状态是如何变化的" class="level3" data-number="5.2.4">
-<h3 data-number="5.2.4" class="anchored" data-anchor-id="状态是如何变化的"><span class="header-section-number">5.2.4</span> 状态是如何变化的？</h3>
-<p><strong>状态变化不是靠 if-else，而是靠：</strong></p>
-<ul>
-<li>对话内容（message）</li>
-<li>角色设定（agent role）</li>
-<li>终止条件（termination condition）</li>
-<li>人类或系统介入（human-in-the-loop）</li>
-</ul>
-<p>例如：</p>
-<ul>
-<li>多轮讨论 → 目标更清晰 → 状态从 <em>Unclear → Refined</em></li>
-<li>agent 无法推进 → 触发 reviewer / planner → <em>Blocked → Refined</em></li>
-<li>达成停止条件 → <em>In-Progress → Completed</em></li>
-</ul>
-<p><strong>对话 = 状态迁移的“燃料”</strong></p>
-</section>
-<section id="功能机制操作" class="level3" data-number="5.2.5">
-<h3 data-number="5.2.5" class="anchored" data-anchor-id="功能机制操作"><span class="header-section-number">5.2.5</span> 「功能—机制—操作」</h3>
-<section id="观察状态observe-the-system" class="level4" data-number="5.2.5.1">
-<h4 data-number="5.2.5.1" class="anchored" data-anchor-id="观察状态observe-the-system"><span class="header-section-number">5.2.5.1</span> 观察状态（Observe the System）</h4>
-<p>系统必须“知道现在发生了什么”</p>
-<ol type="1">
-<li>观察对话是否在推进任务</li>
-<li>判断是否陷入循环 / 偏离目标</li>
-<li>判断是否到达终止条件</li>
-</ol>
-<p>AutoGen 中的具体承载 - 对话历史（messages） - termination_condition - ChatResult / summary</p>
-</section>
-<section id="推进状态advance-the-task" class="level4" data-number="5.2.5.2">
-<h4 data-number="5.2.5.2" class="anchored" data-anchor-id="推进状态advance-the-task"><span class="header-section-number">5.2.5.2</span> 推进状态（Advance the Task）</h4>
-<p>系统必须决定：下一步谁来做什么</p>
-<p>系统层功能 1. 激活下一个角色 2. 改变主导 agent 3. 强制任务继续，而不是闲聊</p>
-<p>AutoGen 中的具体承载 - Agent（role + system message） - initiate_chat / send - GroupChatManager</p>
-</section>
-<section id="分支-并行探索branch-parallel" class="level4" data-number="5.2.5.3">
-<h4 data-number="5.2.5.3" class="anchored" data-anchor-id="分支-并行探索branch-parallel"><span class="header-section-number">5.2.5.3</span> 分支 / 并行探索（Branch &amp; Parallel）</h4>
-<p>复杂任务不应只有一条思路</p>
-<p>系统层功能</p>
-<ul>
-<li>多路径探索</li>
-<li>不同角色并行思考</li>
-<li>后续统一收敛</li>
-</ul>
-<p>AutoGen 中的具体承载</p>
-<ul>
-<li>多个 Agent（同任务不同角色）explorer / alternative / risk-checker</li>
-<li>GroupChat 多 agent 同场对话</li>
-<li>Manager 决策逻辑 ,汇总、选择、合并</li>
-</ul>
-</section>
-<section id="回退-修正correct" class="level4" data-number="5.2.5.4">
-<h4 data-number="5.2.5.4" class="anchored" data-anchor-id="回退-修正correct"><span class="header-section-number">5.2.5.4</span> 回退 / 修正（Correct）</h4>
-<p><strong>系统功能</strong></p>
-<ul>
-<li>发现错误</li>
-<li>引入反对意见</li>
-<li>修正方向</li>
-</ul>
-<p><strong>AutoGen 承载方式</strong></p>
-<ul>
-<li>Critic / Reviewer Agent</li>
-<li>system message 重写</li>
-<li>human-in-the-loop</li>
-</ul>
-<blockquote class="blockquote">
-<p>反对意见是制度化的能力</p>
-</blockquote>
-</section>
-<section id="协作与同步collaborate" class="level4" data-number="5.2.5.5">
-<h4 data-number="5.2.5.5" class="anchored" data-anchor-id="协作与同步collaborate"><span class="header-section-number">5.2.5.5</span> 协作与同步（Collaborate）</h4>
-<p><strong>系统功能</strong></p>
-<ul>
-<li>明确角色边界</li>
-<li>信息共享但责任独立</li>
-<li>防止争吵失控</li>
-</ul>
-<p><strong>AutoGen 承载方式</strong></p>
-<ul>
-<li>Agent system prompt</li>
-<li>共享对话上下文</li>
-<li>GroupChat 规则</li>
-</ul>
-<blockquote class="blockquote">
-<p>角色设计 &gt; 模型能力</p>
-</blockquote>
-</section>
-<section id="终止与交付terminate" class="level4" data-number="5.2.5.6">
-<h4 data-number="5.2.5.6" class="anchored" data-anchor-id="终止与交付terminate"><span class="header-section-number">5.2.5.6</span> 终止与交付（Terminate）</h4>
-<p><strong>系统功能</strong></p>
-<ul>
-<li>判断何时完成</li>
-<li>防止无限对话</li>
-<li>输出可交付结果</li>
-</ul>
-<p><strong>AutoGen 承载方式</strong></p>
-<ul>
-<li>termination condition</li>
-<li>max_round</li>
-<li>summarizer / final agent</li>
-</ul>
-<blockquote class="blockquote">
-<p>没有终止条件的系统一定会失控</p>
-</blockquote>
-</section>
-</section>
-<section id="autogen-教学案例多-agent-协作自动化候选项优先级-backlogrice-实施计划" class="level3" data-number="5.2.6">
-<h3 data-number="5.2.6" class="anchored" data-anchor-id="autogen-教学案例多-agent-协作自动化候选项优先级-backlogrice-实施计划"><span class="header-section-number">5.2.6</span> AutoGen 教学案例｜多 Agent 协作：自动化候选项优先级 Backlog（RICE + 实施计划）</h3>
-<p>本案例让你一次性掌握 AutoGen 的核心“系统运行形态”：</p>
-<ul>
-<li><strong>团队（Team）如何运行</strong>：RoundRobinGroupChat 让多个 Agent 轮流发言，共享上下文</li>
-<li><strong>终止条件如何控制收敛</strong>：TextMentionTermination 用关键字让系统“停下来”</li>
-<li><strong>工具如何接入</strong>：把 Python 函数作为 Tool 交给 Agent 使用</li>
-<li><strong>如何观察系统运行</strong>：run_stream/Console 打印每轮消息与工具调用事件</li>
-</ul>
-<blockquote class="blockquote">
-<p>官方安装与 Team/Termination 示例参考：<br>
-- 安装 <code>autogen-agentchat</code> 与 <code>autogen-ext[openai]</code> :contentReference<span data-index="0">oaicite:0</span><br>
-- Teams / RoundRobinGroupChat / TextMentionTermination 示例 :contentReference<span data-index="1">oaicite:1</span><br>
-- AssistantAgent + tools 示例 :contentReference<span data-index="2">oaicite:2</span></p>
-</blockquote>
-<pre><code>pip install -U "autogen-agentchat" "autogen-ext[openai]"</code></pre>
-<p>agent 实现</p>
-<pre><code>import asyncio
-from typing import Dict
-
-from autogen_agentchat.agents import AssistantAgent
-from autogen_agentchat.conditions import TextMentionTermination
-from autogen_agentchat.teams import RoundRobinGroupChat
-from autogen_agentchat.ui import Console
-
-# 关键点：仍然用 OpenAIChatCompletionClient
-# 只是把 base_url 指向 Ollama
-from autogen_ext.models.openai import (
-    OpenAIChatCompletionClient,
-
-)
-
-# ========= 工具函数（系统能力的一部分） =========
-def rice_score(
-    reach: int,
-    impact: float,
-    confidence: float,
-    effort: float,
-) -&gt; float:
-    """
-    RICE = (Reach * Impact * Confidence) / Effort
-    """
-    if effort &lt;= 0:
-        raise ValueError("effort must be &gt; 0")
-    if not (0 &lt;= confidence &lt;= 1):
-        raise ValueError("confidence must be between 0 and 1")
-    return (reach * impact * confidence) / effort
-
-
-async def main() -&gt; None:
-    # ========= 1) 模型客户端：Ollama / gemma3:12b =========
-    model_client = OpenAIChatCompletionClient(
-        model="llama3.2",
-        base_url="http://localhost:11434/v1",
-        api_key="ollama",
-        temperature=0.3,
-
-        model_info={
-            # 🔑 必填字段（v0.4.7+）
-            "family": "llama",
-
-            # 能力声明
-            "vision": False,
-            "function_calling": True,
-            "json_output": True,
-            "structured_output": False,
-        },
-    )
-
-    # ========= 2) 主执行 Agent =========
-    primary_agent = AssistantAgent(
-        name="primary",
-        model_client=model_client,
-        tools=[rice_score],
-        system_message=(
-            "你是流程自动化产品负责人（Automation Product Owner）。\n"
-            "你的任务：把候选流程自动化需求整理为【可交付的优先级 Backlog】。\n\n"
-            "【硬性约束】\n"
-            "- 每一个候选项都【必须】调用工具 rice_score 计算 RICE（禁止手算）。\n"
-            "- 输出必须是 Markdown。\n"
-            "- 必须包含：\n"
-            "  1) Backlog 表格（含 RICE 与排序）\n"
-            "  2) Top1 / Top2 的实施计划（PoC → Pilot → Prod，每阶段有验收标准）\n"
-            "  3) 风险清单 + 可量化监控指标\n\n"
-            "结尾必须输出关键字：READY_FOR_REVIEW"
-        ),
-    )
-
-    # ========= 3) 评审 Agent（收敛机制） =========
-    critic_agent = AssistantAgent(
-        name="critic",
-        model_client=model_client,
-        system_message=(
-            "你是严格的 Reviewer，职责是【逼迫系统收敛】。\n\n"
-            "检查以下内容是否全部满足：\n"
-            "1) 是否能看到每个候选项都调用过 rice_score 工具\n"
-            "2) Backlog 表格字段是否完整（Reach / Impact / Confidence / Effort / RICE / 排序 / 理由）\n"
-            "3) 实施计划是否具备可执行性（阶段、负责人角色、时间、验收标准）\n"
-            "4) 风险与监控指标是否具体、可量化、可告警\n\n"
-            "如果不满足：\n"
-            "- 给出【明确、可执行】的修改清单\n\n"
-            "如果全部满足：\n"
-            "- 只回复一个词：APPROVE"
-        ),
-    )
-
-    # ========= 4) 终止条件 =========
-    termination = TextMentionTermination("APPROVE")
-
-    # ========= 5) Team（轮询协作） =========
-    team = RoundRobinGroupChat(
-        participants=[primary_agent, critic_agent],
-        termination_condition=termination,
-    )
-
-    # ========= 6) 用户任务输入 =========
-    task = """
-请为以下流程自动化候选项制作优先级 Backlog（使用 RICE）并给出实施计划。
-
-候选项 A：客服工单分类与自动分派
-- Reach = 12000（每月工单）
-- Impact = 1.2
-- Confidence = 0.65
-- Effort = 1.8（人月）
-
-候选项 B：财务对账异常自动识别与解释
-- Reach = 1800
-- Impact = 2.2
-- Confidence = 0.55
-- Effort = 2.5
-
-候选项 C：HR 入职材料自动校验与缺失提醒
-- Reach = 600
-- Impact = 0.9
-- Confidence = 0.8
-- Effort = 0.9
-
-输出要求：
-1) 一个 Markdown 表格（含 RICE 与排序）
-2) Top1 / Top2 的实施计划（PoC → Pilot → Prod）
-3) 至少 5 条风险 + 对应监控指标
-"""
-
-    # ========= 7) 运行（流式输出，适合教学） =========
-    await Console(team.run_stream(task=task))
-
-    # ========= 8) 关闭客户端 =========
-    await model_client.close()
-
-
-if __name__ == "__main__":
-    asyncio.run(main())</code></pre>
-<p>运行结果</p>
-<pre><code>/opt/anaconda3/envs/HZAU大模型课程/bin/python /Users/milin/HZAU大模型课程/autogen.py 
----------- TextMessage (user) ----------
-
-请为以下流程自动化候选项制作优先级 Backlog（使用 RICE）并给出实施计划。
-
-候选项 A：客服工单分类与自动分派
-- Reach = 12000（每月工单）
-- Impact = 1.2
-- Confidence = 0.65
-- Effort = 1.8（人月）
-
-候选项 B：财务对账异常自动识别与解释
-- Reach = 1800
-- Impact = 2.2
-- Confidence = 0.55
-- Effort = 2.5
-
-候选项 C：HR 入职材料自动校验与缺失提醒
-- Reach = 600
-- Impact = 0.9
-- Confidence = 0.8
-- Effort = 0.9
-
-输出要求：
-1) 一个 Markdown 表格（含 RICE 与排序）
-2) Top1 / Top2 的实施计划（PoC → Pilot → Prod）
-3) 至少 5 条风险 + 对应监控指标
-
----------- TextMessage (primary) ----------
- 
-{
-  "name": "rice_score",
-  "parameters": {
-    "reach": 12000,
-    "impact": 1.2,
-    "confidence": 0.65,
-    "effort": 1.8
-  }
-}
-
-{
-  "name": "rice_score",
-  "parameters": {
-    "reach": 1800,
-    "impact": 2.2,
-    "confidence": 0.55,
-    "effort": 2.5
-  }
-}
-
-{
-  "name": "rice_score",
-  "parameters": {
-    "reach": 600,
-    "impact": 0.9,
-    "confidence": 0.8,
-    "effort": 0.9
-  }
-}
-
-### Backlog
-
-| Rank | 流程自动化候选项 | RICE 分数 |
-| --- | --- | --- |
-| 1 | 账户工单分类与自动分派 | 2.4 |
-| 2 | 财务对账异常自动识别与解释 | 1.9 |
-| 3 | HR 入职材料自动校验与缺失提醒 | 0.72 |
-
-### 实施计划
-
-#### Top1：账户工单分类与自动分派
-- 阶段1：PoC（2周）- 评估工具的可用性和效率，验收标准：工具能够正确地分类并分派工单。
-- 阶段2：Pilot（4周）- 实施工具在小规模环境中，验收标准：工具能够有效地提高工单处理速度和准确率。
-- 阶段3：Prod（6周）- 全面实施工具，验收标准：工具能够稳定地运行并提供预期的效率。
-
-#### Top2：财务对账异常自动识别与解释
-- 阶段1：PoC（3周）- 评估工具的可用性和效率，验收标准：工具能够正确地识别出财务对账异常。
-- 阶段2：Pilot（5周）- 实施工具在小规模环境中，验收标准：工具能够有效地提高财务对账准确率。
-- 阶段3：Prod（8周）- 全面实施工具，验收标准：工具能够稳定地运行并提供预期的效率。
-
-### 风险清单
-
-1. **数据质量风险**：工具可能会产生误判或错误识别，从而导致财务对账异常的延迟或错过。
-    * 可量化监控指标：误判率（%）
-2. **系统稳定性风险**：工具可能会出现系统崩溃或故障，影响财务对账的正常运行。
-    * 可量化监控指标：系统可用性（%）
-3. **人员适应性风险**：员工可能需要学习新的工具和流程，从而导致工作效率下降。
-    * 可量化监控指标：员工学习完成率（%）
-4. **安全风险**：工具可能会泄露敏感信息或被黑客攻击，影响财务对账的安全性。
-    * 可量化监控指标：安全事件发生率（次/天）
-5. **成本控制风险**：实施和维护工具可能会增加成本，从而影响项目预算。
-    * 可量化监控指标：项目成本（元）
----------- TextMessage (critic) ----------
-### Backlog
-
-| Rank | 流程自动化候选项 | RICE 分数 |
-| --- | --- | --- |
-| 1 | 账户工单分类与自动分派 | 2.4 |
-| 2 | 财务对账异常自动识别与解释 | 1.9 |
-| 3 | HR 入职材料自动校验与缺失提醒 | 0.72 |
-
-### 实施计划
-
-#### Top1：账户工单分类与自动分派
-- 阶段1：PoC（2周）- 评估工具的可用性和效率，验收标准：工具能够正确地分类并分派工单。
-- 阶段2：Pilot（4周）- 实施工具在小规模环境中，验收标准：工具能够有效地提高工单处理速度和准确率。
-- 阶段3：Prod（6周）- 全面实施工具，验收标准：工具能够稳定地运行并提供预期的效率。
-
-#### Top2：财务对账异常自动识别与解释
-- 阶段1：PoC（3周）- 评估工具的可用性和效率，验收标准：工具能够正确地识别出财务对账异常。
-- 阶段2：Pilot（5周）- 实施工具在小规模环境中，验收标准：工具能够有效地提高财务对账准确率。
-- 阶段3：Prod（8周）- 全面实施工具，验收标准：工具能够稳定地运行并提供预期的效率。
-
-### 风险清单
-
-1. **数据质量风险**：工具可能会产生误判或错误识别，从而导致财务对账异常的延迟或错过。
-    * 可量化监控指标：误判率（%）
-2. **系统稳定性风险**：工具可能会出现系统崩溃或故障，影响财务对账的正常运行。
-    * 可量化监控指标：系统可用性（%）
-3. **人员适应性风险**：员工可能需要学习新的工具和流程，从而导致工作效率下降。
-    * 可量化监控指标：员工学习完成率（%）
-4. **安全风险**：工具可能会泄露敏感信息或被黑客攻击，影响财务对账的安全性。
-    * 可量化监控指标：安全事件发生率（次/天）
-5. **成本控制风险**：实施和维护工具可能会增加成本，从而影响项目预算。
-    * 可量化监控指标：项目成本（元）
-
-### 修改清单
-
-1. 在 Backlog 表格中，添加 RICE 分数计算公式：RICE = Reach \* Impact \* Confidence \* Effort
-2. 在实施计划中，增加 Top1 和 Top2 的详细验收标准。
-3. 在 风险清单中，添加可量化监控指标的单位。
-
-### 输出
-
- 
-# Backlog
-
-| Rank | 流程自动化候选项 | RICE 分数 |
-| --- | --- | --- |
-| 1 | 账户工单分类与自动分派 | 2.4 (Reach \* Impact \* Confidence \* Effort) |
-| 2 | 财务对账异常自动识别与解释 | 1.9 (Reach \* Impact \* Confidence \* Effort) |
-| 3 | HR 入职材料自动校验与缺失提醒 | 0.72 (Reach \* Impact \* Confidence \* Effort) |
-
-# 实施计划
-
-#### Top1：账户工单分类与自动分派
-- 阶段1：PoC（2周）- 评估工具的可用性和效率，验收标准：工具能够正确地分类并分派工单。
-- 阶段2：Pilot（4周）- 实施工具在小规模环境中，验收标准：工具能够有效地提高工单处理速度和准确率。
-- 阶段3：Prod（6周）- 全面实施工具，验收标准：工具能够稳定地运行并提供预期的效率。
-
-#### Top2：财务对账异常自动识别与解释
-- 阶段1：PoC（3周）- 评估工具的可用性和效率，验收标准：工具能够正确地识别出财务对账异常。
-- 阶段2：Pilot（5周）- 实施工具在小规模环境中，验收标准：工具能够有效地提高财务对账准确率。
-- 阶段3：Prod（8周）- 全面实施工具，验收标准：工具能够稳定地运行并提供预期的效率。
-
-# 风险清单
-
-1. **数据质量风险**：工具可能会产生误判或错误识别，从而导致财务对账异常的延迟或错过。
-    * 可量化监控指标：误判率（%）
-2. **系统稳定性风险**：工具可能会出现系统崩溃或故障，影响财务对账的正常运行。
-    * 可量化监控指标：系统可用性（%）
-3. **人员适应性风险**：员工可能需要学习新的工具和流程，从而导致工作效率下降。
-    * 可量化监控指标：员工学习完成率（%）
-4. **安全风险**：工具可能会泄露敏感信息或被黑客攻击，影响财务对账的安全性。
-    * 可量化监控指标：安全事件发生率（次/天）
-5. **成本控制风险**：实施和维护工具可能会增加成本，从而影响项目预算。
-    * 可量化监控指标：项目成本（元）
-
-# 修改清单
-
-1. 在 Backlog 表格中，添加 RICE 分数计算公式：RICE = Reach \* Impact \* Confidence \* Effort
-2. 在实施计划中，增加 Top1 和 Top2 的详细验收标准。
-3. 在 风险清单中，添加可量化监控指标的单位。
- 
-
-APPROVE
-
-进程已结束，退出代码为 0
-</code></pre>
-<p>这份代码实现的是一个<strong>可运行的多智能体协作系统</strong>。它不是“调用一次模型得到答案”，而是构建了一个<strong>有角色分工、有工具、有收敛机制、有运行时调度</strong>的对话系统。理解它的关键，不在于某一个类，而在于：<strong>这些 import 共同组成了一个 agent runtime</strong>。</p>
-<hr>
-<p>首先看 <code>import asyncio</code>。</p>
-<p>这一行决定了<strong>整个程序的运行模型</strong>。AutoGen 并不是同步、阻塞式的调用框架，它的核心是一个事件驱动的异步运行时。模型调用、工具调用、消息分发、agent 轮询，全部发生在同一个 event loop 中。如果没有 asyncio，这个系统就无法存在。</p>
-<p>这里的 <code>async def main()</code> 并不是语法上的装饰，而是在声明：<strong>这是一个长期运行、可中断、可流式产出结果的系统过程</strong>。最后用 <code>asyncio.run(main())</code>，意味着把整个多 agent 对话系统交给 Python 的异步调度器统一管理。这也是为什么 AutoGen 不适合被当作普通函数库使用，而更像一个“小型运行时”。</p>
-<hr>
-<p>接下来是 <code>from typing import Dict</code>。</p>
-<p>这一行在当前代码中并没有直接使用，但它体现的是一种工程风格：<strong>系统边界是明确的，数据结构是被预期的</strong>。在 AutoGen 的设计中，很多对象最终都会通过 dict 形式在 agent、model client、runtime 之间传递。提前引入 typing，并不是为了炫技，而是为了让这段代码可以自然演化为更复杂的系统，而不需要推翻重写。</p>
-<hr>
-<p>然后是这一组 import：</p>
-<pre><code>from autogen_agentchat.agents import AssistantAgent
-from autogen_agentchat.conditions import TextMentionTermination
-from autogen_agentchat.teams import RoundRobinGroupChat
-from autogen_agentchat.ui import Console</code></pre>
-<p>这一组 import，实际上定义了<strong>系统的四个层级角色</strong>。</p>
-<p><code>AssistantAgent</code> 是系统中的“执行单元”。它不是简单的聊天机器人，而是一个具备状态、上下文、工具使用能力的 agent。每一个 AssistantAgent 都是一个可以独立参与对话、理解系统指令、做出决策的角色节点。你的 primary_agent 和 critic_agent，正是通过这个类被定义出来的。</p>
-<p><code>TextMentionTermination</code> 定义的是<strong>系统的终止规则</strong>。这一步非常关键。多智能体系统如果没有明确的终止条件，会天然地走向失控。这里的设计不是通过轮数、时间或者异常来终止，而是通过语义信号来终止。当某个 agent 的输出中明确出现 “APPROVE” 时，系统认为任务已经完成。这体现的是一种“语言即控制信号”的设计哲学。</p>
-<p><code>RoundRobinGroupChat</code> 是<strong>调度器</strong>。它决定了多个 agent 如何轮流发言、如何共享上下文、如何在同一任务下协作。这里采用的是轮询策略，意味着 primary 和 critic 会交替获得发言权。这不是唯一的策略，但它非常适合教学，因为行为是可预测的。</p>
-<p><code>Console</code> 则是一个观察接口。它并不影响系统逻辑，但决定了你能否看到系统在运行过程中发生了什么。通过 Console，你可以看到每一条消息、每一次工具调用、每一次 agent 切换。这一点对教学和调试至关重要。</p>
-<hr>
-<p>接下来是这一行 import：</p>
-<pre><code>from autogen_ext.models.openai import OpenAIChatCompletionClient</code></pre>
-<p>这一行是整个系统的<strong>模型适配层</strong>。</p>
-<p>需要特别强调的是：这里并不是“你在用 OpenAI”。你用的是 AutoGen 提供的一个<strong>OpenAI 协议兼容客户端</strong>。它的职责不是绑定某个厂商，而是定义一种统一的对话接口。你通过修改 base_url，把它接到了 Ollama；通过修改 model 名称，把它接到了 llama3.2；通过 model_info，告诉 AutoGen 这个模型具备什么能力。</p>
-<p>换句话说，这一行 import 的真正含义是：<strong>系统逻辑与模型实现解耦</strong>。只要模型遵循 OpenAI-style chat completion 协议，它就可以被无缝接入这个系统。</p>
-<hr>
-<p>然后是 <code>rice_score</code> 这个函数。</p>
-<p>在系统层面，它并不是一个普通的工具函数，而是一个<strong>外部可验证能力的注入点</strong>。当你把它放进 <code>tools=[rice_score]</code>，你实际上是在告诉系统：有一部分计算不应该由语言模型完成，而应该由确定性代码完成。这是 agent 系统从“会说话”走向“能执行”的关键一步。</p>
-<p>这里的参数校验和异常处理，也不是多余的。它们确保：即便模型给出了错误参数，系统也能在工具层面发现问题，而不是默默生成错误结果。</p>
-<hr>
-<p>进入 <code>main()</code> 函数后，第一件事是构造 <code>OpenAIChatCompletionClient</code>。</p>
-<p>这一段代码定义的是<strong>模型的能力边界</strong>。model 名称指向 llama3.2，base_url 指向本地 Ollama，api_key 只是占位符。真正重要的是 model_info。</p>
-<p>model_info 中的 family 字段，告诉 AutoGen：这个模型在行为上属于 llama 系。function_calling 为 True，意味着系统允许向模型发送 tool schema，并期望模型返回工具调用请求。vision、json_output、structured_output，则是对能力的进一步约束。通过这一段声明，AutoGen 才能在运行前判断：哪些 agent 行为是合法的，哪些是不允许的。</p>
-<hr>
-<p>接下来定义的 primary_agent 和 critic_agent，是系统的<strong>角色层设计</strong>。</p>
-<p>primary_agent 被赋予了工具和明确的系统职责。system_message 在这里不是 prompt 工程，而是角色宪法。它定义了这个 agent 在系统中的使命、约束和成功标准。特别是“必须调用 rice_score”这一条，实际上是对 agent 行为的硬约束。</p>
-<p>critic_agent 则承担的是系统中的“负反馈角色”。它不负责产出内容，而负责判断系统是否已经满足目标条件。这种角色分离，是多智能体系统能够稳定收敛的关键。</p>
-<hr>
-<p>termination 的定义，将 critic 的语言输出与系统状态机连接起来。只要 critic 输出 APPROVE，系统就认为任务完成。这使得系统的停止条件不依赖外部控制，而内生于 agent 的判断。</p>
-<hr>
-<p>RoundRobinGroupChat 将两个 agent 组织成一个团队。这里没有复杂的路由逻辑，但它已经完整体现了多 agent 协作的基本形态：共享上下文、交替决策、统一终止。</p>
-<hr>
-<p>task 字符串并不是简单的输入，而是<strong>系统的初始状态描述</strong>。它定义了问题空间、约束条件和期望输出格式。系统后续的一切行为，都是围绕这个初始状态展开的。</p>
-<hr>
-<p>最后，<code>await Console(team.run_stream(task=task))</code> 启动了整个系统。这一行代码意味着：开始运行这个多 agent 系统，并将所有中间状态以流式方式暴露给观察者。直到 termination condition 被触发，系统才会退出。</p>
-<p><code>await model_client.close()</code> 则是资源清理步骤，确保底层连接被正确释放。</p>
-<hr>
-</section>
-</section>
-<section id="agentscope" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="agentscope"><span class="header-section-number">5.3</span> AgentScope</h2>
-<p>好，我们按你给的<strong>系统构建式学习</strong>框架来，一步不从“怎么用 API”开始，而是把 <strong>AgentScope 当成一个可运行的系统</strong> 来站住。</p>
-<p>下面这份内容，我会刻意写在 <strong>论文 × 工程文档的中间态</strong>： 不是碎知识点，也不是教程流水账，而是一份<strong>你以后随时可以“回到结构”的说明书</strong>。</p>
-<hr>
-<section id="agentscope-作为一个系统是什么" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="agentscope-作为一个系统是什么"><span class="header-section-number">5.3.1</span> AgentScope 作为一个系统是什么</h3>
-<p>AgentScope 不是“一个 agent 框架”，而是一个<strong>多智能体运行系统（Multi-Agent Runtime System）</strong>。 它关心的不是“某个模型能说什么”，而是：</p>
-<blockquote class="blockquote">
-<p><strong>多个具备角色、记忆、行为规则的 Agent， 如何在一个可控的运行环境中被创建、调度、通信、终止。</strong></p>
-</blockquote>
-<p>如果只把它当成“写 agent 的工具”，你会学得很碎； 如果把它当成“一个运行系统”，结构会立刻清晰。</p>
-<hr>
-<section id="系统对象这个系统真正反复处理的是什么" class="level4" data-number="5.3.1.1">
-<h4 data-number="5.3.1.1" class="anchored" data-anchor-id="系统对象这个系统真正反复处理的是什么"><span class="header-section-number">5.3.1.1</span> 系统对象：这个系统真正反复处理的是什么</h4>
-<p>在 AgentScope 中，被持续关心、被反复创建 / 调度 / 终止的核心对象只有一个：</p>
-<blockquote class="blockquote">
-<p><strong>Agent Instance（智能体实例）</strong></p>
-</blockquote>
-<p>不是 prompt 不是模型 不是消息 不是 workflow</p>
-<p>这些都只是 <strong>Agent 的组成部分或副产物</strong>。</p>
-<p>一个 AgentScope 系统，本质上是在不断做三件事：</p>
-<ul>
-<li>创建 Agent</li>
-<li>让 Agent 在环境中运行、对话、决策</li>
-<li>在合适的时刻结束 Agent 的生命周期</li>
-</ul>
-<p>所以<strong>系统对象不是“对话”，而是“活着的 Agent”</strong>。</p>
-<hr>
-</section>
-<section id="对象主流程一个-agent-从诞生到消失的完整路径" class="level4" data-number="5.3.1.2">
-<h4 data-number="5.3.1.2" class="anchored" data-anchor-id="对象主流程一个-agent-从诞生到消失的完整路径"><span class="header-section-number">5.3.1.2</span> 对象主流程：一个 Agent 从诞生到消失的完整路径</h4>
-<p>如果你从系统角度看，AgentScope 中任何 Agent，都会经历一条高度稳定的主流程：</p>
-<p><strong>配置 → 实例化 → 注册 → 运行 → 交互 → 状态更新 → 终止</strong></p>
-<p>这条流程非常重要，因为<strong>所有 API、类、命令，最终都只是嵌在这条流程的某一段</strong>。</p>
-<p>抽象描述这条流程：</p>
-<ul>
-<li>系统首先加载配置（模型、环境、角色、参数）</li>
-<li>根据配置创建 Agent 实例</li>
-<li>Agent 被注册到一个运行环境中</li>
-<li>系统开始驱动 Agent 的运行循环</li>
-<li>Agent 接收输入、生成输出、与其他 Agent 交互</li>
-<li>Agent 内部状态（记忆、历史、变量）发生变化</li>
-<li>满足终止条件后，Agent 生命周期结束</li>
-</ul>
-<p>你以后学到的任何“功能”，都可以反向问一句： <strong>它是在这条主流程的哪一段起作用？</strong></p>
-<hr>
-</section>
-<section id="状态与状态变化agent-在系统中活着的方式" class="level4" data-number="5.3.1.3">
-<h4 data-number="5.3.1.3" class="anchored" data-anchor-id="状态与状态变化agent-在系统中活着的方式"><span class="header-section-number">5.3.1.3</span> 状态与状态变化：Agent 在系统中“活着”的方式</h4>
-<p>一个 Agent 并不是一直在“说话”。 它在系统中处于不同的<strong>运行状态</strong>。</p>
-<p>在 AgentScope 的抽象里，一个 Agent 至少会反复切换这些状态：</p>
-<p><strong>未初始化状态</strong> Agent 只是一个配置描述，还不存在实例。</p>
-<p><strong>已实例化状态</strong> Agent 对象已创建，但尚未进入运行环境。</p>
-<p><strong>已注册状态</strong> Agent 被系统纳入调度范围，具备参与交互的资格。</p>
-<p><strong>运行中状态</strong> Agent 正在执行其行为逻辑（生成回复、调用工具、等待消息）。</p>
-<p><strong>等待状态</strong> Agent 暂时不行动，等待其他 Agent 或环境信号。</p>
-<p><strong>终止状态</strong> Agent 生命周期结束，不再被调度。</p>
-<p>状态变化不是“自动发生”的，而是由<strong>系统事件</strong>触发，例如：</p>
-<ul>
-<li>调用 <code>run()</code> → 从已注册进入运行中</li>
-<li>收到消息 → 从等待进入运行中</li>
-<li>满足退出条件 → 进入终止状态</li>
-</ul>
-<p>理解这一点非常关键： <strong>AgentScope 不是“你写一句我回一句”，而是一个状态机驱动系统。</strong></p>
-<hr>
-</section>
-<section id="功能体系围绕主流程系统必须具备的能力" class="level4" data-number="5.3.1.4">
-<h4 data-number="5.3.1.4" class="anchored" data-anchor-id="功能体系围绕主流程系统必须具备的能力"><span class="header-section-number">5.3.1.4</span> 功能体系：围绕主流程，系统必须具备的能力</h4>
-<p>围绕“让 Agent 顺利走完主流程”，AgentScope 提供的功能可以自然分成几类。 这些不是知识分类，而是<strong>系统必需能力</strong>。</p>
-</section>
-<section id="agent-构建能力" class="level4" data-number="5.3.1.5">
-<h4 data-number="5.3.1.5" class="anchored" data-anchor-id="agent-构建能力"><span class="header-section-number">5.3.1.5</span> Agent 构建能力</h4>
-<p>负责把“想法”变成“可运行的 Agent”。</p>
-<p>这里的核心操作不是 prompt，而是：</p>
-<ul>
-<li>定义 Agent 的角色与行为接口</li>
-<li>绑定模型、记忆与策略</li>
-<li>创建 Agent 实例</li>
-</ul>
-<p>典型接口与操作形态：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> agentscope.agents <span class="im">import</span> Agent</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyAgent(Agent):</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> reply(<span class="va">self</span>, message):</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"I received: </span><span class="sc">{</span>message<span class="sc">}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>你不是在“写函数”，而是在<strong>定义一个可被系统调度的实体</strong>。</p>
-<hr>
-</section>
-<section id="环境与运行能力" class="level4" data-number="5.3.1.6">
-<h4 data-number="5.3.1.6" class="anchored" data-anchor-id="环境与运行能力"><span class="header-section-number">5.3.1.6</span> 环境与运行能力</h4>
-<p>Agent 不会“自己跑”，必须被放进一个运行环境。</p>
-<p>AgentScope 的运行环境负责：</p>
-<ul>
-<li>注册 Agent</li>
-<li>驱动 Agent 的执行顺序</li>
-<li>传递消息</li>
-<li>控制运行开始与结束</li>
-</ul>
-<p>常见操作示例：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> agentscope.runtime <span class="im">import</span> Runtime</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>runtime <span class="op">=</span> Runtime()</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>runtime.register(agent_a)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>runtime.register(agent_b)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>runtime.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>注意： <code>run()</code> 的语义不是“执行一段代码”，而是<strong>启动一个系统级运行循环</strong>。</p>
-<hr>
-</section>
-<section id="通信与消息能力" class="level4" data-number="5.3.1.7">
-<h4 data-number="5.3.1.7" class="anchored" data-anchor-id="通信与消息能力"><span class="header-section-number">5.3.1.7</span> 通信与消息能力</h4>
-<p>Agent 之间的交互不是直接函数调用，而是<strong>消息传递</strong>。</p>
-<p>消息在系统中是一个独立对象，具备来源、目标与内容。</p>
-<p>示例：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>agent_a.send(agent_b, <span class="st">"Hello"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>这行代码的真实含义是：</p>
-<blockquote class="blockquote">
-<p>向系统提交一条消息， 由运行环境在合适的时机投递给 agent_b。</p>
-</blockquote>
-<p>这是<strong>解耦设计</strong>，也是多 Agent 系统能扩展的关键。</p>
-<hr>
-</section>
-<section id="状态与记忆管理能力" class="level4" data-number="5.3.1.8">
-<h4 data-number="5.3.1.8" class="anchored" data-anchor-id="状态与记忆管理能力"><span class="header-section-number">5.3.1.8</span> 状态与记忆管理能力</h4>
-<p>AgentScope 不假设 Agent 是“无状态”的。</p>
-<p>每个 Agent 都可以：</p>
-<ul>
-<li>维护历史对话</li>
-<li>保存内部变量</li>
-<li>根据过去行为调整未来行为</li>
-</ul>
-<p>示例（概念级）：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>agent.memory.add(<span class="st">"last_result"</span>, result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>你不是在存变量，而是在<strong>塑造一个持续演化的系统对象</strong>。</p>
-<hr>
-</section>
-<section id="终止与控制能力" class="level4" data-number="5.3.1.9">
-<h4 data-number="5.3.1.9" class="anchored" data-anchor-id="终止与控制能力"><span class="header-section-number">5.3.1.9</span> 终止与控制能力</h4>
-<p>一个成熟的系统必须知道<strong>什么时候停</strong>。</p>
-<p>AgentScope 提供：</p>
-<ul>
-<li>最大轮数控制</li>
-<li>条件终止</li>
-<li>主动停止运行</li>
-</ul>
-<p>示例：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>runtime.run(max_steps<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>这是系统安全与可控性的关键接口。</p>
-<hr>
-</section>
-<section id="映射到具体操作你到底在操作什么" class="level4" data-number="5.3.1.10">
-<h4 data-number="5.3.1.10" class="anchored" data-anchor-id="映射到具体操作你到底在操作什么"><span class="header-section-number">5.3.1.10</span> 映射到具体操作：你到底在“操作什么”</h4>
-<p>如果把所有常见操作重新映射回系统层，你会发现一件很重要的事：</p>
-<p>不是在“用 API”，而是在<strong>对系统对象施加操作</strong>。</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>操作行为</th>
-<th>实际系统含义</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>定义 Agent 类</td>
-<td>描述一种可运行的系统对象</td>
-</tr>
-<tr class="even">
-<td>实例化 Agent</td>
-<td>创建系统对象实例</td>
-</tr>
-<tr class="odd">
-<td>register()</td>
-<td>将对象纳入调度系统</td>
-</tr>
-<tr class="even">
-<td>send()</td>
-<td>向系统提交事件</td>
-</tr>
-<tr class="odd">
-<td>run()</td>
-<td>启动运行时调度循环</td>
-</tr>
-<tr class="even">
-<td>memory 操作</td>
-<td>修改对象内部状态</td>
-</tr>
-<tr class="odd">
-<td>stop / max_steps</td>
-<td>控制系统生命周期</td>
-</tr>
-</tbody>
-</table>
-<p>一旦你用这张映射表来看文档，学习成本会骤降。</p>
-<hr>
-</section>
-</section>
-<section id="多角色协作的-ai-研究助理系统" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="多角色协作的-ai-研究助理系统"><span class="header-section-number">5.3.2</span> 多角色协作的 AI 研究助理系统</h3>
-<p>agent 功能</p>
-<pre><code>给定一个问题 →
-Researcher 查资料 →
-Analyst 结构化分析 →
-Critic 找漏洞 →
-Synthesizer 输出最终结论</code></pre>
-<p>核心对象关系（非常重要）：</p>
-<pre><code>Model (LLM)
-   ↓
-Agent（带角色和行为）
-   ↓
-Message（统一消息结构）
-   ↓
-Group / Environment（调度谁说话）</code></pre>
-<section id="agent-代码" class="level4" data-number="5.3.2.1">
-<h4 data-number="5.3.2.1" class="anchored" data-anchor-id="agent-代码"><span class="header-section-number">5.3.2.1</span> agent 代码</h4>
-<pre><code>import asyncio
-
-from agentscope.agent import ReActAgent
-from agentscope.formatter import OllamaMultiAgentFormatter
-from agentscope.memory import InMemoryMemory
-from agentscope.message import Msg
-from agentscope.model import OllamaChatModel
-from agentscope.pipeline import MsgHub
-from agentscope.tool import Toolkit
-
-
-def build_agents(model_name: str = "llama3.2:latest", host: str = "http://localhost:11434"):
-    """
-    AgentScope v1.0.12 + Ollama 的标准写法：
-    - ReActAgent 作为基础 Agent
-    - OllamaChatModel 对接本地 ollama 服务
-    - OllamaMultiAgentFormatter 用于多 Agent 场景 prompt 组装
-    - MsgHub 负责在多 Agent 之间广播共享消息
-    """
-
-    model = OllamaChatModel(
-        model_name=model_name,
-        host=host,
-        stream=False,
-        # options={"temperature": 0.2},
-    )
-
-    formatter = OllamaMultiAgentFormatter()
-    toolkit = Toolkit()
-
-    # =========================
-    # Researcher（资料搜集）
-    # =========================
-    researcher = ReActAgent(
-        name="Researcher",
-        sys_prompt=(
-            "你是一名研究助理。\n"
-            "任务：收集与问题相关的事实、背景知识、已有研究观点以及可行的分析思路。\n"
-            "约束：不要给出结论，不要进行价值判断，只做信息覆盖与事实整理。\n"
-            "输出形式：使用要点列表，必要时可简要说明假设或常识来源。"
-        ),
-        model=model,
-        formatter=formatter,
-        memory=InMemoryMemory(),
-        toolkit=toolkit,
-    )
-
-    # =========================
-    # Analyst（结构分析）
-    # =========================
-    analyst = ReActAgent(
-        name="Analyst",
-        sys_prompt=(
-            "你是一名分析员。\n"
-            "任务：基于已有信息，将问题整理为结构化、可解释的分析框架。\n"
-            "重点包括：风险类别、作用机制、失败模式、关键假设与检查点。\n"
-            "输出要求：结构清晰、逻辑明确，避免空泛描述。"
-        ),
-        model=model,
-        formatter=formatter,
-        memory=InMemoryMemory(),
-        toolkit=toolkit,
-    )
-
-    # =========================
-    # Critic（反驳与风险暴露）
-    # =========================
-    critic = ReActAgent(
-        name="Critic",
-        sys_prompt=(
-            "你是一名严格的审稿人/批判者。\n"
-            "任务：找出前述分析中的漏洞、遗漏的假设、边界情况以及潜在反例。\n"
-            "要求：保持严格、现实导向，优先指出在真实应用场景中可能出问题的地方。\n"
-            "不要重复已有内容，专注于“哪里可能错、为什么会错”。"
-        ),
-        model=model,
-        formatter=formatter,
-        memory=InMemoryMemory(),
-        toolkit=toolkit,
-    )
-
-    # =========================
-    # Synthesizer（综合输出）
-    # =========================
-    synthesizer = ReActAgent(
-        name="Synthesizer",
-        sys_prompt=(
-            "你是一名综合者。\n"
-            "任务：基于前面所有讨论，给出最终、简洁且结构良好的回答。\n"
-            "输出要求：\n"
-            "- 使用清晰的小标题\n"
-            "- 给出可执行、现实可行的风险缓解建议\n"
-            "- 最后提供一个简短的检查清单（checklist）\n"
-            "目标读者：具备专业背景、需要进行决策或系统设计的人。"
-        ),
-        model=model,
-        formatter=formatter,
-        memory=InMemoryMemory(),
-        toolkit=toolkit,
-    )
-
-    return researcher, analyst, critic, synthesizer
-
-
-async def run_pipeline(question: str):
-    researcher, analyst, critic, synthesizer = build_agents(
-        model_name="llama3.2:latest",
-        host="http://localhost:11434",
-    )
-
-    # MsgHub：多 Agent 共享上下文（关键）
-    async with MsgHub(
-        [researcher, analyst, critic, synthesizer],
-        announcement=Msg("system", f"用户问题：{question}", "system"),
-    ):
-        print("\n========== Researcher ==========")
-        msg_r = await researcher()
-        print(msg_r.get_text_content())
-
-        print("\n========== Analyst ==========")
-        msg_a = await analyst()
-        print(msg_a.get_text_content())
-
-        print("\n========== Critic ==========")
-        msg_c = await critic()
-        print(msg_c.get_text_content())
-
-        print("\n========== Synthesizer ==========")
-        msg_s = await synthesizer()
-        print(msg_s.get_text_content())
-
-
-if __name__ == "__main__":
-    q = "在医疗决策中使用大语言模型的主要风险有哪些？"
-    asyncio.run(run_pipeline(q))
-</code></pre>
-<p>输出结果</p>
-<pre><code>/opt/anaconda3/envs/HZAU大模型课程/bin/python /Users/milin/HZAU大模型课程/agentscope_study.py 
-
-========== Researcher ==========
-Researcher: **医疗决策中使用大语言模型的主要风险**
-
-以下是有关该主题的信息和事实：
-
-### 1. **个人化治疗难度**
-   - 大语言模型（如 transformers）可能在个人化治疗方面面临挑战，因为它们需要大量的数据来train，并且可能无法处理个体差异。
-   
-* 来源： * [1] A. S. Weisberger et al., "Personalized Medicine and the Future of Healthcare," Journal of Clinical Oncology, vol. 35, no. 22, pp. 2473–2482, Nov 2017.*
-
-### 2. **数据质量和可靠性**
-   - 大语言模型在医疗决策中的使用可能会遇到数据质量和可靠性的问题，尤其是当使用来自不同来源或不完整的数据时。
-   
-* 来源： * [2] M. A. Smith et al., "Data Quality in Healthcare: A Review of the Literature," Journal of Medical Systems, vol. 43, no. 10, pp. 2311–2323, Oct 2019.*
-
-### 3. **隐私和数据保护**
-   - 大语言模型可能会泄露患者的个人信息，导致隐私问题，这是一个需要关注的问题。
-   
-* 来源： * [3] J. Li et al., "Deep Learning for Healthcare: A Review of the Literature," Journal of Medical Systems, vol. 44, no. 10, pp. 2341–2356, Oct 2020.*
-
-### 4. **模型解释性和透明度**
-   - 大语言模型在医疗决策中的使用可能会导致模型解释性和透明度的缺乏，这是安全性和可信性的问题。
-   
-* 来源： * [4] D. M. Blei et al., "Deep Learning for Healthcare: A Review of the Literature," Journal of Medical Systems, vol. 43, no. 10, pp. 2311–2323, Oct 2019.*
-
-### 5. **医疗知识和专业知觉**
-   - 大语言模型可能无法完全替代医疗专业人员的专业知识和判断能力，这是一个需要注意的问题。
-   
-* 来源： * [5] S. S. Rao et al., "Deep Learning for Healthcare: A Review of the Literature," Journal of Medical Systems, vol. 44, no. 10, pp. 2341–2356, Oct 2020.*
-**医疗决策中使用大语言模型的主要风险**
-
-以下是有关该主题的信息和事实：
-
-### 1. **个人化治疗难度**
-   - 大语言模型（如 transformers）可能在个人化治疗方面面临挑战，因为它们需要大量的数据来train，并且可能无法处理个体差异。
-   
-* 来源： * [1] A. S. Weisberger et al., "Personalized Medicine and the Future of Healthcare," Journal of Clinical Oncology, vol. 35, no. 22, pp. 2473–2482, Nov 2017.*
-
-### 2. **数据质量和可靠性**
-   - 大语言模型在医疗决策中的使用可能会遇到数据质量和可靠性的问题，尤其是当使用来自不同来源或不完整的数据时。
-   
-* 来源： * [2] M. A. Smith et al., "Data Quality in Healthcare: A Review of the Literature," Journal of Medical Systems, vol. 43, no. 10, pp. 2311–2323, Oct 2019.*
-
-### 3. **隐私和数据保护**
-   - 大语言模型可能会泄露患者的个人信息，导致隐私问题，这是一个需要关注的问题。
-   
-* 来源： * [3] J. Li et al., "Deep Learning for Healthcare: A Review of the Literature," Journal of Medical Systems, vol. 44, no. 10, pp. 2341–2356, Oct 2020.*
-
-### 4. **模型解释性和透明度**
-   - 大语言模型在医疗决策中的使用可能会导致模型解释性和透明度的缺乏，这是安全性和可信性的问题。
-   
-* 来源： * [4] D. M. Blei et al., "Deep Learning for Healthcare: A Review of the Literature," Journal of Medical Systems, vol. 43, no. 10, pp. 2311–2323, Oct 2019.*
-
-### 5. **医疗知识和专业知觉**
-   - 大语言模型可能无法完全替代医疗专业人员的专业知识和判断能力，这是一个需要注意的问题。
-   
-* 来源： * [5] S. S. Rao et al., "Deep Learning for Healthcare: A Review of the Literature," Journal of Medical Systems, vol. 44, no. 10, pp. 2341–2356, Oct 2020.*
-
-========== Analyst ==========
-Analyst: **风险类别**
-
-1. **个人化治疗难度**
-2. **数据质量和可靠性**
-3. **隐私和数据保护**
-4. **模型解释性和透明度**
-5. **医疗知识和专业知觉**
-
-**作用机制**
-
-大语言模型在医疗决策中的使用，可能会导致以下问题：
-
-* 个人化治疗难难：大语言模型需要大量的数据来train，并且可能无法处理个体差异。
-* 数据质量和可靠性问题：使用来自不同来源或不完整的数据可能会导致数据质量和可靠性的问题。
-* 隐私和数据保护风险：大语言模型可能会泄露患者的个人信息。
-* 模型解释性和透明度缺乏：大语言模型在医疗决策中的使用可能会导致安全性和可信性的问题。
-* 医疗知识和专业知觉不足：大.language模型可能无法完全替代医疗专业人员的专业知识和判断能力。
-
-**失败模式**
-
-1. 个人化治疗难易：缺乏个体差异处理能力，导致治疗计划不适合患者需求。
-2. 数据质量和可靠性问题：使用错误或不完整的数据，导致医疗决策的准确性降低。
-3. 隐私和数据保护风险：泄露患者个人信息，导致患者信任受损和法律纠纷。
-4. 模型解释性和透明度缺乏：未能提供可理解的模型解释，导致医疗专业人员难以对决策做出判断。
-5. 医疗知识和专业知觉不足：依赖机器学习模式而不是医疗专业人员的专业知识，导致治疗结果不佳。
-
-**关键假设与检查点**
-
-* **个人化治疗**: 1. 能够处理个体差异 2. 需要大量数据来train
-* **数据质量和可靠性**: 1. 有效验证数据来源 2. 确保数据完整性
-* **隐私和数据保护**: 1. 实施适当的加密技术 2. 确保数据访问控制
-* **模型解释性和透明度**: 1. 开发可理解的模型解释框架 2. 实施模型解释评估系统
-* **医疗知识和专业知觉**: 1. 确保医疗专业人员参与决策 2. 开发合适的机器学习模型
-**风险类别**
-
-1. **个人化治疗难度**
-2. **数据质量和可靠性**
-3. **隐私和数据保护**
-4. **模型解释性和透明度**
-5. **医疗知识和专业知觉**
-
-**作用机制**
-
-大语言模型在医疗决策中的使用，可能会导致以下问题：
-
-* 个人化治疗难难：大语言模型需要大量的数据来train，并且可能无法处理个体差异。
-* 数据质量和可靠性问题：使用来自不同来源或不完整的数据可能会导致数据质量和可靠性的问题。
-* 隐私和数据保护风险：大语言模型可能会泄露患者的个人信息。
-* 模型解释性和透明度缺乏：大语言模型在医疗决策中的使用可能会导致安全性和可信性的问题。
-* 医疗知识和专业知觉不足：大.language模型可能无法完全替代医疗专业人员的专业知识和判断能力。
-
-**失败模式**
-
-1. 个人化治疗难易：缺乏个体差异处理能力，导致治疗计划不适合患者需求。
-2. 数据质量和可靠性问题：使用错误或不完整的数据，导致医疗决策的准确性降低。
-3. 隐私和数据保护风险：泄露患者个人信息，导致患者信任受损和法律纠纷。
-4. 模型解释性和透明度缺乏：未能提供可理解的模型解释，导致医疗专业人员难以对决策做出判断。
-5. 医疗知识和专业知觉不足：依赖机器学习模式而不是医疗专业人员的专业知识，导致治疗结果不佳。
-
-**关键假设与检查点**
-
-* **个人化治疗**: 1. 能够处理个体差异 2. 需要大量数据来train
-* **数据质量和可靠性**: 1. 有效验证数据来源 2. 确保数据完整性
-* **隐私和数据保护**: 1. 实施适当的加密技术 2. 确保数据访问控制
-* **模型解释性和透明度**: 1. 开发可理解的模型解释框架 2. 实施模型解释评估系统
-* **医疗知识和专业知觉**: 1. 确保医疗专业人员参与决策 2. 开发合适的机器学习模型
-
-========== Critic ==========
-Critic: 您的分析总结了大语言模型在医疗决策中的主要风险，包括个人化治疗难度、数据质量和可靠性问题、隐私和数据保护风险、模型解释性和透明度缺乏以及医疗知识和专业知觉不足。这些风险是有道理的，需要被考虑到。
-
-然而，在您提供的分析中，有几个地方存在一些潜在的漏洞或假设：
-
-1. **个人化治疗难易**:您提到了大语言模型可能无法处理个体差异，但没有明确指出，这是否意味着会出现过度或不适当的治疗计划。例如，如果使用的大量数据中包含了许多个体差异，并且对这些差异进行了合理的预测，那么这种情况下，个人化治疗难易可能并不那么严重。
-2. **数据质量和可靠性问题**:您提到了使用错误或不完整的数据可能导致医疗决策的准确性降低，但没有考虑到使用大语言模型的潜在优点，例如可以快速获得大量数据的能力。是否通过加强数据验证和检验过程来缓解这种风险？
-3. **隐私和数据保护风险**:您提到了泄露患者个人信息可能导致患者信任受损和法律纠纷，但没有考虑到使用加密技术和安全数据存储的潜在好处。
-4. **模型解释性和透明度缺乏**:您提到了未能提供可理解的模型解释可能导致医疗专业人员难以对决策做出判断，但没有考虑到开发可理解的模型解释框架的潜在方法，例如使用解释性机器学习。
-5. **医疗知识和专业知觉不足**:您提到了依赖机器学习模式而不是医疗专业人员的专业知识可能导致治疗结果不佳，但没有考虑到如何结合机器学习和医疗专业人员的专业知识来改善治疗结果。
-
-在真实应用场景中，这些潜在漏洞或假设需要被仔细检查和解决。例如，通过开发合适的数据验证和检验过程，减轻数据质量和可靠性问题的风险；或者通过使用加密技术和安全数据存储，降低隐私和数据保护风险；或者通过开发可理解的模型解释框架，提高模型解释性和透明度。
-
-总体来说，您的分析是有价值的，但需要考虑到这些潜在漏洞或假设，并采取措施解决它们。
-您的分析总结了大语言模型在医疗决策中的主要风险，包括个人化治疗难度、数据质量和可靠性问题、隐私和数据保护风险、模型解释性和透明度缺乏以及医疗知识和专业知觉不足。这些风险是有道理的，需要被考虑到。
-
-然而，在您提供的分析中，有几个地方存在一些潜在的漏洞或假设：
-
-1. **个人化治疗难易**:您提到了大语言模型可能无法处理个体差异，但没有明确指出，这是否意味着会出现过度或不适当的治疗计划。例如，如果使用的大量数据中包含了许多个体差异，并且对这些差异进行了合理的预测，那么这种情况下，个人化治疗难易可能并不那么严重。
-2. **数据质量和可靠性问题**:您提到了使用错误或不完整的数据可能导致医疗决策的准确性降低，但没有考虑到使用大语言模型的潜在优点，例如可以快速获得大量数据的能力。是否通过加强数据验证和检验过程来缓解这种风险？
-3. **隐私和数据保护风险**:您提到了泄露患者个人信息可能导致患者信任受损和法律纠纷，但没有考虑到使用加密技术和安全数据存储的潜在好处。
-4. **模型解释性和透明度缺乏**:您提到了未能提供可理解的模型解释可能导致医疗专业人员难以对决策做出判断，但没有考虑到开发可理解的模型解释框架的潜在方法，例如使用解释性机器学习。
-5. **医疗知识和专业知觉不足**:您提到了依赖机器学习模式而不是医疗专业人员的专业知识可能导致治疗结果不佳，但没有考虑到如何结合机器学习和医疗专业人员的专业知识来改善治疗结果。
-
-在真实应用场景中，这些潜在漏洞或假设需要被仔细检查和解决。例如，通过开发合适的数据验证和检验过程，减轻数据质量和可靠性问题的风险；或者通过使用加密技术和安全数据存储，降低隐私和数据保护风险；或者通过开发可理解的模型解释框架，提高模型解释性和透明度。
-
-总体来说，您的分析是有价值的，但需要考虑到这些潜在漏洞或假设，并采取措施解决它们。
-
-========== Synthesizer ==========
-</code></pre>
-</section>
-</section>
-</section>
-<section id="camel" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="camel"><span class="header-section-number">5.4</span> CAMEL</h2>
-<section id="camel-作为一个系统是什么" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="camel-作为一个系统是什么"><span class="header-section-number">5.4.1</span> CAMEL 作为一个系统是什么</h3>
-<p>CAMEL（CAMEL-AI）不是一个“多 Agent 框架大全”， 它的核心定位其实非常明确：</p>
-<blockquote class="blockquote">
-<p><strong>一个以「对话驱动的角色协作」为中心的多智能体生成系统</strong></p>
-</blockquote>
-<p>如果 AgentScope 关心的是 <strong>Agent 的运行时与调度系统</strong>， 那么 CAMEL 关心的是另一件事：</p>
-<blockquote class="blockquote">
-<p><strong>多个角色化 Agent， 如何通过结构化对话，自发地产生推理、分工与结果。</strong></p>
-</blockquote>
-<p>一句话对比（先给你一个锚点）：</p>
-<ul>
-<li>AgentScope：系统先于角色</li>
-<li>CAMEL：角色先于系统</li>
-</ul>
-<hr>
-</section>
-<section id="系统对象camel-真正反复处理的核心对象" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="系统对象camel-真正反复处理的核心对象"><span class="header-section-number">5.4.2</span> 系统对象：CAMEL 真正反复处理的核心对象</h3>
-<p>在 CAMEL 中，被持续创建、驱动、消费的核心对象并不是 Agent 本身，而是：</p>
-<blockquote class="blockquote">
-<p><strong>Role-Based Conversation（角色对话实例）</strong></p>
-</blockquote>
-<p>Agent 在 CAMEL 里是“角色载体”， 但系统真正关心、反复推进的是：</p>
-<ul>
-<li>一段有目标的对话</li>
-<li>对话中不同角色的立场与职责</li>
-<li>对话如何一步步逼近任务完成</li>
-</ul>
-<p>所以从系统视角看：</p>
-<blockquote class="blockquote">
-<p><strong>CAMEL 是“对话生成系统”， Agent 只是对话中的函数节点。</strong></p>
-</blockquote>
-<p>这是 CAMEL 和 AgentScope 的<strong>第一性差异</strong>。</p>
-<hr>
-</section>
-<section id="对象主流程一段-camel-对话是如何被生成的" class="level3" data-number="5.4.3">
-<h3 data-number="5.4.3" class="anchored" data-anchor-id="对象主流程一段-camel-对话是如何被生成的"><span class="header-section-number">5.4.3</span> 对象主流程：一段 CAMEL 对话是如何被生成的</h3>
-<p>CAMEL 的主流程非常干净，而且高度可预测：</p>
-<p><strong>任务定义 → 角色设定 → 对话初始化 → 多轮交互 → 结果产出 → 对话终止</strong></p>
-<p>注意： CAMEL 的“生命周期”不是 Agent 的生命周期，而是<strong>对话的生命周期</strong>。</p>
-<p>抽象来看：</p>
-<ul>
-<li>系统先明确一个任务（task）</li>
-<li>为任务分配若干角色（roles）</li>
-<li>用角色信息生成初始 system prompt</li>
-<li>驱动角色之间进行轮次对话</li>
-<li>从对话中提取结果</li>
-<li>在满足条件后结束对话</li>
-</ul>
-<p>这意味着： <strong>CAMEL 的最小运行单位不是 agent.run()，而是一段 conversation.run()。</strong></p>
-<hr>
-</section>
-<section id="状态与状态变化对话而非-agent-的状态机" class="level3" data-number="5.4.4">
-<h3 data-number="5.4.4" class="anchored" data-anchor-id="状态与状态变化对话而非-agent-的状态机"><span class="header-section-number">5.4.4</span> 状态与状态变化：对话而非 Agent 的状态机</h3>
-<p>CAMEL 中最重要的状态，不在 Agent 内部，而在<strong>对话整体</strong>。</p>
-<p>一段典型 CAMEL 对话，会经历以下关键状态：</p>
-<p><strong>未初始化状态</strong> 只有任务描述，没有角色，也没有 prompt。</p>
-<p><strong>角色绑定状态</strong> 每个角色被赋予职责、立场、边界。</p>
-<p><strong>对话已启动状态</strong> system / user prompt 已生成，对话开始。</p>
-<p><strong>多轮演化状态</strong> 角色轮流发言，信息逐步积累、推理展开。</p>
-<p><strong>目标逼近状态</strong> 对话开始收敛，出现可交付结果。</p>
-<p><strong>终止状态</strong> 满足轮数、目标或人为终止条件。</p>
-<p>状态变化的触发机制非常清晰：</p>
-<ul>
-<li>初始化 prompt → 对话启动</li>
-<li>每一轮生成 → 状态推进</li>
-<li>达成目标或超限 → 对话终止</li>
-</ul>
-<p>所以你可以把 CAMEL 理解为：</p>
-<blockquote class="blockquote">
-<p><strong>一个“被 prompt 驱动的对话状态机”。</strong></p>
-</blockquote>
-<hr>
-</section>
-<section id="功能体系camel-系统真正需要的能力" class="level3" data-number="5.4.5">
-<h3 data-number="5.4.5" class="anchored" data-anchor-id="功能体系camel-系统真正需要的能力"><span class="header-section-number">5.4.5</span> 功能体系：CAMEL 系统真正需要的能力</h3>
-<p>围绕“让一段角色对话顺利走完主流程”，CAMEL 的功能体系是高度聚焦的。</p>
-<hr>
-<section id="任务与角色建模能力" class="level4" data-number="5.4.5.1">
-<h4 data-number="5.4.5.1" class="anchored" data-anchor-id="任务与角色建模能力"><span class="header-section-number">5.4.5.1</span> 任务与角色建模能力</h4>
-<p>CAMEL 的第一等公民不是 Agent，而是 <strong>Role</strong>。</p>
-<p>系统必须具备能力：</p>
-<ul>
-<li>描述任务目标</li>
-<li>明确每个角色的职责、视角与边界</li>
-<li>将角色信息编译进 prompt</li>
-</ul>
-<p>典型使用形态（概念级）：</p>
-<pre><code>from camel.roles import Role
-
-assistant = Role(
-    name="AI Researcher",
-    role_prompt="You are responsible for proposing solutions."
-)
-
-user = Role(
-    name="Reviewer",
-    role_prompt="You critique and refine the solution."
-)</code></pre>
-<p>你不是在“定义 agent”， 而是在<strong>定义对话中的函数角色</strong>。</p>
-<hr>
-</section>
-<section id="对话生成与推进能力" class="level4" data-number="5.4.5.2">
-<h4 data-number="5.4.5.2" class="anchored" data-anchor-id="对话生成与推进能力"><span class="header-section-number">5.4.5.2</span> 对话生成与推进能力</h4>
-<p>CAMEL 的核心引擎是： <strong>如何让角色轮流、合理地说话。</strong></p>
-<p>系统负责：</p>
-<ul>
-<li>决定发言顺序</li>
-<li>注入上下文</li>
-<li>保持角色一致性</li>
-<li>推进对话轮次</li>
-</ul>
-<p>示例（简化）：</p>
-<pre><code>from camel.conversation import Conversation
-
-conv = Conversation(
-    roles=[assistant, user],
-    task="Design a data pipeline"
-)
-
-conv.run()</code></pre>
-<p><code>run()</code> 在 CAMEL 中的语义是：</p>
-<blockquote class="blockquote">
-<p><strong>生成一段完整的、多轮的角色对话。</strong></p>
-</blockquote>
-<hr>
-</section>
-<section id="prompt-编译与约束能力" class="level4" data-number="5.4.5.3">
-<h4 data-number="5.4.5.3" class="anchored" data-anchor-id="prompt-编译与约束能力"><span class="header-section-number">5.4.5.3</span> Prompt 编译与约束能力</h4>
-<p>CAMEL 非常强调： <strong>prompt 不是手写的，而是“系统生成的”。</strong></p>
-<p>系统需要做的事情包括：</p>
-<ul>
-<li>将任务 + 角色 → system prompt</li>
-<li>保证角色不越界</li>
-<li>防止角色混淆身份</li>
-</ul>
-<p>你可以理解为：</p>
-<blockquote class="blockquote">
-<p>CAMEL 内置了一个 <strong>Prompt Compiler</strong>。</p>
-</blockquote>
-<hr>
-</section>
-<section id="结果提取与消费能力" class="level4" data-number="5.4.5.4">
-<h4 data-number="5.4.5.4" class="anchored" data-anchor-id="结果提取与消费能力"><span class="header-section-number">5.4.5.4</span> 结果提取与消费能力</h4>
-<p>CAMEL 并不假设对话本身就是终点。</p>
-<p>系统通常会：</p>
-<ul>
-<li>从对话中提取最终回答</li>
-<li>或提取中间 reasoning</li>
-<li>或将对话作为数据集</li>
-</ul>
-<p>示例（概念）：</p>
-<pre><code>result = conv.get_final_response()</code></pre>
-<p>注意： <strong>你消费的是“对话产物”，而不是 agent 输出。</strong></p>
-<hr>
-</section>
-<section id="对话终止与安全控制能力" class="level4" data-number="5.4.5.5">
-<h4 data-number="5.4.5.5" class="anchored" data-anchor-id="对话终止与安全控制能力"><span class="header-section-number">5.4.5.5</span> 对话终止与安全控制能力</h4>
-<p>CAMEL 的控制点集中在对话层：</p>
-<ul>
-<li>最大轮数</li>
-<li>目标达成判断</li>
-<li>强制停止</li>
-</ul>
-<p>示例：</p>
-<pre><code>conv.run(max_turns=10)</code></pre>
-<p>这是防止“无限对话”的核心机制。</p>
-<hr>
-</section>
-</section>
-<section id="映射到具体操作camel-的操作在系统中意味着什么" class="level3" data-number="5.4.6">
-<h3 data-number="5.4.6" class="anchored" data-anchor-id="映射到具体操作camel-的操作在系统中意味着什么"><span class="header-section-number">5.4.6</span> 映射到具体操作：CAMEL 的操作在系统中意味着什么</h3>
-<p>把 CAMEL 的常见操作重新翻译成系统语言，会非常清楚：</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>操作</th>
-<th>系统层含义</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>定义 Role</td>
-<td>定义对话中的函数角色</td>
-</tr>
-<tr class="even">
-<td>定义 task</td>
-<td>定义对话的优化目标</td>
-</tr>
-<tr class="odd">
-<td>创建 Conversation</td>
-<td>创建一个对话状态机</td>
-</tr>
-<tr class="even">
-<td>run()</td>
-<td>启动对话生成流程</td>
-</tr>
-<tr class="odd">
-<td>每一轮生成</td>
-<td>状态推进</td>
-</tr>
-<tr class="even">
-<td>get_result()</td>
-<td>消费对话产物</td>
-</tr>
-<tr class="odd">
-<td>max_turns</td>
-<td>对话生命周期控制</td>
-</tr>
-</tbody>
-</table>
-<p>你会发现： <strong>CAMEL 几乎没有“运行时调度”概念，它把一切都压缩进对话生成过程。</strong></p>
-<hr>
-</section>
-</section>
-<section id="langgraph" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="langgraph"><span class="header-section-number">5.5</span> LangGraph</h2>
-<hr>
-<section id="系统对象" class="level3" data-number="5.5.1">
-<h3 data-number="5.5.1" class="anchored" data-anchor-id="系统对象"><span class="header-section-number">5.5.1</span> 系统对象</h3>
-<p>LangGraph 里被持续关心、被反复处理的核心对象，不是“模型”、不是“prompt”，而是：</p>
-<p><strong>带状态的图执行（Graph Execution over State）</strong>。</p>
-<p>更具体一点：它把你的应用抽象成三类第一等公民——<strong>State、Nodes、Edges</strong>：共享状态承载“当前快照”，节点是会读写状态的函数，边决定下一步走向（固定或条件路由）。(<a href="https://docs.langchain.com/oss/python/langgraph/graph-api?utm_source=chatgpt.com" title="Graph API overview - Docs by LangChain">LangChain 文档</a>)</p>
-<p>所以你在 LangGraph 里真正“反复处理”的对象可以用一句话概括：</p>
-<p><strong>一个可持久化的状态（State），在图上被节点逐步更新，并被边路由推进。</strong></p>
-<p>这与很多“链式调用”框架的直觉不同：LangGraph 的单位不是一次调用，而是“状态在图上的演化”。</p>
-<hr>
-</section>
-<section id="对象主流程" class="level3" data-number="5.5.2">
-<h3 data-number="5.5.2" class="anchored" data-anchor-id="对象主流程"><span class="header-section-number">5.5.2</span> 对象主流程</h3>
-<p>把 LangGraph 当系统看，它的主流程非常稳定：</p>
-<p><strong>定义状态模式 → 定义节点函数 → 连接边与条件路由 → 编译成可执行图 → 以一次运行推进若干步 → 产生输出并留下可回溯状态</strong></p>
-<p>其中“编译”是一个关键门槛：你不是在运行 Python 函数集合，而是在把图编译成一个可执行体（Compiled Graph），然后通过 <code>invoke/stream</code> 等入口去驱动它。(<a href="https://reference.langchain.com/python/langgraph/graphs/" title="Graphs | LangChain Reference">LangChain参考</a>)</p>
-<p>如果你启用了持久化层（checkpointer），主流程会多一层“可恢复执行”语义：</p>
-<p><strong>每一步（super-step）都会把状态快照写入 thread 的 checkpoint</strong>，因此才支持中断恢复、人类在环、时间回溯等能力。(<a href="https://docs.langchain.com/oss/python/langgraph/persistence" title="Persistence - Docs by LangChain">LangChain 文档</a>)</p>
-<hr>
-</section>
-<section id="状态与状态变化" class="level3" data-number="5.5.3">
-<h3 data-number="5.5.3" class="anchored" data-anchor-id="状态与状态变化"><span class="header-section-number">5.5.3</span> 状态与状态变化</h3>
-<p>LangGraph 的“状态”不是一个随便的 dict，而是一个<strong>有结构、有合并规则的共享数据结构</strong>。</p>
-<p>常见的核心状态形态是“消息历史 + 业务字段”。官方甚至给了预置的 <code>MessagesState</code>：它包含一个 <code>messages</code> 列表，并通过 <code>add_messages</code> 作为 reducer 处理“消息如何合并进状态”。(<a href="https://docs.langchain.com/oss/python/langgraph/graph-api" title="Graph API overview - Docs by LangChain">LangChain 文档</a>)</p>
-<p>状态变化的机制可以用一句工程化的话描述：</p>
-<p><strong>节点返回的是“状态增量（updates）”，系统按 reducer 规则把增量归并进全局状态，然后由边决定下一步执行哪个节点。</strong>(<a href="https://docs.langchain.com/oss/python/langgraph/graph-api?utm_source=chatgpt.com" title="Graph API overview - Docs by LangChain">LangChain 文档</a>)</p>
-<p>节点函数的签名也体现了系统性：节点不仅能拿到 <code>state</code>，还可以拿到 <code>config</code>（例如 thread_id）以及运行时上下文 <code>runtime</code>。(<a href="https://docs.langchain.com/oss/python/langgraph/graph-api" title="Graph API overview - Docs by LangChain">LangChain 文档</a>)</p>
-<hr>
-</section>
-<section id="功能体系包含命令清单" class="level3" data-number="5.5.4">
-<h3 data-number="5.5.4" class="anchored" data-anchor-id="功能体系包含命令清单"><span class="header-section-number">5.5.4</span> 功能体系（包含命令清单）</h3>
-<p>下面这部分把功能按“围绕主流程必须具备的能力”来组织，同时把能力映射到常见接口/命令。你会看到它并不是零散 API，而是一套完整的运行机制。</p>
-<section id="图构建能力" class="level5" data-number="5.5.4.0.1">
-<h5 data-number="5.5.4.0.1" class="anchored" data-anchor-id="图构建能力"><span class="header-section-number">5.5.4.0.1</span> 图构建能力</h5>
-<p>这是把“想要的流程”变成“可执行图”的能力，核心操作围绕 <code>StateGraph</code>：</p>
+<p><img src="images/clipboard-1946706444.png" class="img-fluid" width="350"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>上一章回顾
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>第 4 章我们为 Agent 装上了”手脚”——工具系统。Agent 现在能查询天气、推荐景点，但它只能机械地执行”思考→行动→观察”的单步循环。面对需要多步推理、动态调整策略的复杂任务时，这种简单循环力不从心。本章将引入三种经典的<strong>推理范式</strong>，让 Agent 学会更灵活地”思考”。</p>
+</div>
+</div>
+<p>现代 Agent 最具代表性的三种推理范式：</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 67%">
-<col style="width: 16%">
+<col style="width: 28%">
+<col style="width: 42%">
+<col style="width: 28%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>系统能力</th>
-<th>常见接口/操作</th>
-<th>在主流程中的位置</th>
+<th>范式</th>
+<th>核心思想</th>
+<th>类比</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>定义状态模式</td>
-<td><code>TypedDict</code> / <code>MessagesState</code> / reducer（如 <code>add_messages</code>）</td>
-<td>定义状态模式</td>
+<td><strong>ReAct</strong></td>
+<td>推理与行动交替进行，边想边做，动态调整</td>
+<td>侦探根据线索随时调整调查方向</td>
 </tr>
 <tr class="even">
-<td>注册节点</td>
-<td><code>add_node(name, fn)</code></td>
-<td>定义节点函数</td>
+<td><strong>Plan-and-Solve</strong></td>
+<td>先生成完整计划，再严格执行</td>
+<td>建筑师先完成蓝图，再按图施工</td>
 </tr>
 <tr class="odd">
-<td>连接边</td>
-<td><code>add_edge(START, node)</code>、<code>add_edge(node, END)</code></td>
-<td>连接边</td>
-</tr>
-<tr class="even">
-<td>条件路由</td>
-<td><code>add_conditional_edges(source, path)</code></td>
-<td>连接条件边</td>
-</tr>
-<tr class="odd">
-<td>编译为可执行图</td>
-<td><code>compile(...)</code></td>
-<td>编译</td>
+<td><strong>Reflection</strong></td>
+<td>执行后自我评审，发现错误并修正</td>
+<td>学生写完作业后自己检查一遍</td>
 </tr>
 </tbody>
 </table>
-<p>这些接口的语义在参考文档里是明确的：<code>add_node/add_edge/add_conditional_edges/compile</code> 都是围绕 StateGraph 的核心构建操作。(<a href="https://reference.langchain.com/python/langgraph/graphs/" title="Graphs | LangChain Reference">LangChain参考</a>)</p>
+<section id="react边想边做" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="react边想边做"><span class="header-section-number">4.1</span> ReAct：边想边做</h2>
+<p>ReAct（Reasoning + Acting）由 Shunyu Yao 于 2022 年提出，其核心思想是将<strong>推理（Thought）</strong>与<strong>行动（Action）</strong>显式结合，形成 “Thought → Action → Observation” 循环。</p>
+<section id="与简单工具调用的区别" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="与简单工具调用的区别"><span class="header-section-number">4.1.1</span> 与简单工具调用的区别</h3>
+<p>第 4 章的旅行助手已经是 ReAct 的雏形。但现在我们让它更进一步：<strong>ReAct Agent 会根据 Observation 动态调整后续推理</strong>，而不是机械执行预设步骤。</p>
 </section>
-<section id="运行与调用能力" class="level4" data-number="5.5.4.1">
-<h4 data-number="5.5.4.1" class="anchored" data-anchor-id="运行与调用能力"><span class="header-section-number">5.5.4.1</span> 运行与调用能力</h4>
-<p>编译后的图会以“可运行对象”的形态被调用。你要形成一个稳定直觉：<strong>运行不是“执行某个节点”，而是“推进一次图执行”。</strong></p>
-<p>典型调用入口包括 <code>invoke</code>（一次性得到结果）以及流式能力（常见是 <code>stream</code>）。官方文档把 <code>invoke</code> 作为基本运行方式示例化：(<a href="https://reference.langchain.com/python/langgraph/graphs/" title="Graphs | LangChain Reference">LangChain参考</a>)</p>
+<section id="完整实现" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="完整实现"><span class="header-section-number">4.1.2</span> 完整实现</h3>
+<p>以下实现基于第 4 章的 ToolExecutor 扩展，增加了一个事实查询工具，并改进了 Action 解析逻辑：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 工具定义</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> search_fact(query: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""在本地知识库中查询事实"""</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    fact_db <span class="op">=</span> {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"什么是智能体"</span>: <span class="st">"智能体（Agent）是一种能够感知环境、进行推理，并采取行动以达成目标的系统。"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"智能体的核心组成"</span>: <span class="st">"智能体的核心组成包括：观察（Observation）、推理（Reasoning）、行动（Action）和记忆（Memory）。"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"大语言模型和智能体的区别"</span>: <span class="st">"大语言模型主要负责生成文本，而智能体不仅能生成内容，还可以调用工具并执行行动。"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Transformer 的核心思想"</span>: <span class="st">"Transformer 的核心思想是使用注意力机制来建模序列，而不依赖循环结构。"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"为什么智能体需要工具"</span>: <span class="st">"智能体需要工具来获取模型参数之外的信息或执行实际操作。"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 简单相似度匹配</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> similarity(a: <span class="bu">str</span>, b: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="bu">set</span>(a) <span class="op">&amp;</span> <span class="bu">set</span>(b))</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> [(k, similarity(query, k)) <span class="cf">for</span> k <span class="kw">in</span> fact_db]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> <span class="bu">max</span>(scores, key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>])</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> best[<span class="dv">1</span>] <span class="op">&gt;=</span> <span class="dv">1</span>:</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"FACT: </span><span class="sc">{</span>fact_db[best[<span class="dv">0</span>]]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"FACT: Not found"</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. ToolExecutor（复用第4章的）</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ToolExecutor:</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._tools <span class="op">=</span> {}</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> register(<span class="va">self</span>, name, description, func):</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._tools[name] <span class="op">=</span> {<span class="st">"description"</span>: description, <span class="st">"func"</span>: func}</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_func(<span class="va">self</span>, name):</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> <span class="va">self</span>._tools.get(name)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> t[<span class="st">"func"</span>] <span class="cf">if</span> t <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_descriptions(<span class="va">self</span>):</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"- </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>info[<span class="st">'description'</span>]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> name, info <span class="kw">in</span> <span class="va">self</span>._tools.items()</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> execute(<span class="va">self</span>, name, <span class="op">**</span>kwargs):</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        func <span class="op">=</span> <span class="va">self</span>.get_func(name)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> func <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="ss">f"错误：未知工具 '</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">'"</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> func(<span class="op">**</span>kwargs)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="ss">f"工具执行错误: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. ReAct System Prompt</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>REACT_PROMPT <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="st">你是一个严格遵循 ReAct（Reason + Act）范式的智能体。</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="st">【核心原则】</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="st">1. 你只能通过 Action 行动</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="st">2. 任务完成的唯一方式是：Action: Finish[完整中文回答]</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="st">【可用工具】</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="sc">{tool_descriptions}</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="st">【输出格式（每一步必须严格遵守）】</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="st">Thought: [分析当前状态、拆解任务、规划下一步]</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="st">Action: [具体行动]</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="st">- 工具调用: function_name(arg_name="value")</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="st">- 任务完成: Finish[完整中文回答]</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="st">【FACT 收敛规则】</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="st">当 Observation 中出现 "FACT:" 开头的内容时，</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="st">这说明你已经获得了回答所需的全部关键信息。</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="st">你必须在下一步直接输出 Action: Finish[完整中文回答]。</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 解析工具</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_last_action(text: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span> <span class="op">|</span> <span class="va">None</span>:</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>    matches <span class="op">=</span> re.findall(<span class="vs">r"Action:</span><span class="dv">\s</span><span class="op">*</span><span class="kw">(</span><span class="dv">.</span><span class="op">*</span><span class="kw">)</span><span class="vs">"</span>, text)</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> matches[<span class="op">-</span><span class="dv">1</span>].strip() <span class="cf">if</span> matches <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_finish(action: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> action.startswith(<span class="st">"Finish["</span>)</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_finish(action: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span> <span class="op">|</span> <span class="va">None</span>:</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> re.match(<span class="vs">r"</span><span class="dv">^</span><span class="vs">Finish</span><span class="ch">\[</span><span class="kw">(</span><span class="dv">.</span><span class="op">*</span><span class="kw">)</span><span class="ch">\]</span><span class="dv">$</span><span class="vs">"</span>, action, re.DOTALL)</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> m.group(<span class="dv">1</span>).strip() <span class="cf">if</span> m <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse_tool_call(action: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">tuple</span>[<span class="bu">str</span> <span class="op">|</span> <span class="va">None</span>, <span class="bu">dict</span>]:</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> re.match(<span class="vs">r"</span><span class="kw">(</span><span class="dv">\w</span><span class="op">+</span><span class="kw">)</span><span class="ch">\(</span><span class="kw">(</span><span class="dv">.</span><span class="op">*</span><span class="kw">)</span><span class="ch">\)</span><span class="vs">"</span>, action)</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> m:</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span>, {}</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    args <span class="op">=</span> <span class="bu">dict</span>(re.findall(<span class="vs">r'</span><span class="kw">(</span><span class="dv">\w</span><span class="op">+</span><span class="kw">)</span><span class="vs">="</span><span class="kw">(</span><span class="pp">[^"]</span><span class="op">*</span><span class="kw">)</span><span class="vs">"'</span>, m.group(<span class="dv">2</span>)))</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> m.group(<span class="dv">1</span>), args</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> strip_think(text: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""去除 DeepSeek-R1 等模型的 &lt;think&gt; 标签"""</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> re.sub(<span class="vs">r"&lt;think&gt;</span><span class="pp">[</span><span class="dv">\s\S</span><span class="pp">]</span><span class="op">*?</span><span class="vs">&lt;/think&gt;"</span>, <span class="st">""</span>, text)</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. LLM 客户端</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>os.getenv(<span class="st">"OPENAI_API_KEY"</span>, <span class="st">"ollama"</span>),</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span>os.getenv(<span class="st">"LLM_BASE_URL"</span>, <span class="st">"https://api.openai.com/v1"</span>),</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> os.getenv(<span class="st">"LLM_MODEL_ID"</span>, <span class="st">"gpt-4o-mini"</span>)</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> call_llm(system_prompt: <span class="bu">str</span>, history: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    resp <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span>MODEL,</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: system_prompt},</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: history},</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="fl">0.3</span>,</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> strip_think(resp.choices[<span class="dv">0</span>].message.content)</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. ReAct 主循环</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_react_agent(user_query: <span class="bu">str</span>, executor: ToolExecutor, max_steps: <span class="bu">int</span> <span class="op">=</span> <span class="dv">5</span>):</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>    system_prompt <span class="op">=</span> REACT_PROMPT.<span class="bu">format</span>(</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>        tool_descriptions<span class="op">=</span>executor.get_descriptions()</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>    history <span class="op">=</span> [<span class="ss">f"用户请求: </span><span class="sc">{</span>user_query<span class="sc">}</span><span class="ss">"</span>]</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"用户输入: </span><span class="sc">{</span>user_query<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, max_steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">--- Step </span><span class="sc">{</span>step<span class="sc">}</span><span class="ss"> ---</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>        prompt <span class="op">=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(history)</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>        llm_output <span class="op">=</span> call_llm(system_prompt, prompt)</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"模型输出:</span><span class="ch">\n</span><span class="sc">{</span>llm_output<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>        history.append(llm_output)</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>        action <span class="op">=</span> extract_last_action(llm_output)</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> action <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>            history.append(<span class="st">"Observation: 无法解析 Action"</span>)</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> is_finish(action):</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>            answer <span class="op">=</span> extract_finish(action)</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> answer:</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"✅ 任务完成:</span><span class="ch">\n</span><span class="sc">{</span>answer<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> answer</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>            history.append(<span class="st">"Observation: Finish 格式无效"</span>)</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>        tool_name, args <span class="op">=</span> parse_tool_call(action)</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> tool_name <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>            history.append(<span class="ss">f"Observation: 无法解析工具调用: </span><span class="sc">{</span>action<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> executor.execute(tool_name, <span class="op">**</span>args)</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>        obs <span class="op">=</span> <span class="ss">f"Observation: </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>obs<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span> <span class="op">+</span> <span class="st">"-"</span> <span class="op">*</span> <span class="dv">40</span>)</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>        history.append(obs)</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>        <span class="co"># FACT 强制收敛</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> result.startswith(<span class="st">"FACT:"</span>):</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>            history.append(<span class="st">"系统提示：已获得 FACT，请直接输出 Action: Finish[完整中文回答]。"</span>)</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"⚠️ 达到最大步数"</span>)</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. 运行</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>executor <span class="op">=</span> ToolExecutor()</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>executor.register(<span class="st">"search_fact"</span>, <span class="st">"查询本地知识库中的事实信息"</span>, search_fact)</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>run_react_agent(<span class="st">"什么是智能体？"</span>, executor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="react-的特点" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="react-的特点"><span class="header-section-number">4.1.3</span> ReAct 的特点</h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 52%">
-<col style="width: 27%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>系统能力</th>
-<th>常见接口/操作</th>
-<th>关键语义</th>
+<th>优点</th>
+<th>局限</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>单次运行</td>
-<td><code>graph.invoke(input, config=...)</code></td>
-<td>推进图直到终点或中断</td>
+<td>高可解释性：Thought 链清晰展示决策依据</td>
+<td>强依赖 LLM 能力：模型不稳定则流程失败</td>
 </tr>
 <tr class="even">
-<td>带线程运行</td>
-<td><code>config={"configurable":{"thread_id":"..."}}</code></td>
-<td>将运行绑定到 thread，便于持久化与恢复</td>
+<td>动态纠错：根据 Observation 实时调整</td>
+<td>执行效率偏低：多轮 LLM 调用带来高延迟</td>
 </tr>
 <tr class="odd">
-<td>获取状态</td>
-<td><code>graph.get_state(config)</code></td>
-<td>读取 thread 的当前/历史状态（配合持久化）</td>
+<td>工具协同：LLM 推理 + 外部工具执行</td>
+<td>可能陷入局部最优：缺乏全局规划</td>
 </tr>
 </tbody>
 </table>
-<p>thread_id 是持久化与恢复的关键主键；没有它就无法保存状态、也无法在中断后恢复。(<a href="https://docs.langchain.com/oss/python/langgraph/persistence" title="Persistence - Docs by LangChain">LangChain 文档</a>)</p>
-</section>
-<section id="持久化记忆与可恢复执行" class="level4" data-number="5.5.4.2">
-<h4 data-number="5.5.4.2" class="anchored" data-anchor-id="持久化记忆与可恢复执行"><span class="header-section-number">5.5.4.2</span> 持久化、记忆与可恢复执行</h4>
-<p>LangGraph 的持久化通过 checkpointers 实现：编译时传入 checkpointer，就会在每个 super-step 保存 checkpoint 到一个 thread。(<a href="https://docs.langchain.com/oss/python/langgraph/persistence" title="Persistence - Docs by LangChain">LangChain 文档</a>)</p>
-<p>你可以把“记忆”拆成两层：短期记忆通常就是 thread 级持久化状态；长期记忆则是跨会话存储用户级信息。官方把这两类区分得很清楚。(<a href="https://docs.langchain.com/oss/python/langgraph/add-memory" title="Memory - Docs by LangChain">LangChain 文档</a>)</p>
-<p>安装与组件层面的命令（你可以当作“系统组件装配”）通常是：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install langgraph</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 若使用 SQLite / Postgres checkpointer，需要安装对应扩展包</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install langgraph-checkpoint-sqlite</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install langgraph-checkpoint-postgres</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>“SQLite/Postgres 的 checkpointers 以独立库提供，需要单独安装”这一点在官方公告中有明确说明。(<a href="https://changelog.langchain.com/announcements/langgraph-v0-2-increased-customization-with-new-checkpointers?utm_source=chatgpt.com" title="️ LangGraph v0.2: Increased customization">changelog.langchain.com</a>)</p>
-</section>
-<section id="人类在环中断与恢复" class="level4" data-number="5.5.4.3">
-<h4 data-number="5.5.4.3" class="anchored" data-anchor-id="人类在环中断与恢复"><span class="header-section-number">5.5.4.3</span> 人类在环：中断与恢复</h4>
-<p>LangGraph 的 interrupts 机制是系统级能力：在节点内部调用 <code>interrupt()</code> 会暂停执行，并借助持久化层保存状态，然后等待你用 <code>Command(resume=...)</code> 恢复。(<a href="https://docs.langchain.com/oss/python/langgraph/interrupts" title="Interrupts - Docs by LangChain">LangChain 文档</a>)</p>
-<p>你要把它理解为“把图执行从同步函数调用，提升为可暂停的工作流实例”。</p>
-<hr>
 </section>
 </section>
-<section id="映射到具体操作完整示例" class="level3" data-number="5.5.5">
-<h3 data-number="5.5.5" class="anchored" data-anchor-id="映射到具体操作完整示例"><span class="header-section-number">5.5.5</span> 映射到具体操作（完整示例）</h3>
-<p>下面给你一个从“状态 → 节点 → 条件路由 → 持久化 → 中断恢复”贯通的最小闭环示例。它不依赖某个特定 LLM 供应商，你可以把 <code>call_model</code> 换成任意模型调用或工具调用。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing_extensions <span class="im">import</span> TypedDict</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.messages <span class="im">import</span> AnyMessage</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Annotated</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langgraph.graph <span class="im">import</span> StateGraph, START, END, MessagesState</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langgraph.graph.message <span class="im">import</span> add_messages</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langgraph.checkpoint.memory <span class="im">import</span> InMemorySaver</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langgraph.types <span class="im">import</span> interrupt, Command</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 业务状态：在 MessagesState 基础上加一个字段</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> State(MessagesState):</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># MessagesState 已包含 messages: list[AnyMessage]，并内置 add_messages reducer :contentReference[oaicite:14]{index=14}</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    approved: <span class="bu">bool</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 也可以用 TypedDict + reducer 显式声明 messages 合并规则 :contentReference[oaicite:15]{index=15}</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AltState(TypedDict):</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    messages: Annotated[<span class="bu">list</span>[AnyMessage], add_messages]</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    approved: <span class="bu">bool</span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> call_model(state: State):</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co">    这里用伪逻辑代表“产出一个候选行动/回复”。</span></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co">    实际上你可以调用任意 LLM 或工具，把结果作为一条 AI message 追加到 messages。</span></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 返回的是“状态增量”，系统会按 reducer 规则合并进全局状态 :contentReference[oaicite:16]{index=16}</span></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"messages"</span>: [{<span class="st">"type"</span>: <span class="st">"ai"</span>, <span class="st">"content"</span>: <span class="st">"我建议执行操作：发送一封确认邮件。"</span>}]</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> require_approval(state: State):</span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="co">    人类在环：在关键点暂停，让外部决定是否继续。</span></span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a><span class="co">    interrupt 的返回值会在恢复时由 Command(resume=...) 传回。 :contentReference[oaicite:17]{index=17}</span></span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>    decision <span class="op">=</span> interrupt(</span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>            <span class="st">"question"</span>: <span class="st">"是否批准上述建议？请回复 yes 或 no。"</span>,</span>
-<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>            <span class="st">"proposal"</span>: state[<span class="st">"messages"</span>][<span class="op">-</span><span class="dv">1</span>].content</span>
-<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>    approved <span class="op">=</span> (<span class="bu">str</span>(decision).strip().lower() <span class="op">==</span> <span class="st">"yes"</span>)</span>
-<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"approved"</span>: approved}</span>
-<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> finalize(state: State):</span>
-<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> state[<span class="st">"approved"</span>]:</span>
-<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> {<span class="st">"messages"</span>: [{<span class="st">"type"</span>: <span class="st">"ai"</span>, <span class="st">"content"</span>: <span class="st">"已批准：进入执行阶段（此处接你的执行逻辑）。"</span>}]}</span>
-<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"messages"</span>: [{<span class="st">"type"</span>: <span class="st">"ai"</span>, <span class="st">"content"</span>: <span class="st">"未批准：结束或回到改写节点（此处可加回路）。"</span>}]}</span>
-<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a><span class="co"># 组装图</span></span>
-<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>checkpointer <span class="op">=</span> InMemorySaver()  <span class="co"># 线程级短期记忆/持久化的一种实现 :contentReference[oaicite:18]{index=18}</span></span>
-<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a>builder <span class="op">=</span> StateGraph(State)</span>
-<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a>builder.add_node(<span class="st">"call_model"</span>, call_model)</span>
-<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>builder.add_node(<span class="st">"require_approval"</span>, require_approval)</span>
-<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>builder.add_node(<span class="st">"finalize"</span>, finalize)</span>
-<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>builder.add_edge(START, <span class="st">"call_model"</span>)</span>
-<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>builder.add_edge(<span class="st">"call_model"</span>, <span class="st">"require_approval"</span>)</span>
-<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>builder.add_edge(<span class="st">"require_approval"</span>, <span class="st">"finalize"</span>)</span>
-<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a>builder.add_edge(<span class="st">"finalize"</span>, END)</span>
-<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> builder.<span class="bu">compile</span>(checkpointer<span class="op">=</span>checkpointer)  <span class="co"># 编译时挂载 checkpointer :contentReference[oaicite:19]{index=19}</span></span>
-<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a><span class="co"># 以 thread 运行：thread_id 是持久化与恢复的关键主键 :contentReference[oaicite:20]{index=20}</span></span>
-<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> {<span class="st">"configurable"</span>: {<span class="st">"thread_id"</span>: <span class="st">"demo-thread-1"</span>}}</span>
-<span id="cb21-66"><a href="#cb21-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-67"><a href="#cb21-67" aria-hidden="true" tabindex="-1"></a><span class="co"># 第一次 invoke：会运行到 interrupt 处并暂停</span></span>
-<span id="cb21-68"><a href="#cb21-68" aria-hidden="true" tabindex="-1"></a>first <span class="op">=</span> graph.invoke({<span class="st">"messages"</span>: [{<span class="st">"type"</span>: <span class="st">"human"</span>, <span class="st">"content"</span>: <span class="st">"帮我处理客户确认流程"</span>}], <span class="st">"approved"</span>: <span class="va">False</span>}, config)</span>
-<span id="cb21-69"><a href="#cb21-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first)  <span class="co"># 输出里通常会包含中断信息，等待恢复</span></span>
-<span id="cb21-70"><a href="#cb21-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-71"><a href="#cb21-71" aria-hidden="true" tabindex="-1"></a><span class="co"># 恢复执行：把外部输入通过 Command(resume=...) 送回 interrupt 点 :contentReference[oaicite:21]{index=21}</span></span>
-<span id="cb21-72"><a href="#cb21-72" aria-hidden="true" tabindex="-1"></a>second <span class="op">=</span> graph.invoke(Command(resume<span class="op">=</span><span class="st">"yes"</span>), config)</span>
-<span id="cb21-73"><a href="#cb21-73" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(second)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>这个示例背后的系统结构你要抓住三点：</p>
-<p>第一，节点不是“输出字符串”，而是返回状态增量，让状态在 reducer 规则下演化。(<a href="https://docs.langchain.com/oss/python/langgraph/graph-api?utm_source=chatgpt.com" title="Graph API overview - Docs by LangChain">LangChain 文档</a>) 第二，interrupt 不是异常，而是“可暂停执行”的系统原语，依赖持久化层保存 thread 状态。(<a href="https://docs.langchain.com/oss/python/langgraph/interrupts" title="Interrupts - Docs by LangChain">LangChain 文档</a>) 第三，恢复不是“继续跑函数”，而是“对同一个 thread 的图执行注入 resume 值”，由 <code>Command</code> 承载。(<a href="https://docs.langchain.com/oss/python/langgraph/functional-api?utm_source=chatgpt.com" title="Functional API overview - Docs by LangChain">LangChain 文档</a>)</p>
-<hr>
+<section id="plan-and-solve先规划再执行" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="plan-and-solve先规划再执行"><span class="header-section-number">4.2</span> Plan-and-Solve：先规划，再执行</h2>
+<p>如果说 ReAct 像一名根据线索不断调整方向的侦探，那么 <strong>Plan-and-Solve</strong> 更像一位建筑师——在动工前先完成完整蓝图，然后严格按计划实施。</p>
+<section id="工作原理" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="工作原理"><span class="header-section-number">4.2.1</span> 工作原理</h3>
+<p>Plan-and-Solve 将任务处理解耦为两个阶段：</p>
+<ol type="1">
+<li><strong>规划阶段（Planning）</strong>：接收完整问题，拆解为清晰的分步计划。</li>
+<li><strong>执行阶段（Solving）</strong>：严格按计划逐步执行，每步结果作为下一步的输入。</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plan-and-Solve 实现</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>PLAN_PROMPT <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">你是一个规划器。请为以下问题生成一个可执行的解决计划。</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">规划原则：</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">1. 每一步都是必要的，不允许冗余</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">2. 步骤必须是线性的、可顺序执行的</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">3. 每一步描述"要做什么"，而不是结论</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">4. 使用编号列表（1. 2. 3. ...）</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">问题：</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="sc">{question}</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>ACTION_PROMPT <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">你是一个执行器。请严格执行给定计划中的当前步骤。</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="st">全局约束：</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="st">- 不允许新增、删除或重排步骤</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="st">- 不允许提前或总结后续步骤</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="st">完整计划：</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="sc">{plan}</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="st">当前步骤：</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="sc">{step}</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="st">原始问题：</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="sc">{question}</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="st">请只完成当前步骤的内容。</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plan_and_solve(question: <span class="bu">str</span>, verbose: <span class="bu">bool</span> <span class="op">=</span> <span class="va">True</span>):</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plan-and-Solve 主流程"""</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---- 规划阶段 ----</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    plan_text <span class="op">=</span> call_llm(<span class="st">"You are a planning agent."</span>,</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>                         PLAN_PROMPT.<span class="bu">format</span>(question<span class="op">=</span>question))</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 提取编号步骤</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    steps <span class="op">=</span> re.findall(<span class="vs">r"</span><span class="dv">^\s</span><span class="op">*</span><span class="dv">\d</span><span class="op">+</span><span class="ch">\.</span><span class="dv">\s</span><span class="op">*</span><span class="kw">(</span><span class="dv">.</span><span class="op">+</span><span class="kw">)</span><span class="vs">"</span>, plan_text, re.MULTILINE)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"===== PLAN ====="</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(plan_text)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---- 执行阶段 ----</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> []</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, step <span class="kw">in</span> <span class="bu">enumerate</span>(steps, <span class="dv">1</span>):</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">--- 执行步骤 </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>step<span class="sc">}</span><span class="ss"> ---"</span>)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> call_llm(</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>            <span class="st">"You are an execution agent."</span>,</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>            ACTION_PROMPT.<span class="bu">format</span>(</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>                plan<span class="op">=</span>plan_text,</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>                step<span class="op">=</span>step,</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>                question<span class="op">=</span>question,</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        results.append({<span class="st">"step"</span>: step, <span class="st">"output"</span>: result.strip()})</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(result.strip())</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"question"</span>: question, <span class="st">"plan"</span>: plan_text, <span class="st">"steps"</span>: results}</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="co"># 运行测试</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> plan_and_solve(</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    <span class="st">"一家公司想引入 AI 自动化客服流程，请分析是否适合自动化、主要风险和实施步骤。"</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="plan-and-solve-vs-react" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="plan-and-solve-vs-react"><span class="header-section-number">4.2.2</span> Plan-and-Solve vs ReAct</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>维度</th>
+<th>ReAct</th>
+<th>Plan-and-Solve</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>规划时机</td>
+<td>边走边规划</td>
+<td>执行前完成全部规划</td>
+</tr>
+<tr class="even">
+<td>灵活性</td>
+<td>高，可动态调整</td>
+<td>低，严格按计划执行</td>
+</tr>
+<tr class="odd">
+<td>适用场景</td>
+<td>信息不确定、需探索</td>
+<td>结构清晰、目标明确</td>
+</tr>
+<tr class="even">
+<td>全局一致性</td>
+<td>可能偏航</td>
+<td>较好，计划约束全局方向</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="reflection自我反思与改进" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="reflection自我反思与改进"><span class="header-section-number">4.3</span> Reflection：自我反思与改进</h2>
+<p>Reflection 机制源于人类的学习方式：完成初稿后校对，解题后验算。其流程概括为 <strong>执行 → 反思 → 优化</strong> 的三步循环：</p>
+<pre><code>Question
+   ↓
+[ Actor ]      → 初始回答
+   ↓
+[ Reflector ]  → 找问题 / 不足 / 风险
+   ↓
+[ Rewriter ]   → 基于反思改进
+   ↓
+Final Answer</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reflection 实现</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ACTOR_PROMPT <span class="op">=</span> <span class="st">"你是一个助手，请直接回答下面的问题。</span><span class="ch">\n\n</span><span class="st">问题：</span><span class="ch">\n</span><span class="sc">{question}</span><span class="st">"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>REFLECTION_PROMPT <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">你是一个严格的审稿人。请对下面的回答进行反思和批评。</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">关注点（包括但不限于）：</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">- 是否遗漏重要方面</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">- 是否存在逻辑跳跃或模糊表述</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">- 是否有潜在风险或不严谨之处</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">- 是否可以更具体、更可执行</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">不要重写答案，只输出【问题清单】。</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">问题：</span><span class="sc">{question}</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">回答：</span><span class="sc">{answer}</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>REWRITE_PROMPT <span class="op">=</span> <span class="st">"""</span><span class="op">\</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="st">你是一个改写助手。请基于下面的反思意见，对原始回答进行改进。</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="st">要求：</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="st">- 保留原有结构中合理的部分</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="st">- 明确修复反思中指出的问题</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="st">- 提供更清晰、可靠的最终回答</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="st">问题：</span><span class="sc">{question}</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="st">原始回答：</span><span class="sc">{answer}</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="st">反思意见：</span><span class="sc">{reflection}</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reflection_agent(question: <span class="bu">str</span>, verbose: <span class="bu">bool</span> <span class="op">=</span> <span class="va">True</span>):</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Reflection Agent 主流程"""</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Actor：生成初始回答</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    initial <span class="op">=</span> call_llm(</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>        <span class="st">"You are an answering agent."</span>,</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        ACTOR_PROMPT.<span class="bu">format</span>(question<span class="op">=</span>question),</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"===== 初始回答 ====="</span>)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(initial, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Reflector：找问题</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    reflection <span class="op">=</span> call_llm(</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"You are a reflection agent."</span>,</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>        REFLECTION_PROMPT.<span class="bu">format</span>(question<span class="op">=</span>question, answer<span class="op">=</span>initial),</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"===== 反思意见 ====="</span>)</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(reflection, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Rewriter：基于反思改进</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    final <span class="op">=</span> call_llm(</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>        <span class="st">"You are a rewriting agent."</span>,</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>        REWRITE_PROMPT.<span class="bu">format</span>(</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>            question<span class="op">=</span>question,</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>            answer<span class="op">=</span>initial,</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>            reflection<span class="op">=</span>reflection,</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"===== 最终回答 ====="</span>)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(final, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>        <span class="st">"question"</span>: question,</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>        <span class="st">"initial"</span>: initial,</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>        <span class="st">"reflection"</span>: reflection,</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>        <span class="st">"final"</span>: final,</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="co"># 运行测试</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> reflection_agent(</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>    <span class="st">"一家公司想引入 AI 自动化客服流程，"</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>    <span class="st">"请分析是否适合自动化、主要风险和实施步骤。"</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="reflection-的成本与收益" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="reflection-的成本与收益"><span class="header-section-number">4.3.1</span> Reflection 的成本与收益</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>成本</th>
+<th>收益</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>每次迭代多出至少 2 次 LLM 调用</td>
+<td>方案质量从”可用”提升到”高质量”</td>
+</tr>
+<tr class="even">
+<td>任务延迟增加（串行执行）</td>
+<td>通过内部纠错减少逻辑漏洞和事实错误</td>
+</tr>
+<tr class="odd">
+<td>需设计多套 Prompt（Actor / Critic / Rewriter）</td>
+<td>适用于对准确性和可靠性要求高的场景</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Reflection 本质上是<strong>以成本换质量</strong>的策略。适合关键业务代码生成、研究报告撰写、复杂逻辑推演等场景。对于实时性要求高的场景，ReAct 或 Plan-and-Solve 更具性价比。</p>
+</div>
+</div>
+</section>
+</section>
+<section id="三种范式对比总结" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="三种范式对比总结"><span class="header-section-number">4.4</span> 三种范式对比总结</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>维度</th>
+<th>ReAct</th>
+<th>Plan-and-Solve</th>
+<th>Reflection</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>核心机制</td>
+<td>思考与行动交替</td>
+<td>先规划再执行</td>
+<td>执行后反思改进</td>
+</tr>
+<tr class="even">
+<td>LLM 调用次数</td>
+<td>多（每步一次）</td>
+<td>中（规划1次+每步1次）</td>
+<td>至少3次</td>
+</tr>
+<tr class="odd">
+<td>灵活性</td>
+<td>高</td>
+<td>低</td>
+<td>中</td>
+</tr>
+<tr class="even">
+<td>输出质量</td>
+<td>中</td>
+<td>中高</td>
+<td>高</td>
+</tr>
+<tr class="odd">
+<td>适用场景</td>
+<td>探索性任务</td>
+<td>结构化任务</td>
+<td>质量敏感任务</td>
+</tr>
+<tr class="even">
+<td>实现难度</td>
+<td>中</td>
+<td>中</td>
+<td>中</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>下一章预告
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>至此，我们已经掌握了构建单个 Agent 的所有核心要素：LLM 调用（第3章）、工具系统（第4章）和推理范式（本章）。但每次构建新 Agent 都要从零手写这些组件，效率很低。下一章我们将把这些能力抽象为<strong>可复用的框架组件</strong>——自建一个轻量 Agent 框架。</p>
+</div>
+</div>
+</section>
+<section id="练习" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="练习"><span class="header-section-number">4.5</span> 练习</h2>
+<ol type="1">
+<li>修改 ReAct Agent，使其支持 <code>get_weather</code> 和 <code>get_attraction</code> 工具（复用第4章的旅行助手工具），测试它是否能自主完成”规划一次北京之旅”的任务。</li>
+<li>在 Plan-and-Solve 中引入工具调用能力：让 Planner 规划的工具调用步骤也能被 Executor 执行（提示：需要整合 ToolExecutor）。</li>
+<li>为 Reflection Agent 增加第二轮反思：用改进后的回答再次进行反思和改写，观察质量是否有进一步提升。</li>
+</ol>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -2220,13 +1275,13 @@ conv.run()</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapter4.html" class="pagination-link" aria-label="Construction of the classical agent paradigm">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Construction of the classical agent paradigm</span></span>
+      <a href="./chapter4.html" class="pagination-link" aria-label="给 Agent 装上手脚：工具系统">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">给 Agent 装上手脚：工具系统</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapter6.html" class="pagination-link" aria-label="Build your agent framework">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build your agent framework</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapter6.html" class="pagination-link" aria-label="自建轻量 Agent 框架">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">自建轻量 Agent 框架</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

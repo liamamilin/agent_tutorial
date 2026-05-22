@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Memory and Retrieval – 从零开始学习Agent</title>
+<title>6&nbsp; Memory and Retrieval – 从零开始学习Agent</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./chapter6.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5ea8f22911a6df30576a2a25a24cdd7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -118,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter7.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Memory and Retrieval</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter7.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory and Retrieval</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -131,9 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">从零开始学习Agent</a> 
     </div>
@@ -148,67 +148,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text">认识智能体</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The history of agent development</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">智能体简史</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Foundation of Large Language Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">大语言模型基础</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Construction of the classical agent paradigm</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">给 Agent 装上手脚：工具系统</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Framework Development Practice</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">让 Agent 学会思考：推理范式</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build your agent framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">自建轻量 Agent 框架</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter7.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Memory and Retrieval</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory and Retrieval</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><strong>Context Engineering</strong></span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Context Engineering</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Intelligent Agent Communication Protocol</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">多智能体协作</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Agentic-RL</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">评估与持续改进</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Intelligent Agent Performance Evaluation</span></span></a>
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">总结与展望</span></a>
   </div>
 </li>
     </ul>
@@ -221,37 +221,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#记忆与检索系统让智能体拥有持续学习能力" id="toc-记忆与检索系统让智能体拥有持续学习能力" class="nav-link active" data-scroll-target="#记忆与检索系统让智能体拥有持续学习能力"><span class="header-section-number">7.1</span> 记忆与检索系统：让智能体拥有持续学习能力</a></li>
-  <li><a href="#认知科学启示从人类记忆到智能体记忆" id="toc-认知科学启示从人类记忆到智能体记忆" class="nav-link" data-scroll-target="#认知科学启示从人类记忆到智能体记忆"><span class="header-section-number">7.2</span> 认知科学启示：从人类记忆到智能体记忆</a>
+  <li><a href="#记忆与检索系统让智能体拥有持续学习能力" id="toc-记忆与检索系统让智能体拥有持续学习能力" class="nav-link active" data-scroll-target="#记忆与检索系统让智能体拥有持续学习能力"><span class="header-section-number">6.1</span> 记忆与检索系统：让智能体拥有持续学习能力</a></li>
+  <li><a href="#认知科学启示从人类记忆到智能体记忆" id="toc-认知科学启示从人类记忆到智能体记忆" class="nav-link" data-scroll-target="#认知科学启示从人类记忆到智能体记忆"><span class="header-section-number">6.2</span> 认知科学启示：从人类记忆到智能体记忆</a>
   <ul class="collapse">
-  <li><a href="#人类记忆系统的层次结构" id="toc-人类记忆系统的层次结构" class="nav-link" data-scroll-target="#人类记忆系统的层次结构"><span class="header-section-number">7.2.1</span> 人类记忆系统的层次结构</a></li>
-  <li><a href="#为何智能体需要记忆与rag" id="toc-为何智能体需要记忆与rag" class="nav-link" data-scroll-target="#为何智能体需要记忆与rag"><span class="header-section-number">7.2.2</span> 为何智能体需要记忆与RAG</a></li>
+  <li><a href="#人类记忆系统的层次结构" id="toc-人类记忆系统的层次结构" class="nav-link" data-scroll-target="#人类记忆系统的层次结构"><span class="header-section-number">6.2.1</span> 人类记忆系统的层次结构</a></li>
+  <li><a href="#为何智能体需要记忆与rag" id="toc-为何智能体需要记忆与rag" class="nav-link" data-scroll-target="#为何智能体需要记忆与rag"><span class="header-section-number">6.2.2</span> 为何智能体需要记忆与RAG</a></li>
   </ul></li>
-  <li><a href="#helloagents-框架中的记忆系统实现" id="toc-helloagents-框架中的记忆系统实现" class="nav-link" data-scroll-target="#helloagents-框架中的记忆系统实现"><span class="header-section-number">7.3</span> HelloAgents 框架中的记忆系统实现</a>
+  <li><a href="#helloagents-框架中的记忆系统实现" id="toc-helloagents-框架中的记忆系统实现" class="nav-link" data-scroll-target="#helloagents-框架中的记忆系统实现"><span class="header-section-number">6.3</span> HelloAgents 框架中的记忆系统实现</a>
   <ul class="collapse">
-  <li><a href="#记忆系统的四层架构" id="toc-记忆系统的四层架构" class="nav-link" data-scroll-target="#记忆系统的四层架构"><span class="header-section-number">7.3.1</span> 记忆系统的四层架构</a></li>
-  <li><a href="#核心数据结构" id="toc-核心数据结构" class="nav-link" data-scroll-target="#核心数据结构"><span class="header-section-number">7.3.2</span> 核心数据结构</a></li>
-  <li><a href="#memorymanager---记忆管理器" id="toc-memorymanager---记忆管理器" class="nav-link" data-scroll-target="#memorymanager---记忆管理器"><span class="header-section-number">7.3.3</span> MemoryManager - 记忆管理器</a></li>
-  <li><a href="#四种记忆类型的实现" id="toc-四种记忆类型的实现" class="nav-link" data-scroll-target="#四种记忆类型的实现"><span class="header-section-number">7.3.4</span> 四种记忆类型的实现</a></li>
-  <li><a href="#记忆系统的核心操作" id="toc-记忆系统的核心操作" class="nav-link" data-scroll-target="#记忆系统的核心操作"><span class="header-section-number">7.3.5</span> 记忆系统的核心操作</a></li>
+  <li><a href="#记忆系统的四层架构" id="toc-记忆系统的四层架构" class="nav-link" data-scroll-target="#记忆系统的四层架构"><span class="header-section-number">6.3.1</span> 记忆系统的四层架构</a></li>
+  <li><a href="#核心数据结构" id="toc-核心数据结构" class="nav-link" data-scroll-target="#核心数据结构"><span class="header-section-number">6.3.2</span> 核心数据结构</a></li>
+  <li><a href="#memorymanager---记忆管理器" id="toc-memorymanager---记忆管理器" class="nav-link" data-scroll-target="#memorymanager---记忆管理器"><span class="header-section-number">6.3.3</span> MemoryManager - 记忆管理器</a></li>
+  <li><a href="#四种记忆类型的实现" id="toc-四种记忆类型的实现" class="nav-link" data-scroll-target="#四种记忆类型的实现"><span class="header-section-number">6.3.4</span> 四种记忆类型的实现</a></li>
+  <li><a href="#记忆系统的核心操作" id="toc-记忆系统的核心操作" class="nav-link" data-scroll-target="#记忆系统的核心操作"><span class="header-section-number">6.3.5</span> 记忆系统的核心操作</a></li>
   </ul></li>
-  <li><a href="#helloagents-框架中的-rag-系统实现" id="toc-helloagents-框架中的-rag-系统实现" class="nav-link" data-scroll-target="#helloagents-框架中的-rag-系统实现"><span class="header-section-number">7.4</span> HelloAgents 框架中的 RAG 系统实现</a>
+  <li><a href="#helloagents-框架中的-rag-系统实现" id="toc-helloagents-框架中的-rag-系统实现" class="nav-link" data-scroll-target="#helloagents-框架中的-rag-系统实现"><span class="header-section-number">6.4</span> HelloAgents 框架中的 RAG 系统实现</a>
   <ul class="collapse">
-  <li><a href="#rag-系统架构" id="toc-rag-系统架构" class="nav-link" data-scroll-target="#rag-系统架构"><span class="header-section-number">7.4.1</span> RAG 系统架构</a></li>
-  <li><a href="#核心组件" id="toc-核心组件" class="nav-link" data-scroll-target="#核心组件"><span class="header-section-number">7.4.2</span> 核心组件</a></li>
+  <li><a href="#rag-系统架构" id="toc-rag-系统架构" class="nav-link" data-scroll-target="#rag-系统架构"><span class="header-section-number">6.4.1</span> RAG 系统架构</a></li>
+  <li><a href="#核心组件" id="toc-核心组件" class="nav-link" data-scroll-target="#核心组件"><span class="header-section-number">6.4.2</span> 核心组件</a></li>
   </ul></li>
-  <li><a href="#记忆系统与-rag-的协同应用" id="toc-记忆系统与-rag-的协同应用" class="nav-link" data-scroll-target="#记忆系统与-rag-的协同应用"><span class="header-section-number">7.5</span> 记忆系统与 RAG 的协同应用</a>
+  <li><a href="#记忆系统与-rag-的协同应用" id="toc-记忆系统与-rag-的协同应用" class="nav-link" data-scroll-target="#记忆系统与-rag-的协同应用"><span class="header-section-number">6.5</span> 记忆系统与 RAG 的协同应用</a>
   <ul class="collapse">
-  <li><a href="#协同工作模式" id="toc-协同工作模式" class="nav-link" data-scroll-target="#协同工作模式"><span class="header-section-number">7.5.1</span> 协同工作模式</a></li>
-  <li><a href="#实际应用案例智能学习助手" id="toc-实际应用案例智能学习助手" class="nav-link" data-scroll-target="#实际应用案例智能学习助手"><span class="header-section-number">7.5.2</span> 实际应用案例：智能学习助手</a></li>
+  <li><a href="#协同工作模式" id="toc-协同工作模式" class="nav-link" data-scroll-target="#协同工作模式"><span class="header-section-number">6.5.1</span> 协同工作模式</a></li>
+  <li><a href="#实际应用案例智能学习助手" id="toc-实际应用案例智能学习助手" class="nav-link" data-scroll-target="#实际应用案例智能学习助手"><span class="header-section-number">6.5.2</span> 实际应用案例：智能学习助手</a></li>
   </ul></li>
-  <li><a href="#实践建议与进阶探索" id="toc-实践建议与进阶探索" class="nav-link" data-scroll-target="#实践建议与进阶探索"><span class="header-section-number">7.6</span> 实践建议与进阶探索</a>
+  <li><a href="#实践建议与进阶探索" id="toc-实践建议与进阶探索" class="nav-link" data-scroll-target="#实践建议与进阶探索"><span class="header-section-number">6.6</span> 实践建议与进阶探索</a>
   <ul class="collapse">
-  <li><a href="#使用-helloagents-构建记忆增强应用" id="toc-使用-helloagents-构建记忆增强应用" class="nav-link" data-scroll-target="#使用-helloagents-构建记忆增强应用"><span class="header-section-number">7.6.1</span> 使用 HelloAgents 构建记忆增强应用</a></li>
-  <li><a href="#性能优化建议" id="toc-性能优化建议" class="nav-link" data-scroll-target="#性能优化建议"><span class="header-section-number">7.6.2</span> 性能优化建议</a></li>
-  <li><a href="#进阶探索方向" id="toc-进阶探索方向" class="nav-link" data-scroll-target="#进阶探索方向"><span class="header-section-number">7.6.3</span> 进阶探索方向</a></li>
+  <li><a href="#使用-helloagents-构建记忆增强应用" id="toc-使用-helloagents-构建记忆增强应用" class="nav-link" data-scroll-target="#使用-helloagents-构建记忆增强应用"><span class="header-section-number">6.6.1</span> 使用 HelloAgents 构建记忆增强应用</a></li>
+  <li><a href="#性能优化建议" id="toc-性能优化建议" class="nav-link" data-scroll-target="#性能优化建议"><span class="header-section-number">6.6.2</span> 性能优化建议</a></li>
+  <li><a href="#进阶探索方向" id="toc-进阶探索方向" class="nav-link" data-scroll-target="#进阶探索方向"><span class="header-section-number">6.6.3</span> 进阶探索方向</a></li>
   </ul></li>
-  <li><a href="#本章总结" id="toc-本章总结" class="nav-link" data-scroll-target="#本章总结"><span class="header-section-number">7.7</span> 本章总结</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">6.7</span> 练习</a></li>
+  <li><a href="#本章总结" id="toc-本章总结" class="nav-link" data-scroll-target="#本章总结"><span class="header-section-number">6.8</span> 本章总结</a></li>
   </ul>
 </nav>
     </div>
@@ -260,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Memory and Retrieval</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory and Retrieval</span></h1>
 </div>
 
 
@@ -278,16 +279,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><img src="images/clipboard-1299158429.png" class="img-fluid" width="350"></p>
-<section id="记忆与检索系统让智能体拥有持续学习能力" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="记忆与检索系统让智能体拥有持续学习能力"><span class="header-section-number">7.1</span> 记忆与检索系统：让智能体拥有持续学习能力</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>上一章回顾
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>第 6 章我们构建了 HelloAgents 轻量框架，将 LLM 调用、消息管理、配置和 Agent 生命周期抽象为可复用组件。但这个框架有一个明显的缺口：Agent 的记忆仅限于当前对话（通过 <code>_history</code> 列表），一旦对话结束或超出长度限制，之前的交互信息就永久丢失了。本章将为 Agent 装上真正的”记忆系统”。</p>
+</div>
+</div>
+<section id="记忆与检索系统让智能体拥有持续学习能力" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="记忆与检索系统让智能体拥有持续学习能力"><span class="header-section-number">6.1</span> 记忆与检索系统：让智能体拥有持续学习能力</h2>
 <p>在现代人工智能应用中，基于大语言模型（LLM）的智能体虽然表现出强大的理解和生成能力，但它们面临着两个根本性的局限：对话状态的遗忘和内置知识的局限性。如果智能体无法记住之前的交互内容，也无法从历史经验中学习，那么在连续对话或复杂任务中，其表现将受到极大限制。</p>
 <p>本章将深入探讨两个核心能力：记忆系统（Memory System）和检索增强生成（Retrieval-Augmented Generation，RAG）。我们将从认知科学的角度理解记忆的原理，学习如何构建多层次的记忆系统，并掌握RAG技术的基础原理与高级应用策略。最重要的是，我们将基于 <strong>HelloAgents 框架</strong> 展示这些概念的实际实现。</p>
 </section>
-<section id="认知科学启示从人类记忆到智能体记忆" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="认知科学启示从人类记忆到智能体记忆"><span class="header-section-number">7.2</span> 认知科学启示：从人类记忆到智能体记忆</h2>
+<section id="认知科学启示从人类记忆到智能体记忆" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="认知科学启示从人类记忆到智能体记忆"><span class="header-section-number">6.2</span> 认知科学启示：从人类记忆到智能体记忆</h2>
 <p>在构建智能体的记忆系统之前，让我们先从认知科学的角度理解人类是如何处理和存储信息的。人类记忆是一个多层级的认知系统，它不仅能存储信息，还能根据重要性、时间和上下文对信息进行分类和整理。</p>
-<section id="人类记忆系统的层次结构" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="人类记忆系统的层次结构"><span class="header-section-number">7.2.1</span> 人类记忆系统的层次结构</h3>
+<section id="人类记忆系统的层次结构" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="人类记忆系统的层次结构"><span class="header-section-number">6.2.1</span> 人类记忆系统的层次结构</h3>
 <p>根据认知心理学的研究，人类记忆可以分为以下几个层次：</p>
 <p><strong>感觉记忆（Sensory Memory）</strong>：持续时间极短（0.5-3秒），容量巨大，负责暂时保存感官接收到的所有信息。这是记忆系统的第一个阶段，信息在这里被短暂保留，只有被注意到的信息才会进入下一阶段。</p>
 <p><strong>工作记忆（Working Memory）</strong>：持续时间短（15-30秒），容量有限（7±2个项目），负责当前任务的信息处理。工作记忆就像计算机的内存，用于处理当前正在进行的认知活动，如理解句子、解决问题等。</p>
@@ -301,11 +315,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="为何智能体需要记忆与rag" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="为何智能体需要记忆与rag"><span class="header-section-number">7.2.2</span> 为何智能体需要记忆与RAG</h3>
+<section id="为何智能体需要记忆与rag" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="为何智能体需要记忆与rag"><span class="header-section-number">6.2.2</span> 为何智能体需要记忆与RAG</h3>
 <p>借鉴人类记忆系统的设计，我们可以理解为什么智能体也需要类似的记忆能力。对于基于LLM的智能体而言，通常面临两个根本性局限：对话状态的遗忘和内置知识的局限。</p>
-<section id="局限一无状态导致的对话遗忘" class="level4" data-number="7.2.2.1">
-<h4 data-number="7.2.2.1" class="anchored" data-anchor-id="局限一无状态导致的对话遗忘"><span class="header-section-number">7.2.2.1</span> 局限一：无状态导致的对话遗忘</h4>
+<section id="局限一无状态导致的对话遗忘" class="level4" data-number="6.2.2.1">
+<h4 data-number="6.2.2.1" class="anchored" data-anchor-id="局限一无状态导致的对话遗忘"><span class="header-section-number">6.2.2.1</span> 局限一：无状态导致的对话遗忘</h4>
 <p>当前的大语言模型虽然强大，但设计上是无状态的。这意味着，每一次用户请求（或API调用）都是一次独立的、无关联的计算。模型本身不会自动”记住”上一次对话的内容。这带来了几个问题：</p>
 <ul>
 <li><strong>上下文丢失</strong>：在长对话中，早期的重要信息可能会因为上下文窗口限制而丢失</li>
@@ -322,8 +336,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response2)  <span class="co"># "抱歉，我不知道您的学习进度..."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>要解决这个问题，智能体系统需要引入记忆机制来保存和检索历史对话信息。</p>
 </section>
-<section id="局限二模型内置知识的局限性" class="level4" data-number="7.2.2.2">
-<h4 data-number="7.2.2.2" class="anchored" data-anchor-id="局限二模型内置知识的局限性"><span class="header-section-number">7.2.2.2</span> 局限二：模型内置知识的局限性</h4>
+<section id="局限二模型内置知识的局限性" class="level4" data-number="6.2.2.2">
+<h4 data-number="6.2.2.2" class="anchored" data-anchor-id="局限二模型内置知识的局限性"><span class="header-section-number">6.2.2.2</span> 局限二：模型内置知识的局限性</h4>
 <p>除了遗忘对话历史，LLM的另一个核心局限在于其知识是静态的、有限的。这些知识完全来自于它的训练数据，并因此带来一系列问题：</p>
 <ul>
 <li><strong>知识时效性</strong>：大模型的训练数据有时间截止点，无法获取最新信息</li>
@@ -335,11 +349,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="helloagents-框架中的记忆系统实现" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="helloagents-框架中的记忆系统实现"><span class="header-section-number">7.3</span> HelloAgents 框架中的记忆系统实现</h2>
+<section id="helloagents-框架中的记忆系统实现" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="helloagents-框架中的记忆系统实现"><span class="header-section-number">6.3</span> HelloAgents 框架中的记忆系统实现</h2>
 <p>基于认知科学的启发，我们在 HelloAgents 框架中实现了一套完整的记忆系统。该系统模仿人类大脑处理不同类型信息的方式，将记忆划分为多个专门的模块，并建立了一套智能化的管理机制。</p>
-<section id="记忆系统的四层架构" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="记忆系统的四层架构"><span class="header-section-number">7.3.1</span> 记忆系统的四层架构</h3>
+<section id="记忆系统的四层架构" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="记忆系统的四层架构"><span class="header-section-number">6.3.1</span> 记忆系统的四层架构</h3>
 <p>HelloAgents 的记忆系统包含以下四个层次：</p>
 <pre><code>记忆系统架构
 ├── 基础设施层 (Infrastructure Layer)
@@ -355,10 +369,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 └── 存储后端层 (Storage Backend Layer)
     └── 混合存储架构（内存 + 可扩展持久化）</code></pre>
 </section>
-<section id="核心数据结构" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="核心数据结构"><span class="header-section-number">7.3.2</span> 核心数据结构</h3>
-<section id="memoryitem---记忆项" class="level4" data-number="7.3.2.1">
-<h4 data-number="7.3.2.1" class="anchored" data-anchor-id="memoryitem---记忆项"><span class="header-section-number">7.3.2.1</span> MemoryItem - 记忆项</h4>
+<section id="核心数据结构" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="核心数据结构"><span class="header-section-number">6.3.2</span> 核心数据结构</h3>
+<section id="memoryitem---记忆项" class="level4" data-number="6.3.2.1">
+<h4 data-number="6.3.2.1" class="anchored" data-anchor-id="memoryitem---记忆项"><span class="header-section-number">6.3.2.1</span> MemoryItem - 记忆项</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span>(frozen<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MemoryItem:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -376,8 +390,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    session_id: Optional[<span class="bu">str</span>] <span class="op">=</span> <span class="va">None</span>          <span class="co"># 会话ID</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    metadata: Dict[<span class="bu">str</span>, Any]                  <span class="co"># 扩展元数据</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="memorytype---记忆类型" class="level4" data-number="7.3.2.2">
-<h4 data-number="7.3.2.2" class="anchored" data-anchor-id="memorytype---记忆类型"><span class="header-section-number">7.3.2.2</span> MemoryType - 记忆类型</h4>
+<section id="memorytype---记忆类型" class="level4" data-number="6.3.2.2">
+<h4 data-number="6.3.2.2" class="anchored" data-anchor-id="memorytype---记忆类型"><span class="header-section-number">6.3.2.2</span> MemoryType - 记忆类型</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MemoryType(<span class="bu">str</span>, Enum):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""记忆类型枚举"""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    WORKING <span class="op">=</span> <span class="st">"working"</span>      <span class="co"># 工作记忆</span></span>
@@ -386,8 +400,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    PERCEPTUAL <span class="op">=</span> <span class="st">"perceptual"</span>  <span class="co"># 感知记忆</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="memorymanager---记忆管理器" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="memorymanager---记忆管理器"><span class="header-section-number">7.3.3</span> MemoryManager - 记忆管理器</h3>
+<section id="memorymanager---记忆管理器" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="memorymanager---记忆管理器"><span class="header-section-number">6.3.3</span> MemoryManager - 记忆管理器</h3>
 <p><code>MemoryManager</code> 是记忆系统的核心，负责统一调度和协调所有记忆类型：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MemoryManager:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -439,10 +453,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""遗忘记忆"""</span></span>
 <span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="四种记忆类型的实现" class="level3" data-number="7.3.4">
-<h3 data-number="7.3.4" class="anchored" data-anchor-id="四种记忆类型的实现"><span class="header-section-number">7.3.4</span> 四种记忆类型的实现</h3>
-<section id="workingmemory---工作记忆" class="level4" data-number="7.3.4.1">
-<h4 data-number="7.3.4.1" class="anchored" data-anchor-id="workingmemory---工作记忆"><span class="header-section-number">7.3.4.1</span> 1. WorkingMemory - 工作记忆</h4>
+<section id="四种记忆类型的实现" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="四种记忆类型的实现"><span class="header-section-number">6.3.4</span> 四种记忆类型的实现</h3>
+<section id="workingmemory---工作记忆" class="level4" data-number="6.3.4.1">
+<h4 data-number="6.3.4.1" class="anchored" data-anchor-id="workingmemory---工作记忆"><span class="header-section-number">6.3.4.1</span> 1. WorkingMemory - 工作记忆</h4>
 <p>工作记忆是记忆系统中最活跃的部分，它负责存储当前对话会话中的临时信息。</p>
 <p><strong>特点：</strong> - 容量有限（默认50条）+ TTL自动清理 - 纯内存存储，访问速度极快 - 混合检索：TF-IDF向量化 + 关键词匹配</p>
 <p><strong>关键实现：</strong></p>
@@ -477,8 +491,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 搜索记忆</span></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> memory_manager.search(query<span class="op">=</span><span class="st">"Python"</span>, limit<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="episodicmemory---情景记忆" class="level4" data-number="7.3.4.2">
-<h4 data-number="7.3.4.2" class="anchored" data-anchor-id="episodicmemory---情景记忆"><span class="header-section-number">7.3.4.2</span> 2. EpisodicMemory - 情景记忆</h4>
+<section id="episodicmemory---情景记忆" class="level4" data-number="6.3.4.2">
+<h4 data-number="6.3.4.2" class="anchored" data-anchor-id="episodicmemory---情景记忆"><span class="header-section-number">6.3.4.2</span> 2. EpisodicMemory - 情景记忆</h4>
 <p>情景记忆负责存储具体的事件和经历，它的设计重点在于保持事件的完整性和时间序列关系。</p>
 <p><strong>特点：</strong> - 支持时间序列和会话级检索 - 结构化过滤 + 语义向量检索 - 评分公式：(向量相似度 × 0.8 + 时间近因性 × 0.2) × (0.8 + 重要性 × 0.4)</p>
 <p><strong>使用示例：</strong></p>
@@ -497,8 +511,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>episodic_memory <span class="op">=</span> memory_manager.episodic</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>session_memories <span class="op">=</span> episodic_memory.get_by_session(<span class="st">"session_1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="semanticmemory---语义记忆" class="level4" data-number="7.3.4.3">
-<h4 data-number="7.3.4.3" class="anchored" data-anchor-id="semanticmemory---语义记忆"><span class="header-section-number">7.3.4.3</span> 3. SemanticMemory - 语义记忆</h4>
+<section id="semanticmemory---语义记忆" class="level4" data-number="6.3.4.3">
+<h4 data-number="6.3.4.3" class="anchored" data-anchor-id="semanticmemory---语义记忆"><span class="header-section-number">6.3.4.3</span> 3. SemanticMemory - 语义记忆</h4>
 <p>语义记忆是记忆系统中最复杂的部分，它负责存储抽象的概念、规则和知识。</p>
 <p><strong>特点：</strong> - 自动提取实体和关系，构建知识图谱 - 混合检索策略：向量+图+语义推理 - 评分公式：(向量相似度 × 0.7 + 图相似度 × 0.3) × (0.8 + 重要性 × 0.4)</p>
 <p><strong>使用示例：</strong></p>
@@ -513,8 +527,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取知识图谱中的实体</span></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>entities <span class="op">=</span> memory_manager.semantic.get_entities()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="perceptualmemory---感知记忆" class="level4" data-number="7.3.4.4">
-<h4 data-number="7.3.4.4" class="anchored" data-anchor-id="perceptualmemory---感知记忆"><span class="header-section-number">7.3.4.4</span> 4. PerceptualMemory - 感知记忆</h4>
+<section id="perceptualmemory---感知记忆" class="level4" data-number="6.3.4.4">
+<h4 data-number="6.3.4.4" class="anchored" data-anchor-id="perceptualmemory---感知记忆"><span class="header-section-number">6.3.4.4</span> 4. PerceptualMemory - 感知记忆</h4>
 <p>感知记忆支持文本、图像、音频等多种模态的数据存储和检索。</p>
 <p><strong>特点：</strong> - 支持多模态数据（文本、图像、音频等） - 跨模态相似性搜索 - 模态分离存储策略</p>
 <p><strong>使用示例：</strong></p>
@@ -532,10 +546,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>image_memories <span class="op">=</span> memory_manager.perceptual.get_by_modality(<span class="st">"image"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="记忆系统的核心操作" class="level3" data-number="7.3.5">
-<h3 data-number="7.3.5" class="anchored" data-anchor-id="记忆系统的核心操作"><span class="header-section-number">7.3.5</span> 记忆系统的核心操作</h3>
-<section id="添加记忆" class="level4" data-number="7.3.5.1">
-<h4 data-number="7.3.5.1" class="anchored" data-anchor-id="添加记忆"><span class="header-section-number">7.3.5.1</span> 添加记忆</h4>
+<section id="记忆系统的核心操作" class="level3" data-number="6.3.5">
+<h3 data-number="6.3.5" class="anchored" data-anchor-id="记忆系统的核心操作"><span class="header-section-number">6.3.5</span> 记忆系统的核心操作</h3>
+<section id="添加记忆" class="level4" data-number="6.3.5.1">
+<h4 data-number="6.3.5.1" class="anchored" data-anchor-id="添加记忆"><span class="header-section-number">6.3.5.1</span> 添加记忆</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 工作记忆 - 临时信息</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>memory_manager.add(</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    content<span class="op">=</span><span class="st">"用户刚才问了关于Python函数的问题"</span>,</span>
@@ -567,8 +581,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    file_path<span class="op">=</span><span class="st">"./uploads/code.png"</span></span>
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="搜索记忆" class="level4" data-number="7.3.5.2">
-<h4 data-number="7.3.5.2" class="anchored" data-anchor-id="搜索记忆"><span class="header-section-number">7.3.5.2</span> 搜索记忆</h4>
+<section id="搜索记忆" class="level4" data-number="6.3.5.2">
+<h4 data-number="6.3.5.2" class="anchored" data-anchor-id="搜索记忆"><span class="header-section-number">6.3.5.2</span> 搜索记忆</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 基础搜索</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> memory_manager.search(query<span class="op">=</span><span class="st">"Python编程"</span>, limit<span class="op">=</span><span class="dv">5</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -586,8 +600,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    min_importance<span class="op">=</span><span class="fl">0.5</span></span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="遗忘记忆" class="level4" data-number="7.3.5.3">
-<h4 data-number="7.3.5.3" class="anchored" data-anchor-id="遗忘记忆"><span class="header-section-number">7.3.5.3</span> 遗忘记忆</h4>
+<section id="遗忘记忆" class="level4" data-number="6.3.5.3">
+<h4 data-number="6.3.5.3" class="anchored" data-anchor-id="遗忘记忆"><span class="header-section-number">6.3.5.3</span> 遗忘记忆</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 基于重要性的遗忘</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>memory_manager.forget(</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    strategy<span class="op">=</span><span class="st">"importance_based"</span>,</span>
@@ -606,8 +620,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    threshold<span class="op">=</span><span class="fl">0.3</span></span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="整合记忆" class="level4" data-number="7.3.5.4">
-<h4 data-number="7.3.5.4" class="anchored" data-anchor-id="整合记忆"><span class="header-section-number">7.3.5.4</span> 整合记忆</h4>
+<section id="整合记忆" class="level4" data-number="6.3.5.4">
+<h4 data-number="6.3.5.4" class="anchored" data-anchor-id="整合记忆"><span class="header-section-number">6.3.5.4</span> 整合记忆</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 将重要的工作记忆转为情景记忆</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>converted <span class="op">=</span> memory_manager.consolidate(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    from_type<span class="op">=</span>MemoryType.WORKING,</span>
@@ -624,11 +638,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="helloagents-框架中的-rag-系统实现" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="helloagents-框架中的-rag-系统实现"><span class="header-section-number">7.4</span> HelloAgents 框架中的 RAG 系统实现</h2>
+<section id="helloagents-框架中的-rag-系统实现" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="helloagents-框架中的-rag-系统实现"><span class="header-section-number">6.4</span> HelloAgents 框架中的 RAG 系统实现</h2>
 <p>RAG（Retrieval-Augmented Generation，检索增强生成）是一种结合了信息检索和文本生成的技术。HelloAgents 框架实现了一套完整的 RAG 系统，包括文档处理、向量存储、检索和提示词生成等功能。</p>
-<section id="rag-系统架构" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="rag-系统架构"><span class="header-section-number">7.4.1</span> RAG 系统架构</h3>
+<section id="rag-系统架构" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="rag-系统架构"><span class="header-section-number">6.4.1</span> RAG 系统架构</h3>
 <pre><code>RAG 系统架构
 ├── 基础层 (Base Layer)
 │   ├── Document - 文档数据结构
@@ -642,10 +656,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 └── 系统层 (System Layer)
     └── RAGSystem - RAG 系统主类</code></pre>
 </section>
-<section id="核心组件" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="核心组件"><span class="header-section-number">7.4.2</span> 核心组件</h3>
-<section id="document---文档数据结构" class="level4" data-number="7.4.2.1">
-<h4 data-number="7.4.2.1" class="anchored" data-anchor-id="document---文档数据结构"><span class="header-section-number">7.4.2.1</span> 1. Document - 文档数据结构</h4>
+<section id="核心组件" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="核心组件"><span class="header-section-number">6.4.2</span> 核心组件</h3>
+<section id="document---文档数据结构" class="level4" data-number="6.4.2.1">
+<h4 data-number="6.4.2.1" class="anchored" data-anchor-id="document---文档数据结构"><span class="header-section-number">6.4.2.1</span> 1. Document - 文档数据结构</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span>(frozen<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Document:</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -656,8 +670,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    metadata: Dict[<span class="bu">str</span>, Any]                  <span class="co"># 扩展元数据</span></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    timestamp: datetime                       <span class="co"># 时间戳</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="documentprocessor---文档处理器" class="level4" data-number="7.4.2.2">
-<h4 data-number="7.4.2.2" class="anchored" data-anchor-id="documentprocessor---文档处理器"><span class="header-section-number">7.4.2.2</span> 2. DocumentProcessor - 文档处理器</h4>
+<section id="documentprocessor---文档处理器" class="level4" data-number="6.4.2.2">
+<h4 data-number="6.4.2.2" class="anchored" data-anchor-id="documentprocessor---文档处理器"><span class="header-section-number">6.4.2.2</span> 2. DocumentProcessor - 文档处理器</h4>
 <p>文档处理器负责文档的加载、解析和智能分块：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DocumentProcessor:</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -692,8 +706,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>chunks <span class="op">=</span> processor.process(doc)</span>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"分块数量: </span><span class="sc">{</span><span class="bu">len</span>(chunks)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="vectorstore---向量存储" class="level4" data-number="7.4.2.3">
-<h4 data-number="7.4.2.3" class="anchored" data-anchor-id="vectorstore---向量存储"><span class="header-section-number">7.4.2.3</span> 3. VectorStore - 向量存储</h4>
+<section id="vectorstore---向量存储" class="level4" data-number="6.4.2.3">
+<h4 data-number="6.4.2.3" class="anchored" data-anchor-id="vectorstore---向量存储"><span class="header-section-number">6.4.2.3</span> 3. VectorStore - 向量存储</h4>
 <p>向量存储负责文档向量化存储和相似度检索：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> VectorStore:</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -735,8 +749,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> doc, similarity <span class="kw">in</span> results:</span>
 <span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>doc<span class="sc">.</span>content<span class="sc">}</span><span class="ss"> (相似度: </span><span class="sc">{</span>similarity<span class="sc">:.4f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="retriever---检索器" class="level4" data-number="7.4.2.4">
-<h4 data-number="7.4.2.4" class="anchored" data-anchor-id="retriever---检索器"><span class="header-section-number">7.4.2.4</span> 4. Retriever - 检索器</h4>
+<section id="retriever---检索器" class="level4" data-number="6.4.2.4">
+<h4 data-number="6.4.2.4" class="anchored" data-anchor-id="retriever---检索器"><span class="header-section-number">6.4.2.4</span> 4. Retriever - 检索器</h4>
 <p>检索器负责文档检索和结果排序：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Retriever:</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -760,8 +774,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""格式化检索结果为上下文文本"""</span></span>
 <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="ragsystem---rag-系统主类" class="level4" data-number="7.4.2.5">
-<h4 data-number="7.4.2.5" class="anchored" data-anchor-id="ragsystem---rag-系统主类"><span class="header-section-number">7.4.2.5</span> 5. RAGSystem - RAG 系统主类</h4>
+<section id="ragsystem---rag-系统主类" class="level4" data-number="6.4.2.5">
+<h4 data-number="6.4.2.5" class="anchored" data-anchor-id="ragsystem---rag-系统主类"><span class="header-section-number">6.4.2.5</span> 5. RAGSystem - RAG 系统主类</h4>
 <p>RAG 系统主类整合了所有组件，提供统一的 API：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RAGSystem:</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -815,13 +829,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="记忆系统与-rag-的协同应用" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="记忆系统与-rag-的协同应用"><span class="header-section-number">7.5</span> 记忆系统与 RAG 的协同应用</h2>
+<section id="记忆系统与-rag-的协同应用" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="记忆系统与-rag-的协同应用"><span class="header-section-number">6.5</span> 记忆系统与 RAG 的协同应用</h2>
 <p>记忆系统和 RAG 系统虽然各自独立，但它们可以协同工作，为智能体提供更强大的能力。通过将两个系统有机结合，可以构建更加智能的应用。</p>
-<section id="协同工作模式" class="level3" data-number="7.5.1">
-<h3 data-number="7.5.1" class="anchored" data-anchor-id="协同工作模式"><span class="header-section-number">7.5.1</span> 协同工作模式</h3>
-<section id="知识积累模式" class="level4" data-number="7.5.1.1">
-<h4 data-number="7.5.1.1" class="anchored" data-anchor-id="知识积累模式"><span class="header-section-number">7.5.1.1</span> 1. 知识积累模式</h4>
+<section id="协同工作模式" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="协同工作模式"><span class="header-section-number">6.5.1</span> 协同工作模式</h3>
+<section id="知识积累模式" class="level4" data-number="6.5.1.1">
+<h4 data-number="6.5.1.1" class="anchored" data-anchor-id="知识积累模式"><span class="header-section-number">6.5.1.1</span> 1. 知识积累模式</h4>
 <p>用户通过 RAG 系统查询外部知识库，将重要的查询结果自动存储到记忆系统中。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 RAG 检索知识</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>retrieval_result, prompt <span class="op">=</span> rag.query(query<span class="op">=</span><span class="st">"Python 的特点是什么？"</span>)</span>
@@ -836,8 +850,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    importance<span class="op">=</span><span class="fl">0.8</span></span>
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="个性化推荐模式" class="level4" data-number="7.5.1.2">
-<h4 data-number="7.5.1.2" class="anchored" data-anchor-id="个性化推荐模式"><span class="header-section-number">7.5.1.2</span> 2. 个性化推荐模式</h4>
+<section id="个性化推荐模式" class="level4" data-number="6.5.1.2">
+<h4 data-number="6.5.1.2" class="anchored" data-anchor-id="个性化推荐模式"><span class="header-section-number">6.5.1.2</span> 2. 个性化推荐模式</h4>
 <p>记忆系统记录用户的历史查询、偏好和行为模式，RAG 系统根据这些个性化信息进行更精准的知识检索。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 从记忆中获取用户偏好</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>user_preferences <span class="op">=</span> memory_manager.search(</span>
@@ -852,8 +866,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用个性化查询检索</span></span>
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>retrieval_result, prompt <span class="op">=</span> rag.query(personalized_query)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="学习反馈模式" class="level4" data-number="7.5.1.3">
-<h4 data-number="7.5.1.3" class="anchored" data-anchor-id="学习反馈模式"><span class="header-section-number">7.5.1.3</span> 3. 学习反馈模式</h4>
+<section id="学习反馈模式" class="level4" data-number="6.5.1.3">
+<h4 data-number="6.5.1.3" class="anchored" data-anchor-id="学习反馈模式"><span class="header-section-number">6.5.1.3</span> 3. 学习反馈模式</h4>
 <p>智能体通过记忆系统记录用户对答案的反馈（如点赞、纠正、追问），不断优化 RAG 系统的检索策略。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 记录用户反馈</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>memory_manager.add(</span>
@@ -868,8 +882,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    rag.config.similarity_threshold <span class="op">*=</span> <span class="fl">0.9</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="实际应用案例智能学习助手" class="level3" data-number="7.5.2">
-<h3 data-number="7.5.2" class="anchored" data-anchor-id="实际应用案例智能学习助手"><span class="header-section-number">7.5.2</span> 实际应用案例：智能学习助手</h3>
+<section id="实际应用案例智能学习助手" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="实际应用案例智能学习助手"><span class="header-section-number">6.5.2</span> 实际应用案例：智能学习助手</h3>
 <p>结合记忆系统和 RAG 系统，我们可以构建一个智能学习助手：</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> HelloAgents.core.agent <span class="im">import</span> Agent</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> HelloAgents.memory <span class="im">import</span> MemoryManager, MemoryType</span>
@@ -958,12 +972,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb27-85"><a href="#cb27-85" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rag_system.add_document(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="实践建议与进阶探索" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="实践建议与进阶探索"><span class="header-section-number">7.6</span> 实践建议与进阶探索</h2>
-<section id="使用-helloagents-构建记忆增强应用" class="level3" data-number="7.6.1">
-<h3 data-number="7.6.1" class="anchored" data-anchor-id="使用-helloagents-构建记忆增强应用"><span class="header-section-number">7.6.1</span> 使用 HelloAgents 构建记忆增强应用</h3>
-<section id="快速开始" class="level4" data-number="7.6.1.1">
-<h4 data-number="7.6.1.1" class="anchored" data-anchor-id="快速开始"><span class="header-section-number">7.6.1.1</span> 1. 快速开始</h4>
+<section id="实践建议与进阶探索" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="实践建议与进阶探索"><span class="header-section-number">6.6</span> 实践建议与进阶探索</h2>
+<section id="使用-helloagents-构建记忆增强应用" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="使用-helloagents-构建记忆增强应用"><span class="header-section-number">6.6.1</span> 使用 HelloAgents 构建记忆增强应用</h3>
+<section id="快速开始" class="level4" data-number="6.6.1.1">
+<h4 data-number="6.6.1.1" class="anchored" data-anchor-id="快速开始"><span class="header-section-number">6.6.1.1</span> 1. 快速开始</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> HelloAgents.memory <span class="im">import</span> MemoryManager, MemoryType</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建记忆管理器</span></span>
@@ -979,8 +993,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 搜索记忆</span></span>
 <span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> memory_manager.search(query<span class="op">=</span><span class="st">"Python"</span>, limit<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="集成到现有-agent" class="level4" data-number="7.6.1.2">
-<h4 data-number="7.6.1.2" class="anchored" data-anchor-id="集成到现有-agent"><span class="header-section-number">7.6.1.2</span> 2. 集成到现有 Agent</h4>
+<section id="集成到现有-agent" class="level4" data-number="6.6.1.2">
+<h4 data-number="6.6.1.2" class="anchored" data-anchor-id="集成到现有-agent"><span class="header-section-number">6.6.1.2</span> 2. 集成到现有 Agent</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> HelloAgents.core.agent <span class="im">import</span> Agent</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> HelloAgents.memory <span class="im">import</span> MemoryManager</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1005,8 +1019,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> response</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="使用-rag-增强知识检索" class="level4" data-number="7.6.1.3">
-<h4 data-number="7.6.1.3" class="anchored" data-anchor-id="使用-rag-增强知识检索"><span class="header-section-number">7.6.1.3</span> 3. 使用 RAG 增强知识检索</h4>
+<section id="使用-rag-增强知识检索" class="level4" data-number="6.6.1.3">
+<h4 data-number="6.6.1.3" class="anchored" data-anchor-id="使用-rag-增强知识检索"><span class="header-section-number">6.6.1.3</span> 3. 使用 RAG 增强知识检索</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> HelloAgents.rag <span class="im">import</span> RAGSystem, DocumentProcessor</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建 RAG 系统</span></span>
@@ -1024,8 +1038,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>retrieval_result, prompt <span class="op">=</span> rag.query(<span class="st">"Python 的特点是什么？"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="性能优化建议" class="level3" data-number="7.6.2">
-<h3 data-number="7.6.2" class="anchored" data-anchor-id="性能优化建议"><span class="header-section-number">7.6.2</span> 性能优化建议</h3>
+<section id="性能优化建议" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="性能优化建议"><span class="header-section-number">6.6.2</span> 性能优化建议</h3>
 <ol type="1">
 <li><strong>记忆管理</strong>：
 <ul>
@@ -1047,8 +1061,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ol>
 </section>
-<section id="进阶探索方向" class="level3" data-number="7.6.3">
-<h3 data-number="7.6.3" class="anchored" data-anchor-id="进阶探索方向"><span class="header-section-number">7.6.3</span> 进阶探索方向</h3>
+<section id="进阶探索方向" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="进阶探索方向"><span class="header-section-number">6.6.3</span> 进阶探索方向</h3>
 <ol type="1">
 <li><strong>多模态支持</strong>：
 <ul>
@@ -1069,10 +1083,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>自适应的遗忘策略</li>
 </ul></li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>下一章预告
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>有了记忆系统，Agent 能记住更多的信息——但上下文窗口是有限的。如何让 Agent 在有限的空间里装下最重要的信息？下一章将介绍<strong>上下文工程</strong>——上下文的分类、压缩、优化策略。</p>
+</div>
+</div>
 </section>
 </section>
-<section id="本章总结" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="本章总结"><span class="header-section-number">7.7</span> 本章总结</h2>
+<section id="练习" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="练习"><span class="header-section-number">6.7</span> 练习</h2>
+<ol type="1">
+<li>为第 4 章的旅行助手 Agent 添加一个简单的情景记忆：记录用户曾经去过的城市和偏好，在后续推荐中优先考虑用户的偏好。</li>
+<li>实现一个最小 RAG 系统：将本书第 1-3 章的内容作为文档库，构建一个能回答”什么是 Agent”等问题的检索增强 Agent。</li>
+<li>对比有记忆和无记忆 Agent 在连续 10 轮对话中的表现差异：记录重复提问的次数和回答的一致性。</li>
+</ol>
+</section>
+<section id="本章总结" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="本章总结"><span class="header-section-number">6.8</span> 本章总结</h2>
 <p>通过本章的学习，您应该掌握：</p>
 <p><strong>核心概念</strong></p>
 <ul>
@@ -1080,23 +1115,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>记忆系统的四层架构和四种记忆类型</li>
 <li>RAG 技术的基本原理和高级策略</li>
 </ul>
-<p><strong>HelloAgents 框架实现</strong></p>
-<ul>
-<li>记忆系统的完整实现（MemoryManager、WorkingMemory、EpisodicMemory、SemanticMemory、PerceptualMemory）</li>
-<li>RAG 系统的完整实现（DocumentProcessor、VectorStore、Retriever、RAGSystem）</li>
-<li>记忆系统与 RAG 系统的协同应用</li>
-</ul>
 <p><strong>实践能力</strong></p>
 <ul>
 <li>如何使用 HelloAgents 构建记忆增强的 Agent</li>
 <li>如何使用 RAG 系统增强知识检索能力</li>
 <li>如何优化记忆和检索性能</li>
 </ul>
-<p><strong>技术要点回顾</strong></p>
-<p><strong>记忆系统关键要素：</strong> - 四种记忆类型：工作记忆、情景记忆、语义记忆、感知记忆 - 核心操作：添加、搜索、遗忘、整合 - 评分机制：综合考虑语义相似度、时间衰减、重要性权重</p>
-<p><strong>RAG 系统关键要素：</strong> - 核心流程：文档处理、分块、向量化、检索、生成 - 高级策略：多查询扩展、混合检索 - 架构设计：模块化、可扩展</p>
-<p><strong>HelloAgents 框架优势：</strong> - 模块化设计，易于扩展 - 类型安全，易于调试 - 统一接口，易于使用 - 性能优化，生产就绪</p>
-<p>通过本章的学习，您不仅掌握了记忆系统和 RAG 技术的实现原理，更重要的是学会了如何在 HelloAgents 框架中实际应用这些技术。HelloAgents 框架提供了一个坚实的基础设施，让开发者能够快速构建和部署具有记忆和检索能力的智能应用。</p>
 
 
 </section>
@@ -1504,13 +1528,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapter6.html" class="pagination-link" aria-label="Build your agent framework">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build your agent framework</span></span>
+      <a href="./chapter6.html" class="pagination-link" aria-label="自建轻量 Agent 框架">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">自建轻量 Agent 框架</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapter8.html" class="pagination-link" aria-label="**Context Engineering**">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><strong>Context Engineering</strong></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapter8.html" class="pagination-link" aria-label="Context Engineering">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Context Engineering</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

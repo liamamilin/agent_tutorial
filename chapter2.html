@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; The history of agent development – 从零开始学习Agent</title>
+<title>1&nbsp; 智能体简史 – 从零开始学习Agent</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -19,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -34,15 +72,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5ea8f22911a6df30576a2a25a24cdd7a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-367522ac618891c39d4b2ae87ea7600e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,35 +108,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -112,7 +120,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The history of agent development</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter2.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">智能体简史</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -125,9 +133,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">从零开始学习Agent</a> 
     </div>
@@ -142,67 +148,67 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text">认识智能体</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The history of agent development</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">智能体简史</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Foundation of Large Language Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">大语言模型基础</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Construction of the classical agent paradigm</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">给 Agent 装上手脚：工具系统</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Framework Development Practice</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">让 Agent 学会思考：推理范式</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Build your agent framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">自建轻量 Agent 框架</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Memory and Retrieval</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Memory and Retrieval</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><strong>Context Engineering</strong></span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Context Engineering</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Intelligent Agent Communication Protocol</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">多智能体协作</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapter10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Agentic-RL</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">评估与持续改进</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapter11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Intelligent Agent Performance Evaluation</span></span></a>
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">总结与展望</span></a>
   </div>
 </li>
     </ul>
@@ -215,30 +221,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#基于符号与逻辑的早期智能体" id="toc-基于符号与逻辑的早期智能体" class="nav-link active" data-scroll-target="#基于符号与逻辑的早期智能体"><span class="header-section-number">2.1</span> 基于符号与逻辑的早期智能体</a>
+  <li><a href="#基于符号与逻辑的早期智能体" id="toc-基于符号与逻辑的早期智能体" class="nav-link active" data-scroll-target="#基于符号与逻辑的早期智能体"><span class="header-section-number">1.1</span> 基于符号与逻辑的早期智能体</a>
   <ul class="collapse">
-  <li><a href="#物理符号系统假说" id="toc-物理符号系统假说" class="nav-link" data-scroll-target="#物理符号系统假说"><span class="header-section-number">2.1.1</span> 物理符号系统假说</a></li>
-  <li><a href="#专家系统" id="toc-专家系统" class="nav-link" data-scroll-target="#专家系统"><span class="header-section-number">2.1.2</span> 专家系统</a></li>
+  <li><a href="#物理符号系统假说" id="toc-物理符号系统假说" class="nav-link" data-scroll-target="#物理符号系统假说"><span class="header-section-number">1.1.1</span> 物理符号系统假说</a></li>
+  <li><a href="#专家系统" id="toc-专家系统" class="nav-link" data-scroll-target="#专家系统"><span class="header-section-number">1.1.2</span> 专家系统</a></li>
   </ul></li>
-  <li><a href="#构建基于规则的聊天机器人" id="toc-构建基于规则的聊天机器人" class="nav-link" data-scroll-target="#构建基于规则的聊天机器人"><span class="header-section-number">2.2</span> 构建基于规则的聊天机器人</a>
+  <li><a href="#动手实践构建基于规则的聊天机器人-eliza" id="toc-动手实践构建基于规则的聊天机器人-eliza" class="nav-link" data-scroll-target="#动手实践构建基于规则的聊天机器人-eliza"><span class="header-section-number">1.2</span> 动手实践：构建基于规则的聊天机器人 ELIZA</a>
   <ul class="collapse">
-  <li><a href="#模式匹配与文本替换" id="toc-模式匹配与文本替换" class="nav-link" data-scroll-target="#模式匹配与文本替换"><span class="header-section-number">2.2.1</span> 模式匹配与文本替换</a></li>
-  <li><a href="#核心逻辑的实现" id="toc-核心逻辑的实现" class="nav-link" data-scroll-target="#核心逻辑的实现"><span class="header-section-number">2.2.2</span> 核心逻辑的实现</a></li>
+  <li><a href="#算法原理" id="toc-算法原理" class="nav-link" data-scroll-target="#算法原理"><span class="header-section-number">1.2.1</span> 算法原理</a></li>
+  <li><a href="#python-实现" id="toc-python-实现" class="nav-link" data-scroll-target="#python-实现"><span class="header-section-number">1.2.2</span> Python 实现</a></li>
+  <li><a href="#eliza-的局限与启示" id="toc-eliza-的局限与启示" class="nav-link" data-scroll-target="#eliza-的局限与启示"><span class="header-section-number">1.2.3</span> ELIZA 的局限与启示</a></li>
   </ul></li>
-  <li><a href="#马文明斯基的心智社会" id="toc-马文明斯基的心智社会" class="nav-link" data-scroll-target="#马文明斯基的心智社会"><span class="header-section-number">2.3</span> 马文·明斯基的心智社会</a>
+  <li><a href="#马文明斯基的心智社会" id="toc-马文明斯基的心智社会" class="nav-link" data-scroll-target="#马文明斯基的心智社会"><span class="header-section-number">1.3</span> 马文·明斯基的心智社会</a></li>
+  <li><a href="#学习范式的演进与现代智能体" id="toc-学习范式的演进与现代智能体" class="nav-link" data-scroll-target="#学习范式的演进与现代智能体"><span class="header-section-number">1.4</span> 学习范式的演进与现代智能体</a>
   <ul class="collapse">
-  <li><a href="#对单一整体智能模型的反思" id="toc-对单一整体智能模型的反思" class="nav-link" data-scroll-target="#对单一整体智能模型的反思"><span class="header-section-number">2.3.1</span> 对单一整体智能模型的反思</a></li>
-  <li><a href="#作为协作体的智能" id="toc-作为协作体的智能" class="nav-link" data-scroll-target="#作为协作体的智能"><span class="header-section-number">2.3.2</span> 作为协作体的智能</a></li>
-  <li><a href="#对多智能体系统的理论启发" id="toc-对多智能体系统的理论启发" class="nav-link" data-scroll-target="#对多智能体系统的理论启发"><span class="header-section-number">2.3.3</span> 对多智能体系统的理论启发</a></li>
+  <li><a href="#从符号到联结" id="toc-从符号到联结" class="nav-link" data-scroll-target="#从符号到联结"><span class="header-section-number">1.4.1</span> 从符号到联结</a></li>
+  <li><a href="#基于强化学习的智能体" id="toc-基于强化学习的智能体" class="nav-link" data-scroll-target="#基于强化学习的智能体"><span class="header-section-number">1.4.2</span> 基于强化学习的智能体</a></li>
+  <li><a href="#大型语言模型的诞生与涌现能力" id="toc-大型语言模型的诞生与涌现能力" class="nav-link" data-scroll-target="#大型语言模型的诞生与涌现能力"><span class="header-section-number">1.4.3</span> 大型语言模型的诞生与涌现能力</a></li>
   </ul></li>
-  <li><a href="#学习范式的演进与现代智能体" id="toc-学习范式的演进与现代智能体" class="nav-link" data-scroll-target="#学习范式的演进与现代智能体"><span class="header-section-number">2.4</span> 学习范式的演进与现代智能体</a>
-  <ul class="collapse">
-  <li><a href="#从符号到联结" id="toc-从符号到联结" class="nav-link" data-scroll-target="#从符号到联结"><span class="header-section-number">2.4.1</span> 从符号到联结</a></li>
-  <li><a href="#基于强化学习的智能体" id="toc-基于强化学习的智能体" class="nav-link" data-scroll-target="#基于强化学习的智能体"><span class="header-section-number">2.4.2</span> 基于强化学习的智能体</a></li>
-  <li><a href="#基于大规模数据的预训练" id="toc-基于大规模数据的预训练" class="nav-link" data-scroll-target="#基于大规模数据的预训练"><span class="header-section-number">2.4.3</span> 基于大规模数据的预训练</a></li>
-  <li><a href="#基于大语言模型的智能体" id="toc-基于大语言模型的智能体" class="nav-link" data-scroll-target="#基于大语言模型的智能体"><span class="header-section-number">2.4.4</span> 基于大语言模型的智能体</a></li>
-  <li><a href="#智能体发展关键节点概览" id="toc-智能体发展关键节点概览" class="nav-link" data-scroll-target="#智能体发展关键节点概览"><span class="header-section-number">2.4.5</span> 智能体发展关键节点概览</a></li>
-  </ul></li>
+  <li><a href="#本章小结" id="toc-本章小结" class="nav-link" data-scroll-target="#本章小结"><span class="header-section-number">1.5</span> 本章小结</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">1.6</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -247,7 +249,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The history of agent development</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">智能体简史</span></h1>
 </div>
 
 
@@ -265,345 +267,294 @@ window.Quarto = {
 
 
 <p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-00.png" class="img-fluid"></p>
-<section id="基于符号与逻辑的早期智能体" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="基于符号与逻辑的早期智能体"><span class="header-section-number">2.1</span> 基于符号与逻辑的早期智能体</h2>
-<p>人工智能的早期研究深受数理逻辑与计算机科学基础理论的影响。研究者普遍认为，人类智能，尤其是逻辑推理能力，可以通过形式化的符号体系加以刻画和实现。这一理念催生了人工智能的首个重要范式——符号主义（Symbolicism），亦称“逻辑 AI”或“传统 AI”。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>上一章回顾
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>在第 1 章中，我们认识了智能体的基本概念，并用 30 行 Python 构建了第一个能对话的 SimpleAgent。但这个最简 Agent 只能”说”不能”做”——它没有任何工具，也没有推理能力。在为其添加这些能力之前，我们先回溯智能体的发展历史，理解当前的 LLM 智能体从何而来、为何是现在这个形态。</p>
+</div>
+</div>
+<section id="基于符号与逻辑的早期智能体" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="基于符号与逻辑的早期智能体"><span class="header-section-number">1.1</span> 基于符号与逻辑的早期智能体</h2>
+<p>人工智能的早期研究深受数理逻辑与计算机科学基础理论的影响。研究者普遍认为，人类智能——尤其是逻辑推理能力——可以通过形式化的符号体系加以刻画和实现。这一理念催生了人工智能的首个重要范式——<strong>符号主义（Symbolicism）</strong>，亦称”逻辑 AI”或”传统 AI”。</p>
 <p>在符号主义框架下，智能被视为对符号依据明确规则进行操作的过程。智能体被建模为物理符号系统：利用内部符号表示外部世界，并通过逻辑推理来规划和决策。此类智能体的能力完全来源于设计者预先编写的知识与规则，而非通过自主学习获得。</p>
-<section id="物理符号系统假说" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="物理符号系统假说"><span class="header-section-number">2.1.1</span> 物理符号系统假说</h3>
-<p>符号主义时代的理论基础，是 1976 年艾伦·纽厄尔（Allen Newell）与赫伯特·西蒙（Herbert A. Simon）提出的物理符号系统假说（Physical Symbol System Hypothesis，PSSH）[1]。这一假说为在计算机上实现通用人工智能提供了重要的理论框架与判定标准。</p>
-<p>该假说包含两个核心观点：</p>
+<section id="物理符号系统假说" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="物理符号系统假说"><span class="header-section-number">1.1.1</span> 物理符号系统假说</h3>
+<p>符号主义时代的理论基础，是 1976 年艾伦·纽厄尔（Allen Newell）与赫伯特·西蒙（Herbert A. Simon）提出的<strong>物理符号系统假说（Physical Symbol System Hypothesis，PSSH）</strong>。这一假说包含两个核心观点：</p>
 <ul>
-<li><p>充分性：任何物理符号系统都具备产生通用智能行为的充分条件。</p></li>
-<li><p>必要性：凡是能够展现通用智能行为的系统，其本质必然是物理符号系统。</p></li>
+<li><strong>充分性</strong>：任何物理符号系统都具备产生通用智能行为的充分条件。</li>
+<li><strong>必要性</strong>：凡是能够展现通用智能行为的系统，其本质必然是物理符号系统。</li>
 </ul>
-<p>所谓物理符号系统，是指一种可在物理世界中实现的系统，由可区分的符号集合及一系列对符号进行操作的过程构成 ）。符号可以组合成更复杂的结构，而这些过程能够创建、修改、复制或销毁符号结构。</p>
-<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-0.png" class="img-fluid"></p>
+<p>所谓物理符号系统，是指一种可在物理世界中实现的系统，由可区分的符号集合及一系列对符号进行操作的过程构成。符号可以组合成更复杂的结构，而这些过程能够创建、修改、复制或销毁符号结构。</p>
 </section>
-<section id="专家系统" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="专家系统"><span class="header-section-number">2.1.2</span> 专家系统</h3>
-<p>在物理符号系统假说的推动下，专家系统成为符号主义时代最具代表性、也最成功的应用。其核心目标是模拟人类专家在特定领域中的问题解决能力。通过将专家的知识与经验形式化并编码为程序，专家系统能够在类似情境下给出接近甚至超过人类专家水平的判断与建议。</p>
-<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-1.png" class="img-fluid"></p>
-<p>专家系统的智能主要来源于两大核心组件：知识库与推理机。</p>
+<section id="专家系统" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="专家系统"><span class="header-section-number">1.1.2</span> 专家系统</h3>
+<p>在物理符号系统假说的推动下，<strong>专家系统</strong>成为符号主义时代最具代表性的应用。其核心目标是模拟人类专家在特定领域中的问题解决能力，通过将专家的知识与经验形式化并编码为程序来实现。</p>
+<p>专家系统的智能主要来源于两大核心组件：</p>
 <ol type="1">
-<li><p>知识库（Knowledge Base）：用于存储领域专家的知识与经验，其构建关键在于知识表示。专家系统中最常见的表示方式是产生式规则，即“IF–THEN”形式的条件语句，用于将特定情境与相应结论或行动关联起来。例如：IF 出现发烧且咳嗽 THEN 可能为呼吸道感染。大量规则相互关联，构成完整的知识体系。</p></li>
-<li><p>推理机（Inference Engine）：作为系统的核心计算模块，推理机依据用户提供的事实，在知识库中匹配并应用规则，从而推导新结论。其主要推理方式包括：</p></li>
-</ol>
+<li><p><strong>知识库（Knowledge Base）</strong>：存储领域专家的知识与经验，最常见的表示方式是<strong>产生式规则</strong>——即”IF–THEN”形式的条件语句。例如：<code>IF 出现发烧且咳嗽 THEN 可能为呼吸道感染</code>。</p></li>
+<li><p><strong>推理机（Inference Engine）</strong>：作为系统的核心计算模块，依据用户提供的事实，在知识库中匹配并应用规则推导新结论。主要推理方式包括：</p>
 <ul>
-<li>正向链：从已知事实出发，逐步触发规则并生成新事实，属于数据驱动推理。</li>
-<li>反向链：从目标假设出发，反向寻找支持该目标的规则并验证条件，属于目标驱动推理。</li>
-</ul>
-<p>比较著名的专家系统:</p>
+<li><strong>正向链</strong>：从已知事实出发，逐步触发规则，属数据驱动推理。</li>
+<li><strong>反向链</strong>：从目标假设出发，反向寻找支持证据，属目标驱动推理。</li>
+</ul></li>
+</ol>
+<p>著名的专家系统包括医疗诊断系统 <strong>MYCIN</strong> 和积木世界理解系统 <strong>SHRDLU</strong>。</p>
+</section>
+</section>
+<section id="动手实践构建基于规则的聊天机器人-eliza" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="动手实践构建基于规则的聊天机器人-eliza"><span class="header-section-number">1.2</span> 动手实践：构建基于规则的聊天机器人 ELIZA</h2>
+<p>ELIZA 是由 MIT 计算机科学家约瑟夫·魏泽鲍姆（Joseph Weizenbaum）于 1966 年推出的程序，是早期自然语言处理的重要尝试。它最著名的脚本 “DOCTOR” 模拟了罗杰斯学派的非指导性心理治疗师。</p>
+<p>ELIZA 的机制十分简洁：它不直接回答问题，而是识别用户输入中的关键词，并依据预设的转换规则，将陈述改写为开放式提问。例如，当用户说”I am feeling sad”时，系统可能回应：“Why do you feel sad?”</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>历史趣闻：ELIZA 效应
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>魏泽鲍姆并不试图让机器真正理解人类情感。然而令他意外的是，许多用户在与 ELIZA 交互后产生了情感依赖，甚至相信它能够理解自己。这种现象后来被称为<strong>ELIZA 效应</strong>——人类倾向于将智能属性投射到表面上像人类的机器行为上。这一效应至今仍在 ChatGPT 等现代 AI 产品中持续上演。</p>
+</div>
+</div>
+<section id="算法原理" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="算法原理"><span class="header-section-number">1.2.1</span> 算法原理</h3>
+<p>ELIZA 的算法核心基于<strong>模式匹配与文本替换</strong>，分为四个步骤：</p>
 <ol type="1">
-<li>MYCIN系统</li>
-<li>SHRDLU</li>
+<li><strong>关键词识别与排序</strong>：系统为每个关键词设定优先级，优先匹配高优先级规则。</li>
+<li><strong>分解规则</strong>：利用包含通配符的分解规则提取句子其余部分。例如，规则 <code>I need *</code> 匹配 <code>I need some help</code>，捕获 <code>some help</code>。</li>
+<li><strong>重组规则</strong>：从关联的多条重组规则中随机选择一条生成回复，可引用已捕获内容。</li>
+<li><strong>代词转换</strong>：在生成回复前进行简单的代词替换（如 <code>I → you</code>，<code>my → your</code>），以保持对话自然。</li>
 </ol>
 </section>
+<section id="python-实现" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="python-实现"><span class="header-section-number">1.2.2</span> Python 实现</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 规则库：模式 -&gt; 响应模板列表</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>RULES <span class="op">=</span> {</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"I need </span><span class="kw">(</span><span class="dv">.</span><span class="op">*</span><span class="kw">)</span><span class="vs">"</span>: [</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Why do you need </span><span class="sc">{0}</span><span class="st">?"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Would it really help you to get </span><span class="sc">{0}</span><span class="st">?"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Are you sure you need </span><span class="sc">{0}</span><span class="st">?"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"Why don'</span><span class="op">?</span><span class="vs">t you </span><span class="kw">(</span><span class="pp">[^</span><span class="ch">\?</span><span class="pp">]</span><span class="op">*</span><span class="kw">)</span><span class="ch">\?</span><span class="op">?</span><span class="vs">"</span>: [</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Do you really think I don't </span><span class="sc">{0}</span><span class="st">?"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Perhaps eventually I will </span><span class="sc">{0}</span><span class="st">."</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Do you really want me to </span><span class="sc">{0}</span><span class="st">?"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"Why can'</span><span class="op">?</span><span class="vs">t I </span><span class="kw">(</span><span class="pp">[^</span><span class="ch">\?</span><span class="pp">]</span><span class="op">*</span><span class="kw">)</span><span class="ch">\?</span><span class="op">?</span><span class="vs">"</span>: [</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Do you think you should be able to </span><span class="sc">{0}</span><span class="st">?"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"If you could </span><span class="sc">{0}</span><span class="st">, what would you do?"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"I don't know -- why can't you </span><span class="sc">{0}</span><span class="st">?"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"I am </span><span class="kw">(</span><span class="dv">.</span><span class="op">*</span><span class="kw">)</span><span class="vs">"</span>: [</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Did you come to me because you are </span><span class="sc">{0}</span><span class="st">?"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"How long have you been </span><span class="sc">{0}</span><span class="st">?"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"How do you feel about being </span><span class="sc">{0}</span><span class="st">?"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"I'</span><span class="op">?</span><span class="vs">m </span><span class="kw">(</span><span class="dv">.</span><span class="op">*</span><span class="kw">)</span><span class="vs">"</span>: [</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"How does being </span><span class="sc">{0}</span><span class="st"> make you feel?"</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Why do you think you're </span><span class="sc">{0}</span><span class="st">?"</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">.</span><span class="op">*</span><span class="vs"> mother </span><span class="dv">.</span><span class="op">*</span><span class="vs">"</span>: [</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Tell me more about your mother."</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"What was your relationship with your mother like?"</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"How do you feel about your mother?"</span>,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">.</span><span class="op">*</span><span class="vs"> father </span><span class="dv">.</span><span class="op">*</span><span class="vs">"</span>: [</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Tell me more about your father."</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="st">"How did your father make you feel?"</span>,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        <span class="st">"What has your father taught you?"</span>,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"</span><span class="dv">.</span><span class="op">*</span><span class="vs">"</span>: [</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Please tell me more."</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Let's change focus a bit... Tell me about your family."</span>,</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Can you elaborate on that?"</span>,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 代词转换表</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>PRONOUN_SWAP <span class="op">=</span> {</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="st">"i"</span>: <span class="st">"you"</span>, <span class="st">"you"</span>: <span class="st">"i"</span>, <span class="st">"me"</span>: <span class="st">"you"</span>,</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="st">"my"</span>: <span class="st">"your"</span>, <span class="st">"am"</span>: <span class="st">"are"</span>, <span class="st">"are"</span>: <span class="st">"am"</span>,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="st">"was"</span>: <span class="st">"were"</span>, <span class="st">"i'd"</span>: <span class="st">"you would"</span>,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="st">"i've"</span>: <span class="st">"you have"</span>, <span class="st">"i'll"</span>: <span class="st">"you will"</span>,</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="st">"yours"</span>: <span class="st">"mine"</span>, <span class="st">"mine"</span>: <span class="st">"yours"</span>,</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> swap_pronouns(phrase: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""简单的代词互换"""</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    words <span class="op">=</span> phrase.lower().split()</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    swapped <span class="op">=</span> [PRONOUN_SWAP.get(w, w) <span class="cf">for</span> w <span class="kw">in</span> words]</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">" "</span>.join(swapped)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> respond(user_input: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""根据规则库生成回复"""</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> pattern, templates <span class="kw">in</span> RULES.items():</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>        match <span class="op">=</span> re.match(pattern, user_input, re.IGNORECASE)</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> match:</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>            <span class="co"># 提取捕获组（如果有）</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>            captured <span class="op">=</span> match.group(<span class="dv">1</span>) <span class="cf">if</span> match.lastindex <span class="cf">else</span> <span class="st">""</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>            swapped <span class="op">=</span> swap_pronouns(captured)</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>            <span class="co"># 随机选择一个模板并替换占位符</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>            template <span class="op">=</span> random.choice(templates)</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> template.replace(<span class="st">"</span><span class="sc">{0}</span><span class="st">"</span>, swapped)</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"I'm not sure I understand."</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 主聊天循环</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Therapist: Hello! How can I help you today?"</span>)</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"(Type 'quit' to exit)</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>        user_input <span class="op">=</span> <span class="bu">input</span>(<span class="st">"You: "</span>)</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> user_input.lower() <span class="kw">in</span> (<span class="st">"quit"</span>, <span class="st">"exit"</span>, <span class="st">"bye"</span>):</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Therapist: Goodbye. It was nice talking to you."</span>)</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> respond(user_input)</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Therapist: </span><span class="sc">{</span>response<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>运行效果：</p>
+<pre><code>Therapist: Hello! How can I help you today?
+(Type 'quit' to exit)
+
+You: I am feeling sad today.
+Therapist: How long have you been feeling sad today?
+You: I need some help with my project.
+Therapist: Are you sure you need some help with your project?
+You: My mother is not happy with my work.
+Therapist: Tell me more about your mother.
+You: quit
+Therapist: Goodbye. It was nice talking to you.</code></pre>
 </section>
-<section id="构建基于规则的聊天机器人" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="构建基于规则的聊天机器人"><span class="header-section-number">2.2</span> 构建基于规则的聊天机器人</h2>
-<p>ELIZA 是由麻省理工学院计算机科学家约瑟夫·魏泽鲍姆（Joseph Weizenbaum）于 1966 年推出的计算机程序，是早期自然语言处理的重要尝试之一。它并非单一应用，而是一个可运行不同“脚本”的框架，其中最著名的是 “DOCTOR” 脚本，用以模拟罗杰斯学派的非指导性心理治疗师。</p>
-<p>ELIZA 的机制十分简洁：它不直接回答问题，而是识别用户输入中的关键词，并依据预设的转换规则，将陈述改写为开放式提问。例如，当用户说“我为我的男朋友感到难过”时，系统可能生成回应：“你为什么会为你的男朋友感到难过？”</p>
-<p>魏泽鲍姆并不试图让机器真正理解人类情感，相反，他希望借此说明：即便完全不理解对话内容，简单的句式转换也能制造出“智能”与“共情”的表象。然而，令他意外的是，许多用户在与 ELIZA 交互后产生了情感依赖，甚至相信它能够理解自己。</p>
-<section id="模式匹配与文本替换" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="模式匹配与文本替换"><span class="header-section-number">2.2.1</span> 模式匹配与文本替换</h3>
-<p>ELIZA 的算法核心基于模式匹配与文本替换，其流程可概括为四个步骤：</p>
+<section id="eliza-的局限与启示" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="eliza-的局限与启示"><span class="header-section-number">1.2.3</span> ELIZA 的局限与启示</h3>
+<p>通过亲手实现 ELIZA，我们可以直观感受到规则驱动系统的根本局限——这些问题正好印证了符号主义的理论挑战：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>局限</th>
+<th>表现</th>
+<th>对现代 Agent 的启示</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>缺乏语义理解</strong></td>
+<td>“I am not happy” 仍会匹配 <code>I am</code> 规则，无法识别否定</td>
+<td>Agent 需要真正的推理能力而非模式匹配</td>
+</tr>
+<tr class="even">
+<td><strong>缺少上下文记忆</strong></td>
+<td>每次响应仅依赖当前输入，无法支持多轮对话</td>
+<td>Agent 需要记忆系统（第 7 章）</td>
+</tr>
+<tr class="odd">
+<td><strong>规则扩展困难</strong></td>
+<td>规则数量增加后，冲突与优先级管理变得复杂</td>
+<td>Agent 需要学习和泛化能力</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="马文明斯基的心智社会" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="马文明斯基的心智社会"><span class="header-section-number">1.3</span> 马文·明斯基的心智社会</h2>
+<p>符号主义的发展与 ELIZA 的实践共同揭示了一个核心问题：依赖预设规则、由单一集中式推理引擎驱动的系统，难以通向真正的智能。这一困境促使马文·明斯基在《心智社会》中提出了颠覆性的观点：</p>
+<blockquote class="blockquote">
+<p>“让我们变得智能的并非某种神奇技巧，而恰恰是没有单一技巧；智能的力量源于高度多样性，而非某个完美原则。”</p>
+</blockquote>
+<p>在明斯基的框架中，智能不是由一个”万能大脑”实现的，而是由大量极其简单且高度专门化的<strong>心智智能体（mental agents）</strong>通过协作涌现出来的。例如，负责线条识别的 LINE-FINDER、负责抓握动作的 GRASP——这些简单智能体通过去中心化的激活与抑制信号相互作用，形成了”搭建积木塔”这样的复杂智能行为。</p>
+<p>这一思想直接影响了现代<strong>多智能体系统（Multi-Agent System）</strong>的设计理念——我们将在第 9 章详细探讨。</p>
+</section>
+<section id="学习范式的演进与现代智能体" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="学习范式的演进与现代智能体"><span class="header-section-number">1.4</span> 学习范式的演进与现代智能体</h2>
+<p>符号主义的核心困境在于：智能无法被完整设计。这引出了一个关键问题：如果智能无法被完整设计，是否可以<strong>通过学习获得</strong>？</p>
+<section id="从符号到联结" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="从符号到联结"><span class="header-section-number">1.4.1</span> 从符号到联结</h3>
+<p>作为对符号主义的回应，<strong>联结主义（Connectionism）</strong>在 20 世纪 80 年代重新兴起。其核心观点是：</p>
+<ul>
+<li><strong>分布式知识表示</strong>：知识不再以显式符号或规则存储，而是以连接权重的形式分散存在于大量人工神经元之间。</li>
+<li><strong>通过学习调整权重</strong>：系统能力来源于学习过程，通过样本数据不断调整连接权重。</li>
+</ul>
+<p>这一范式转变标志着智能体构建思想的根本变化：符号主义强调”教会机器知识”，而联结主义则致力于”让机器学会知识”。</p>
+</section>
+<section id="基于强化学习的智能体" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="基于强化学习的智能体"><span class="header-section-number">1.4.2</span> 基于强化学习的智能体</h3>
+<p>联结主义擅长解决感知问题（“图像中是什么”），而智能体更核心的任务在于<strong>决策</strong>（“此时应采取什么行动”）。<strong>强化学习（Reinforcement Learning, RL）</strong>正是面向序贯决策的学习范式，其核心是通过与环境交互、试错来学习如何最大化长期回报。</p>
+<p>以 AlphaGo 为例：智能体根据棋盘状态选择落子行动，对局结束后根据胜负获得奖励或惩罚。通过数百万次自我对弈，系统不断调整内部策略——这一过程无需人类棋谱的直接指导。</p>
+</section>
+<section id="大型语言模型的诞生与涌现能力" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="大型语言模型的诞生与涌现能力"><span class="header-section-number">1.4.3</span> 大型语言模型的诞生与涌现能力</h3>
+<p>预训练—微调范式彻底改变了 NLP 领域。通过在数万亿级文本上的预训练，大型语言模型的神经网络权重形成了一个高度压缩的、关于世界知识的隐式模型。更为关键的是，当模型规模跨越临界点后，会<strong>涌现</strong>出并未被显式训练的能力：</p>
+<ul>
+<li><strong>上下文学习（In-Context Learning）</strong>：无需更新权重，仅通过输入中的少量示例即可完成新任务。</li>
+<li><strong>思维链推理（Chain-of-Thought）</strong>：引导模型先输出逐步推理过程，可显著提升复杂推理表现。</li>
+</ul>
+<p>至此，智能体发展的关键技术要素已逐步齐备：符号主义奠定逻辑推理框架，联结主义与强化学习赋予学习与决策能力，而大型语言模型则提供了通过预训练获得的广泛世界知识与通用推理能力。<strong>这正是我们在本书中构建 LLM Agent 的技术基石。</strong></p>
+</section>
+</section>
+<section id="本章小结" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="本章小结"><span class="header-section-number">1.5</span> 本章小结</h2>
+<p>本章我们沿着时间线走过了智能体的演进历程：</p>
+<ul>
+<li><strong>符号主义时代</strong>（1950s-1980s）：用规则和逻辑构建智能，代表作品为 ELIZA 和专家系统</li>
+<li><strong>心智社会理论</strong>（1980s）：提出智能是大量简单智能体协作的涌现结果</li>
+<li><strong>联结主义与强化学习</strong>（1980s-2010s）：让机器从数据中学习，代表作品为 AlphaGo</li>
+<li><strong>大语言模型时代</strong>（2020s-至今）：预训练 + 涌现能力，催生了现代 LLM Agent</li>
+</ul>
+<p>亲手实现的 ELIZA 让我们体会到规则系统的局限，也让我们更加理解为什么需要 LLM 这样的通用推理引擎来驱动现代智能体。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>下一章预告
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>在开始构建更复杂的 Agent 之前，我们需要先打好 LLM 的基础。下一章将介绍大语言模型的核心知识：如何进行 API 调用、如何设计 Prompt、文本分词机制以及采样参数的含义。这些是驱动 Agent “大脑”的必备技能。</p>
+</div>
+</div>
+</section>
+<section id="练习" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="练习"><span class="header-section-number">1.6</span> 练习</h2>
 <ol type="1">
-<li><p>关键词识别与排序：系统为每个关键词设定优先级，当输入中包含多个关键词时，优先匹配优先级最高者对应的规则。</p></li>
-<li><p>分解规则：确定关键词后，利用包含通配符（）的分解规则提取句子其余部分。</p></li>
+<li>为 ELIZA 添加 3 条新的规则模式，使其能处理更多类型的用户输入（例如关于”工作”或”梦想”的话题）。</li>
+<li>改进 <code>swap_pronouns</code> 函数，使其能处理更多代词转换场景（例如 <code>myself → yourself</code>）。</li>
+<li>思考：如果让你用规则系统实现第 1 章中的旅行助手 Agent，需要编写多少条规则？这说明了什么？</li>
 </ol>
-<ul>
-<li>示例：</li>
-<li>规则： my *</li>
-<li>输入：“My mother is afraid of me”</li>
-<li>结果：[““,”mother is afraid of me”]</li>
-</ul>
-<ol start="3" type="1">
-<li>重组规则：从与分解规则关联的多条重组规则中选择一条生成回复，通常随机选取以增强多样性，并可引用已捕获的内容。</li>
-</ol>
-<ul>
-<li>示例：</li>
-<li>规则：“Tell me more about your family.”</li>
-<li>输出：“Tell me more about your family.”</li>
-</ul>
-<ol start="4" type="1">
-<li>代词转换：在生成回复前进行简单的代词替换（如 I→you，my→your），以保持对话自然连贯。</li>
-</ol>
-</section>
-<section id="核心逻辑的实现" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="核心逻辑的实现"><span class="header-section-number">2.2.2</span> 核心逻辑的实现</h3>
-<pre><code>library(stringr)
-
-# ---------------------------
-# 1. 定义规则库（pattern -&gt; responses）
-# ---------------------------
-
-rules &lt;- list(
-  "I need (.*)" = c(
-    "Why do you need {0}?",
-    "Would it really help you to get {0}?",
-    "Are you sure you need {0}?"
-  ),
-
-  "Why don't you (.*)\\?" = c(
-    "Do you really think I don't {0}?",
-    "Perhaps eventually I will {0}.",
-    "Do you really want me to {0}?"
-  ),
-
-  "Why can't I (.*)\\?" = c(
-    "Do you think you should be able to {0}?",
-    "If you could {0}, what would you do?",
-    "I don't know -- why can't you {0}?"
-  ),
-
-  "I am (.*)" = c(
-    "Did you come to me because you are {0}?",
-    "How long have you been {0}?",
-    "How do you feel about being {0}?"
-  ),
-
-  ".* mother .*" = c(
-    "Tell me more about your mother.",
-    "What was your relationship with your mother like?",
-    "How do you feel about your mother?"
-  ),
-
-  ".* father .*" = c(
-    "Tell me more about your father.",
-    "How did your father make you feel?",
-    "What has your father taught you?"
-  ),
-
-  ".*" = c(
-    "Please tell me more.",
-    "Let's change focus a bit... Tell me about your family.",
-    "Can you elaborate on that?"
-  )
-)
-
-# ---------------------------
-# 2. 代词转换规则
-# ---------------------------
-
-pronoun_swap &lt;- c(
-  "i" = "you",
-  "you" = "i",
-  "me" = "you",
-  "my" = "your",
-  "am" = "are",
-  "are" = "am",
-  "was" = "were",
-  "i'd" = "you would",
-  "i've" = "you have",
-  "i'll" = "you will",
-  "yours" = "mine",
-  "mine" = "yours"
-)
-
-swap_pronouns &lt;- function(phrase) {
-  words &lt;- str_split(tolower(phrase), "\\s+")[[1]]
-  swapped &lt;- sapply(words, function(w) {
-    if (w %in% names(pronoun_swap)) pronoun_swap[[w]] else w
-  })
-  paste(swapped, collapse = " ")
-}
-
-# ---------------------------
-# 3. 生成回应
-# ---------------------------
-
-respond &lt;- function(user_input) {
-
-  for (pattern in names(rules)) {
-
-    match &lt;- str_match(user_input, regex(pattern, ignore_case = TRUE))
-
-    if (!is.na(match[1, 1])) {
-
-      # 捕获分组（如果有）
-      captured &lt;- if (ncol(match) &gt; 1) match[1, 2] else ""
-      swapped  &lt;- swap_pronouns(captured)
-
-      # 随机选一个模板
-      template &lt;- sample(rules[[pattern]], 1)
-
-      # 替换 {0}
-      response &lt;- str_replace(template, "\\{0\\}", swapped)
-
-      return(response)
-    }
-  }
-
-  # 理论上不会走到这里（因为有 .*）
-  sample(rules[[".*"]], 1)
-}
-
-# ---------------------------
-# 4. 主聊天循环
-# ---------------------------
-
-cat("Therapist: Hello! How can I help you today?\n")
-
-repeat {
-  user_input &lt;- readline("You: ")
-
-  if (tolower(user_input) %in% c("quit", "exit", "bye")) {
-    cat("Therapist: Goodbye. It was nice talking to you.\n")
-    break
-  }
-
-  response &lt;- respond(user_input)
-  cat("Therapist:", response, "\n")
-}</code></pre>
-<p>运行效果类似:</p>
-<p>··· Therapist: Hello! How can I help you today? You: I am feeling sad today. Therapist: How long have you been feeling sad today? You: I need some help with my project. Therapist: Are you sure you need some help with your project? You: My mother is not happy with my work. Therapist: Tell me more about your mother. You: quit Therapist: Goodbye. It was nice talking to you. ···</p>
-<p>通过上述实践，可以直观总结出规则驱动系统的根本局限，这些问题正好印证了符号主义的理论挑战：</p>
-<ul>
-<li><p>缺乏语义理解：系统不具备词义层面的理解能力。例如面对“I am not happy”，仍会机械匹配规则并生成不合语义的回应，无法识别否定关系。</p></li>
-<li><p>缺少上下文记忆：系统是无状态的，每次响应仅依赖当前输入，无法支持连贯的多轮对话。</p></li>
-<li><p>规则扩展困难：随着规则数量增加，规则库规模迅速膨胀，冲突与优先级管理变得复杂，系统难以维护。</p></li>
-</ul>
-<p>尽管存在明显缺陷，ELIZA 在当时却引发了著名的“ELIZA 效应”，许多用户误以为它能够理解自己。这种智能幻觉主要源于其对话策略（如被动提问、开放式模板）以及人类天然的情感投射。</p>
-<p>ELIZA 的实践揭示了符号主义的核心矛盾：表面上的智能完全依赖人工编码的规则。面对真实语言的无限变化，这种穷举式方法不可扩展。系统并不理解意义，只是在操作符号，这正是其根本脆弱性的来源。</p>
-</section>
-</section>
-<section id="马文明斯基的心智社会" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="马文明斯基的心智社会"><span class="header-section-number">2.3</span> 马文·明斯基的心智社会</h2>
-<p>符号主义的发展与 ELIZA 的实践共同揭示了一个核心问题：依赖预设规则、由单一集中式推理引擎驱动的系统，难以通向真正的智能。无论规则库多么庞大，在面对现实世界的模糊性、复杂性与无限变化时，这类系统始终显得僵硬而脆弱。</p>
-<p>这一困境促使部分思想家开始反思人工智能的根本设计理念。马文·明斯基并未选择继续强化单一推理核心，而是在《心智社会》中提出了颠覆性的观点：“让我们变得智能的并非某种神奇技巧，而恰恰是没有单一技巧；智能的力量源于高度多样性，而非某个完美原则。”</p>
-<section id="对单一整体智能模型的反思" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="对单一整体智能模型的反思"><span class="header-section-number">2.3.1</span> 对单一整体智能模型的反思</h3>
-<p>20 世纪 70 至 80 年代，符号主义的局限逐渐暴露。专家系统虽在垂直领域有效，却缺乏常识；SHRDLU只能理解封闭的积木世界；ELIZA能够模仿对话，却不理解内容本身。这些系统都采用自上而下的设计：由一个集中式的“全能”推理核心，依据统一规则处理信息并决策，结果在真实世界的复杂性面前显得僵化而脆弱。</p>
-<p>在此背景下，明斯基提出了一系列根本性反思：</p>
-<ul>
-<li><p>什么是理解：理解是否是一种单一能力，还是多种心智过程（视觉、推理、情感、社会常识等）的协同结果？</p></li>
-<li><p>什么是常识：它是庞大的逻辑规则库，还是由分布式经验与简单规则片段交织而成的网络？</p></li>
-<li><p>智能体如何构建：应追求统一完美的逻辑系统，还是承认智能本质上由多样、甚至相互冲突的简单模块构成？</p></li>
-</ul>
-<p>这些问题直指整体式智能模型的缺陷：试图用统一表示与推理机制解决一切，与自然智能的实际运作方式相悖。明斯基认为，将多样化心智活动强行纳入僵硬逻辑框架，正是早期 AI 停滞的根源。</p>
-<p>基于此，他提出了颠覆性构想：不再将心智视为层级金字塔，而是看作一个扁平、由大量相互作用与协作单元构成的“社会”。</p>
-</section>
-<section id="作为协作体的智能" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="作为协作体的智能"><span class="header-section-number">2.3.2</span> 作为协作体的智能</h3>
-<p>在明斯基的框架中，智能体的含义不同于第一章所述的现代智能体。这里的智能体是极其简单且高度专门化的心智过程，本身并不具备“理解”能力。例如，负责线条识别的 LINE-FINDER，或负责抓握动作的 GRASP。</p>
-<p>这些简单智能体通过组织形成更高层次的机构（Agency）。机构是一组协同运作的智能体，用于完成更复杂的任务。例如，用于搭积木的 BUILD 机构，可能由 SEE、FIND、GET、PUT 等多个下层智能体或子机构组成。它们通过去中心化的激活与抑制信号相互作用，形成动态的控制过程。</p>
-<p>涌现是理解心智社会理论的核心。复杂且有目的的智能行为，并非由某个高层模块统一规划，而是源自大量简单智能体之间的局部交互。</p>
-<p>以“搭建积木塔”为例 ：当高层目标“搭一个塔”出现时，会激活 BUILD-TOWER 机构。</p>
-<ul>
-<li>BUILD-TOWER 本身不执行具体动作，只负责激活下属的 BUILDER 机构。</li>
-<li>BUILDER 的逻辑同样简单：只要任务未完成，就反复激活 ADD-BLOCK 机构。</li>
-<li>ADD-BLOCK 进一步协调 FIND-BLOCK、GET-BLOCK 和 PUT-ON-TOP 等子机构。 这些子机构又由更底层的智能体组成，例如 GET-BLOCK 会激活 SEE-SHAPE、REACH 和 GRASP 等智能体。</li>
-</ul>
-<p>在整个过程中，没有任何单一智能体掌握全局计划。GRASP 只负责抓取，BUILDER 只负责循环控制。然而，当这些“无心”的智能体依照简单规则相互作用时，搭建积木塔这一看似复杂的智能行为便自然涌现出来。</p>
-<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-4.png" class="img-fluid"></p>
-</section>
-<section id="对多智能体系统的理论启发" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="对多智能体系统的理论启发"><span class="header-section-number">2.3.3</span> 对多智能体系统的理论启发</h3>
-</section>
-</section>
-<section id="学习范式的演进与现代智能体" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="学习范式的演进与现代智能体"><span class="header-section-number">2.4</span> 学习范式的演进与现代智能体</h2>
-<p>前文所述的“心智社会”理论在哲学层面为群体智能与去中心化协作提供了方向，但具体实现仍不清晰。与此同时，符号主义在真实世界复杂性面前暴露出的根本缺陷，也表明单靠预先编码的规则难以构建真正鲁棒的智能。</p>
-<p>这两条思路共同引出了一个关键问题：如果智能无法被完整设计，是否可以通过学习获得？</p>
-<p>由此，人工智能进入了“学习”范式。研究重点从手工编写知识，转向构建能够从经验与数据中自动获取能力的系统。本节将回顾这一范式的演进：从联结主义奠定学习基础，到强化学习实现交互式学习，再到当今由大语言模型驱动的现代智能体。</p>
-<section id="从符号到联结" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="从符号到联结"><span class="header-section-number">2.4.1</span> 从符号到联结</h3>
-<p>作为对符号主义局限的直接回应，联结主义在 20 世纪 80 年代重新兴起。不同于符号主义自上而下、依赖明确规则的设计思路，联结主义采用自下而上的方法，灵感源自对生物神经网络结构的模拟，其核心观点包括：</p>
-<ul>
-<li>分布式知识表示：知识不再以显式符号或规则存储，而是以连接权重的形式分散存在于大量人工神经元之间，网络整体的连接结构即构成知识。</li>
-<li>简单处理单元：单个神经元仅执行简单计算，对加权输入进行激活处理并输出结果。</li>
-<li>通过学习调整权重：系统能力来源于学习过程，通过样本数据和学习算法不断调整连接权重，使输出逐步逼近期望目标。</li>
-</ul>
-<p>在这一范式下，智能体不再是被动执行规则的推理机器，而是能够通过经验持续优化的适应性系统。这标志着智能体构建思想的根本转变：符号主义强调“教会机器知识”，而联结主义则致力于“让机器学会知识”。</p>
-<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-5.png" class="img-fluid"></p>
-</section>
-<section id="基于强化学习的智能体" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="基于强化学习的智能体"><span class="header-section-number">2.4.2</span> 基于强化学习的智能体</h3>
-<p>联结主义主要擅长解决感知问题（如“图像中是什么”），而智能体更核心的任务在于决策（如“此时应采取什么行动”）。强化学习（Reinforcement Learning, RL）正是面向序贯决策的学习范式。它不依赖标注好的静态数据，而是通过智能体与环境的交互，在试错过程中学习如何最大化长期回报。</p>
-<p>以 AlphaGo 为例，其自我对弈过程是强化学习的典型实践。AlphaGo 作为智能体，根据棋盘状态选择落子行动；对局结束后，根据胜负获得奖励或惩罚。通过数百万次自我对弈，系统不断调整内部策略，逐步学会在不同局面下选择最有利于取胜的行动，这一过程无需人类棋谱的直接指导。</p>
-<p>这种通过与环境互动、依据反馈信号优化行为的机制，构成了强化学习的核心思想。其基本框架可概括为以下要素：</p>
-<ul>
-<li>智能体（Agent）：学习与决策的主体。</li>
-<li>环境（Environment）：智能体所处并与之交互的外部系统。</li>
-<li>状态（State）：对环境当前情况的描述，是决策依据。</li>
-<li>行动（Action）：智能体在给定状态下可采取的操作。</li>
-<li>奖励（Reward）：环境对行动结果的反馈信号，用于评估行动优劣。</li>
-</ul>
-<p>基于上述核心要素，强化学习智能体在一个“感知-行动-学习”的闭环中持续迭代</p>
-<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-6.png" class="img-fluid"></p>
-<p>该循环可具体表述为以下步骤，可直接用于 Rmarkdown：</p>
-<p>在时间步 <span class="math inline">\(t\)</span>，智能体观察环境的当前状态 <span class="math inline">\(S_t\)</span>。</p>
-<p>基于状态 <span class="math inline">\(S_t\)</span>，智能体依据其策略（Policy，<span class="math inline">\(\pi\)</span>）选择并执行一个行动 <span class="math inline">\(A_t\)</span>。策略本质上是从状态到行动的映射，决定了智能体的行为方式。</p>
-<p>环境接收到行动 <span class="math inline">\(A_t\)</span> 后，转移到新的状态 <span class="math inline">\(S_{t+1}\)</span>。</p>
-<p>同时，环境向智能体反馈一个即时奖励 <span class="math inline">\(R_{t+1}\)</span>。</p>
-<p>智能体利用新的状态 <span class="math inline">\(S_{t+1}\)</span> 与奖励 <span class="math inline">\(R_{t+1}\)</span> 更新其内部策略，以在未来做出更优决策，这一过程即为学习。</p>
-<p>强化学习的目标不是最大化单一时间步的即时奖励，而是最大化从当前时刻开始的累积奖励（回报，Return），其定义为：</p>
-<p><span class="math display">\[
-G_t = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}
-\]</span></p>
-<p>其中，<span class="math inline">\(\gamma \in [0,1]\)</span> 为折扣因子，用于权衡即时奖励与未来奖励。</p>
-<p>因此，智能体需要具备长期视角，有时需牺牲短期收益以换取更大的未来回报（例如围棋中的“弃子”）。通过不断重复上述交互—学习循环，智能体最终能够在复杂动态环境中实现自主决策与长期规划。</p>
-</section>
-<section id="基于大规模数据的预训练" class="level3" data-number="2.4.3">
-<h3 data-number="2.4.3" class="anchored" data-anchor-id="基于大规模数据的预训练"><span class="header-section-number">2.4.3</span> 基于大规模数据的预训练</h3>
-<p>强化学习使智能体能够通过交互学习决策策略，但这一过程往往依赖大量面向特定任务的数据，使智能体在初期几乎没有先验认知，需要从零建立对任务的理解。无论是符号主义中人工编码的常识，还是人类决策所依赖的背景知识，在 RL 智能体中通常都是缺失的。由此引出了一个关键问题：如何在学习具体任务之前，就让智能体具备对世界的广泛理解？这一答案最终在自然语言处理领域中出现，其核心便是大规模数据驱动的预训练。</p>
-<section id="从特定任务到通用模型" class="level4" data-number="2.4.3.1">
-<h4 data-number="2.4.3.1" class="anchored" data-anchor-id="从特定任务到通用模型"><span class="header-section-number">2.4.3.1</span> 从特定任务到通用模型</h4>
-<p>在预训练范式出现之前，传统 NLP 模型通常针对单一任务（如情感分析或机器翻译），在规模有限、专门标注的数据集上从头训练。这种方式导致模型知识面狭窄、跨任务泛化能力弱，且每个新任务都需要高昂的数据标注成本。</p>
-<ul>
-<li>预训练—微调范式彻底改变了这一局面，其核心包括两个阶段：</li>
-<li>预训练阶段：在包含海量文本的通用语料上，通过自监督学习训练大规模神经网络模型。目标并非解决具体任务，而是学习语言的统计规律、语法结构、事实知识与上下文关系，常见任务是预测下一个词。</li>
-</ul>
-<p>微调阶段：在完成预训练后，模型已具备丰富的通用知识，只需利用少量下游任务的标注数据进行微调，即可高效适配具体任务。</p>
-<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-7.png" class="img-fluid"></p>
-</section>
-<section id="大型语言模型的诞生与涌现能力" class="level4" data-number="2.4.3.2">
-<h4 data-number="2.4.3.2" class="anchored" data-anchor-id="大型语言模型的诞生与涌现能力"><span class="header-section-number">2.4.3.2</span> 大型语言模型的诞生与涌现能力</h4>
-<p>通过在数万亿级文本上的预训练，大型语言模型的神经网络权重形成了一个高度压缩的、关于世界知识的隐式模型，从根本上缓解了符号主义时代最棘手的“知识获取瓶颈”。更为关键的是，当模型规模（参数、数据与计算）跨越临界点后，会涌现出并未被显式训练的能力，例如：</p>
-<ul>
-<li>上下文学习：无需更新权重，仅通过输入中的少量示例甚至零示例，模型即可完成新任务。</li>
-<li>思维链推理：引导模型先输出逐步推理过程，可显著提升其在逻辑、算术与常识推理中的表现。</li>
-</ul>
-<p>这些现象表明，LLM 已不再只是语言建模工具，而是同时扮演了大规模知识库与通用推理引擎的角色。</p>
-<p>至此，智能体发展的关键技术要素已逐步齐备：符号主义奠定逻辑推理框架，联结主义与强化学习赋予学习与决策能力，而大型语言模型则提供了通过预训练获得的广泛世界知识与通用推理能力。下一节将展示这些技术如何在现代智能体设计中实现融合。</p>
-</section>
-</section>
-<section id="基于大语言模型的智能体" class="level3" data-number="2.4.4">
-<h3 data-number="2.4.4" class="anchored" data-anchor-id="基于大语言模型的智能体"><span class="header-section-number">2.4.4</span> 基于大语言模型的智能体</h3>
-<p>随着大型语言模型的快速演进，以 LLM 为核心的智能体正成为人工智能的新范式。它们不仅具备强大的语言理解与生成能力，更能够在与环境的交互中，自主完成感知、规划、决策与执行等关键任务。</p>
-<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-8.png" class="img-fluid"></p>
-<p>智能体与环境的交互可抽象为一个核心闭环。LLM 驱动的智能体通过多模块协同、持续迭代的流程完成任务，其整体架构如图 2.10 所示，主要包括以下步骤：</p>
-<ol type="1">
-<li>感知（Perception）：流程始于感知模块。智能体通过传感器从环境中获取原始输入，形成观察信息，如用户指令、API 返回结果或环境状态变化。这些处理后的观察将作为后续决策的基础。</li>
-<li>思考（Thought）：这是智能体的认知核心，由规划模块与 LLM 协同完成。</li>
-</ol>
-<ul>
-<li>规划与分解：规划模块基于观察进行高层策略制定，通过反思与自我批判，将宏观目标拆解为可执行的子步骤。</li>
-<li>推理与决策：LLM 在整合规划指令与记忆信息后进行推理，最终决定下一步行动，通常以工具调用的形式给出。</li>
-</ul>
-<ol start="3" type="1">
-<li>行动（Action）：执行模块接收 LLM 生成的指令，从工具箱中选择并调用合适的工具（如代码执行、搜索或 API），与环境进行实际交互，从而完成行动。</li>
-<li>观察与循环（Observation &amp; Loop）：行动会改变环境并产生结果。工具返回的执行结果与更新后的环境状态共同构成新的观察。一方面，这些信息被感知模块捕获；另一方面，LLM 根据结果更新记忆，从而启动下一轮“感知—思考—行动”的循环。</li>
-</ol>
-<p>正是这种模块化协作与持续迭代的闭环机制，构成了 LLM 驱动智能体解决复杂问题的核心工作流程。</p>
-</section>
-<section id="智能体发展关键节点概览" class="level3" data-number="2.4.5">
-<h3 data-number="2.4.5" class="anchored" data-anchor-id="智能体发展关键节点概览"><span class="header-section-number">2.4.5</span> 智能体发展关键节点概览</h3>
-<p>人工智能体的发展并非线性演进，而是多种核心思想在半个多世纪中相互交织、竞争并逐步融合的过程。理解这一历史，有助于把握当代智能体架构形成的深层原因。</p>
-<p>其中，三大思潮在不同时期主导了研究范式：</p>
-<ul>
-<li>符号主义（Symbolism）：以赫伯特·西蒙和马文·明斯基为代表，认为智能源于符号操作与逻辑推理，催生了 SHRDLU、专家系统以及在国际象棋领域取得突破的“深蓝”。</li>
-<li>联结主义（Connectionism）：受神经网络启发，在反向传播算法推动下复兴，并在深度学习时代通过卷积神经网络与 Transformer 成为主流方法。</li>
-<li>行为主义（Behaviorism）：强调通过与环境交互和试错学习策略，其现代形式为强化学习，从 TD-Gammon 到 AlphaGo，赋予智能体从经验中习得复杂决策的能力。</li>
-</ul>
-<p>进入 21 世纪 20 年代，这些思想以前所未有的方式融合。以 GPT 系列为代表的大语言模型，虽源自联结主义，却承担起符号推理、工具调用与规划决策的核心角色，形成神经—符号结合的现代智能体架构。图 2.11 系统梳理了自 20 世纪 50 年代以来人工智能体发展的关键理论、项目与事件，为本章提供整体脉络的总结。</p>
-<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-9.png" class="img-fluid"></p>
-<p>得益于大语言模型的突破，智能体技术栈呈现出前所未有的活跃度和多样性。</p>
-<p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-10.png" class="img-fluid"></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1009,13 +960,13 @@ G_t = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="./index.html" class="pagination-link" aria-label="认识智能体">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">认识智能体</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapter3.html" class="pagination-link" aria-label="Foundation of Large Language Models">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Foundation of Large Language Models</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapter3.html" class="pagination-link" aria-label="大语言模型基础">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">大语言模型基础</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
