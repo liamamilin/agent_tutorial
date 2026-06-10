@@ -415,9 +415,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 初始化客户端</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>os.getenv(<span class="st">"OPENAI_API_KEY"</span>, <span class="st">"ollama"</span>),</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span>os.getenv(<span class="st">"LLM_BASE_URL"</span>, <span class="st">"https://api.openai.com/v1"</span>),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span>os.getenv(<span class="st">"LLM_BASE_URL"</span>, <span class="st">"http://localhost:11434/v1"</span>),</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> os.getenv(<span class="st">"LLM_MODEL_ID"</span>, <span class="st">"gpt-4o-mini"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> os.getenv(<span class="st">"LLM_MODEL_ID"</span>, <span class="st">"qwen3:14b"</span>)</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 发送请求</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
@@ -664,10 +664,10 @@ Important
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""统一的 LLM 调用客户端"""</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, model<span class="op">=</span><span class="va">None</span>, api_key<span class="op">=</span><span class="va">None</span>, base_url<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> model <span class="kw">or</span> os.getenv(<span class="st">"LLM_MODEL_ID"</span>, <span class="st">"gpt-4o-mini"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> model <span class="kw">or</span> os.getenv(<span class="st">"LLM_MODEL_ID"</span>, <span class="st">"qwen3:14b"</span>)</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.client <span class="op">=</span> OpenAI(</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>            api_key<span class="op">=</span>api_key <span class="kw">or</span> os.getenv(<span class="st">"OPENAI_API_KEY"</span>, <span class="st">"ollama"</span>),</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>            base_url<span class="op">=</span>base_url <span class="kw">or</span> os.getenv(<span class="st">"LLM_BASE_URL"</span>, <span class="st">"https://api.openai.com/v1"</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>            base_url<span class="op">=</span>base_url <span class="kw">or</span> os.getenv(<span class="st">"LLM_BASE_URL"</span>, <span class="st">"http://localhost:11434/v1"</span>),</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> chat(<span class="va">self</span>, messages: <span class="bu">list</span>[<span class="bu">dict</span>], temperature: <span class="bu">float</span> <span class="op">=</span> <span class="fl">0.7</span>,</span>
@@ -710,9 +710,9 @@ Important
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.client <span class="op">=</span> OpenAI(</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            api_key<span class="op">=</span>os.getenv(<span class="st">"OPENAI_API_KEY"</span>, <span class="st">"ollama"</span>),</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            base_url<span class="op">=</span>os.getenv(<span class="st">"LLM_BASE_URL"</span>, <span class="st">"https://api.openai.com/v1"</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            base_url<span class="op">=</span>os.getenv(<span class="st">"LLM_BASE_URL"</span>, <span class="st">"http://localhost:11434/v1"</span>),</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> os.getenv(<span class="st">"LLM_MODEL_ID"</span>, <span class="st">"gpt-4o-mini"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> os.getenv(<span class="st">"LLM_MODEL_ID"</span>, <span class="st">"qwen3:14b"</span>)</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.system_prompt <span class="op">=</span> <span class="ss">f"你是</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">，一个友善的AI助手。回答控制在3句话以内。"</span></span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> reply(<span class="va">self</span>, user_input: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
