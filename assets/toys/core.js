@@ -46,23 +46,28 @@
     return body;
   }
 
-  function register(id, initFn) {
-    registry[id] = initFn;
+  function mountNode(node) {
+    if (node.dataset.mounted === "1") return;
+    const id = node.dataset.toy;
+    const fn = registry[id];
+    if (!fn) return;
+    node.dataset.mounted = "1";
+    try {
+      fn(node);
+    } catch (err) {
+      node.innerHTML = `<div class="toy-body"><div class="toy-step err">实验组件加载失败 (${esc(id)}): ${esc(err.message)}</div></div>`;
+    }
   }
 
   function mountAll() {
-    document.querySelectorAll(".agent-toy[data-toy]").forEach((node) => {
-      if (node.dataset.mounted === "1") return;
-      const id = node.dataset.toy;
-      const fn = registry[id];
-      if (!fn) return;
-      node.dataset.mounted = "1";
-      try {
-        fn(node);
-      } catch (err) {
-        node.innerHTML = `<div class="toy-body"><div class="toy-step err">实验组件加载失败 (${esc(id)}): ${esc(err.message)}</div></div>`;
-      }
-    });
+    document.querySelectorAll(".agent-toy[data-toy]").forEach(mountNode);
+  }
+
+  function register(id, initFn) {
+    registry[id] = initFn;
+    if (document.readyState !== "loading") {
+      document.querySelectorAll(`.agent-toy[data-toy="${id}"]`).forEach(mountNode);
+    }
   }
 
   window.AgentToys = { register, shell, el, esc, mountAll };
@@ -72,4 +77,5 @@
   } else {
     mountAll();
   }
+  window.addEventListener("load", mountAll);
 })();
