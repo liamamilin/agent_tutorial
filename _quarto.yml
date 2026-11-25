@@ -9,6 +9,15 @@ book:
   author: "Liam"
   date: "2026-11-24"
   repo-url: https://github.com/liamamilin/agent_tutorial
+  sidebar:
+    style: docked
+    search: true
+    collapse-level: 2
+  page-footer:
+    left: "《从零开始学习Agent》 · 动手构建你的第一个智能体"
+    right:
+      - icon: github
+        href: https://github.com/liamamilin/agent_tutorial
   chapters:
     - index.qmd
     - chapter2_api.qmd
@@ -43,8 +52,11 @@ format:
     toc-depth: 3
     toc-title: "本页目录"
     number-sections: true
+    anchor-sections: true
+    smooth-scroll: true
     code-fold: true
     code-copy: true
+    code-overflow: wrap
   pdf:
     documentclass: scrreprt
 

@@ -78,12 +78,12 @@ response = client.chat.completions.create(
 
 仅靠 Prompt 存在三个问题：
 
-1. **模型可能不听话**：可能输出 `这是JSON格式：{"city": "北京"...}`——多了前缀文字
-2. **格式可能不一致**：有时输出 `{"temp": 25}`，有时 `{"temperature": 25}`
-3. **JSON 可能不合法**：尾逗号、未转义引号、注释
+1. **格式偏离**：模型常在 JSON 前后附加解释性文字（如 `这是结果：{...}`）
+2. **字段名漂移**：同一字段在不同轮次可能输出 `temp` 或 `temperature`
+3. **语法非法**：偶发尾逗号、未转义引号或夹带注释
 
 ```python
-# 现实是残酷的 —— 你需要做大量后处理
+# 实际工程中往往需要大量脆弱的后处理
 def extract_json(text: str) -> dict:
     """从 LLM 文本中尽力提取 JSON"""
     import re, json

@@ -8,19 +8,22 @@
     <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
       <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#0d9488" stroke-opacity="0.06" stroke-width="1"/>
     </pattern>
+    <filter id="cardShadow" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
   </defs>
   <rect width="1200" height="340" fill="url(#bg)"/>
   <rect width="1200" height="340" fill="url(#grid)"/>
   <circle cx="1120" cy="40" r="140" fill="#0d9488" opacity="0.06"/>
   <circle cx="740" cy="320" r="120" fill="#0284c7" opacity="0.06"/>
-  <rect x="56" y="64" width="210" height="28" rx="14" fill="#0d9488" opacity="0.12"/>
-  <text x="161" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#0d9488">PART 01 · CHAPTER 04</text>
+  <rect x="56" y="64" width="236" height="28" rx="14" fill="#0d9488" opacity="0.12"/>
+  <text x="174" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#0d9488">PART 01 · CHAPTER 04</text>
   <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="40" font-weight="800" fill="#0f172a">流式输出与工程健壮性</text>
   <text x="56" y="206" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" fill="#475569">SSE 逐字流 · 指数退避重试 · 超时与多级降级</text>
   <rect x="56" y="246" width="72" height="5" rx="2.5" fill="#0d9488"/>
   <rect x="136" y="246" width="26" height="5" rx="2.5" fill="#0284c7" opacity="0.45"/>
   
-        <rect x="764" y="72" width="336" height="196" rx="14" fill="#fff" stroke="#0d9488" stroke-width="1.8"/>
+        <rect x="764" y="72" width="336" height="196" rx="14" fill="#fff" stroke="#0d9488" stroke-width="1.8" filter="url(#cardShadow)"/>
         <text x="784" y="102" font-size="12.5" font-weight="700" fill="#0d9488">SSE TOKEN STREAM · TTFT 0.12s</text>
         <rect x="780" y="135" width="24" height="32" rx="6" fill="#0d9488" opacity="0.35"/><rect x="814" y="123" width="24" height="32" rx="6" fill="#0d9488" opacity="0.42"/><rect x="848" y="111" width="24" height="32" rx="6" fill="#0d9488" opacity="0.49"/><rect x="882" y="135" width="24" height="32" rx="6" fill="#0d9488" opacity="0.56"/><rect x="916" y="123" width="24" height="32" rx="6" fill="#0d9488" opacity="0.63"/><rect x="950" y="111" width="24" height="32" rx="6" fill="#0284c7" opacity="0.70"/><rect x="984" y="135" width="24" height="32" rx="6" fill="#0284c7" opacity="0.77"/><rect x="1018" y="123" width="24" height="32" rx="6" fill="#0284c7" opacity="0.84"/><rect x="1052" y="111" width="24" height="32" rx="6" fill="#0284c7" opacity="0.91"/>
         <rect x="780" y="190" width="94" height="30" rx="8" fill="#ecfdf5" stroke="#059669"/><text x="827" y="210" text-anchor="middle" font-size="11.5" font-weight="700" fill="#059669">Retry 2^n</text>

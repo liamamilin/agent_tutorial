@@ -8,13 +8,16 @@
     <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
       <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#1d4ed8" stroke-opacity="0.06" stroke-width="1"/>
     </pattern>
+    <filter id="cardShadow" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
   </defs>
   <rect width="1200" height="340" fill="url(#bg)"/>
   <rect width="1200" height="340" fill="url(#grid)"/>
   <circle cx="1120" cy="40" r="140" fill="#1d4ed8" opacity="0.06"/>
   <circle cx="740" cy="320" r="120" fill="#0891b2" opacity="0.06"/>
-  <rect x="56" y="64" width="210" height="28" rx="14" fill="#1d4ed8" opacity="0.12"/>
-  <text x="161" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#1d4ed8">PART 02 · CHAPTER 08</text>
+  <rect x="56" y="64" width="236" height="28" rx="14" fill="#1d4ed8" opacity="0.12"/>
+  <text x="174" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#1d4ed8">PART 02 · CHAPTER 08</text>
   <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="40" font-weight="800" fill="#0f172a">自建轻量 Agent 框架</text>
   <text x="56" y="206" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" fill="#475569">LLM 中枢 · Message 抽象 · Config 与生命周期基类</text>
   <rect x="56" y="246" width="72" height="5" rx="2.5" fill="#1d4ed8"/>
@@ -23,10 +26,10 @@
         <rect x="774" y="70" width="150" height="86" rx="12" fill="#1d4ed8"/>
         <text x="849" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">HelloAgentsLLM</text>
         <text x="849" y="128" text-anchor="middle" font-size="11" fill="#dbeafe">Unified Provider</text>
-        <rect x="944" y="70" width="150" height="86" rx="12" fill="#fff" stroke="#1d4ed8" stroke-width="2"/>
+        <rect x="944" y="70" width="150" height="86" rx="12" fill="#fff" stroke="#1d4ed8" stroke-width="2" filter="url(#cardShadow)"/>
         <text x="1019" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">Message &amp; Config</text>
         <text x="1019" y="128" text-anchor="middle" font-size="11" fill="#64748b">Typed &amp; Immutable</text>
-        <rect x="774" y="176" width="320" height="88" rx="12" fill="#fff" stroke="#0891b2" stroke-width="2"/>
+        <rect x="774" y="176" width="320" height="88" rx="12" fill="#fff" stroke="#0891b2" stroke-width="2" filter="url(#cardShadow)"/>
         <text x="934" y="214" text-anchor="middle" font-size="14" font-weight="700" fill="#0891b2">Agent Base Class · _execute() + Hooks</text>
         <text x="934" y="236" text-anchor="middle" font-size="11.5" fill="#64748b">run() → _build_messages() → _execute() → history</text>
 </svg>

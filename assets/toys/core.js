@@ -70,12 +70,32 @@
     }
   }
 
+  function initProgressBar() {
+    if (document.getElementById("book-reading-progress")) return;
+    const bar = document.createElement("div");
+    bar.id = "book-reading-progress";
+    document.body.appendChild(bar);
+    const update = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.width = max > 0 ? `${Math.min(100, (window.scrollY / max) * 100)}%` : "0%";
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    update();
+  }
+
+  function boot() {
+    mountAll();
+    initProgressBar();
+  }
+
   window.AgentToys = { register, shell, el, esc, mountAll };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", mountAll);
+    document.addEventListener("DOMContentLoaded", boot);
   } else {
-    mountAll();
+    boot();
   }
-  window.addEventListener("load", mountAll);
+  window.addEventListener("load", boot);
 })();

@@ -1,4 +1,4 @@
-# 认识智能体 {.unnumbered}
+# 认识智能体
 
 ![](images/hero-ch01.svg){.chapter-hero width="100%"}
 ## 什么是智能体
@@ -139,13 +139,13 @@ python chapter01_simple_agent/simple_agent.py
 
 确保已安装 `openai` 库，并配置好 API 密钥（支持 OpenAI、Ollama 等任何兼容 OpenAI 接口的服务）：
 
-``` bash
+```bash
 pip install openai python-dotenv
 ```
 
 在项目根目录创建 `.env` 文件：
 
-``` bash
+```bash
 # 使用 OpenAI
 OPENAI_API_KEY=sk-your-key-here
 
@@ -157,7 +157,7 @@ OPENAI_API_KEY=sk-your-key-here
 
 ### 最简对话 Agent
 
-``` python
+```python
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -248,7 +248,7 @@ Agent: 当然记得！你刚才告诉我你叫小明。
 - LLM 智能体通过海量预训练获得了传统规则系统无法企及的灵活性与通用性
 - 仅需 30 行 Python 即可构建一个能对话、有记忆的最简 Agent
 
-::: callout-note
+::: {.callout-note}
 ## 下一章预告
 
 第 2 章将进入动手环节——配置开发环境、获取 API Key、发送第一个 API 请求、理解 Token 概念。你将亲手构建一个能与大模型对话的交互式聊天机器人。这是构建 Agent 的第一步。

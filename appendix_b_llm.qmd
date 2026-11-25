@@ -2,7 +2,7 @@
 
 ![](images/hero-appb.svg){.chapter-hero width="100%"}
 
-本附录精简自原第3章的技术理论部分。如果你只关心 API 调用和 Agent 构建，可跳过。
+本附录介绍大语言模型的核心原理（词嵌入、Transformer、采样参数与 BPE 分词）；如果你更关注工程实现，可按需选读。
 
 ## 语言模型的核心思想
 

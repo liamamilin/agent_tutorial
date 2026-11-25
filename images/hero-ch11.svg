@@ -8,19 +8,22 @@
     <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
       <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#0f766e" stroke-opacity="0.06" stroke-width="1"/>
     </pattern>
+    <filter id="cardShadow" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
   </defs>
   <rect width="1200" height="340" fill="url(#bg)"/>
   <rect width="1200" height="340" fill="url(#grid)"/>
   <circle cx="1120" cy="40" r="140" fill="#0f766e" opacity="0.06"/>
   <circle cx="740" cy="320" r="120" fill="#4f46e5" opacity="0.06"/>
-  <rect x="56" y="64" width="210" height="28" rx="14" fill="#0f766e" opacity="0.12"/>
-  <text x="161" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#0f766e">PART 03 · CHAPTER 11</text>
+  <rect x="56" y="64" width="236" height="28" rx="14" fill="#0f766e" opacity="0.12"/>
+  <text x="174" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#0f766e">PART 03 · CHAPTER 11</text>
   <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="40" font-weight="800" fill="#0f172a">上下文工程</text>
   <text x="56" y="206" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" fill="#475569">优先级组装 · 压缩策略 · Token 预算与前缀缓存</text>
   <rect x="56" y="246" width="72" height="5" rx="2.5" fill="#0f766e"/>
   <rect x="136" y="246" width="26" height="5" rx="2.5" fill="#4f46e5" opacity="0.45"/>
   
-        <rect x="766" y="76" width="338" height="188" rx="14" fill="#fff" stroke="#0f766e" stroke-width="1.8"/>
+        <rect x="766" y="76" width="338" height="188" rx="14" fill="#fff" stroke="#0f766e" stroke-width="1.8" filter="url(#cardShadow)"/>
         <text x="788" y="108" font-size="13" font-weight="700" fill="#0f172a">CONTEXT WINDOW BUDGET (8K / 128K)</text>
         <rect x="788" y="126" width="294" height="24" rx="8" fill="#f1f5f9"/>
         <rect x="788" y="126" width="66" height="24" rx="8" fill="#2563eb"/>

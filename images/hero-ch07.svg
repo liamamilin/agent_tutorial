@@ -8,22 +8,25 @@
     <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
       <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#6d28d9" stroke-opacity="0.06" stroke-width="1"/>
     </pattern>
+    <filter id="cardShadow" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
   </defs>
   <rect width="1200" height="340" fill="url(#bg)"/>
   <rect width="1200" height="340" fill="url(#grid)"/>
   <circle cx="1120" cy="40" r="140" fill="#6d28d9" opacity="0.06"/>
   <circle cx="740" cy="320" r="120" fill="#db2777" opacity="0.06"/>
-  <rect x="56" y="64" width="210" height="28" rx="14" fill="#6d28d9" opacity="0.12"/>
-  <text x="161" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#6d28d9">PART 02 · CHAPTER 07</text>
-  <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="40" font-weight="800" fill="#0f172a">让 Agent 学会思考：推理范式</text>
+  <rect x="56" y="64" width="236" height="28" rx="14" fill="#6d28d9" opacity="0.12"/>
+  <text x="174" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#6d28d9">PART 02 · CHAPTER 07</text>
+  <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="36" font-weight="800" fill="#0f172a">让 Agent 学会思考：推理范式</text>
   <text x="56" y="206" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" fill="#475569">ReAct · Plan-and-Solve · Reflection 迭代优化</text>
   <rect x="56" y="246" width="72" height="5" rx="2.5" fill="#6d28d9"/>
   <rect x="136" y="246" width="26" height="5" rx="2.5" fill="#db2777" opacity="0.45"/>
   
         <rect x="768" y="72" width="104" height="44" rx="10" fill="#6d28d9"/><text x="820" y="99" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff">ReAct</text>
-        <rect x="886" y="72" width="104" height="44" rx="10" fill="#fff" stroke="#6d28d9" stroke-width="1.8"/><text x="938" y="99" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a">Plan-Solve</text>
+        <rect x="886" y="72" width="104" height="44" rx="10" fill="#fff" stroke="#6d28d9" stroke-width="1.8" filter="url(#cardShadow)"/><text x="938" y="99" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a">Plan-Solve</text>
         <rect x="1004" y="72" width="104" height="44" rx="10" fill="#fff" stroke="#db2777" stroke-width="1.8"/><text x="1056" y="99" text-anchor="middle" font-size="12.5" font-weight="700" fill="#db2777">Reflection</text>
-        <rect x="768" y="146" width="340" height="122" rx="14" fill="#fff" stroke="#6d28d9" stroke-width="1.6"/>
+        <rect x="768" y="146" width="340" height="122" rx="14" fill="#fff" stroke="#6d28d9" stroke-width="1.6" filter="url(#cardShadow)"/>
         <circle cx="826" cy="207" r="24" fill="#eff6ff" stroke="#6d28d9" stroke-width="2"/><text x="826" y="211" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6d28d9">Draft</text>
         <path d="M854 207 H906" stroke="#6d28d9" stroke-width="2"/>
         <circle cx="938" cy="207" r="24" fill="#fdf2f8" stroke="#db2777" stroke-width="2"/><text x="938" y="211" text-anchor="middle" font-size="11.5" font-weight="700" fill="#db2777">Critic</text>

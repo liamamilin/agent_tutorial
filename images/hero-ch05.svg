@@ -8,14 +8,17 @@
     <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
       <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#4f46e5" stroke-opacity="0.06" stroke-width="1"/>
     </pattern>
+    <filter id="cardShadow" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
   </defs>
   <rect width="1200" height="340" fill="url(#bg)"/>
   <rect width="1200" height="340" fill="url(#grid)"/>
   <circle cx="1120" cy="40" r="140" fill="#4f46e5" opacity="0.06"/>
   <circle cx="740" cy="320" r="120" fill="#7c3aed" opacity="0.06"/>
-  <rect x="56" y="64" width="210" height="28" rx="14" fill="#4f46e5" opacity="0.12"/>
-  <text x="161" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#4f46e5">PART 02 · CHAPTER 05</text>
-  <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="40" font-weight="800" fill="#0f172a">结构化输出与 Function Calling</text>
+  <rect x="56" y="64" width="236" height="28" rx="14" fill="#4f46e5" opacity="0.12"/>
+  <text x="174" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#4f46e5">PART 02 · CHAPTER 05</text>
+  <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="36" font-weight="800" fill="#0f172a">结构化输出与 Function Calling</text>
   <text x="56" y="206" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" fill="#475569">JSON Mode · Pydantic 校验 · 原生工具调用协议</text>
   <rect x="56" y="246" width="72" height="5" rx="2.5" fill="#4f46e5"/>
   <rect x="136" y="246" width="26" height="5" rx="2.5" fill="#7c3aed" opacity="0.45"/>
@@ -29,6 +32,6 @@
         <path d="M924 170 H962" stroke="#4f46e5" stroke-width="2.5" stroke-linecap="round"/>
         <rect x="970" y="96" width="132" height="58" rx="12" fill="#4f46e5"/>
         <text x="1036" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">tool_calls[]</text>
-        <rect x="970" y="174" width="132" height="58" rx="12" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+        <rect x="970" y="174" width="132" height="58" rx="12" fill="#fff" stroke="#7c3aed" stroke-width="2" filter="url(#cardShadow)"/>
         <text x="1036" y="208" text-anchor="middle" font-size="13" font-weight="700" fill="#7c3aed">Native FC</text>
 </svg>

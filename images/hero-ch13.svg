@@ -8,19 +8,22 @@
     <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
       <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#d97706" stroke-opacity="0.06" stroke-width="1"/>
     </pattern>
+    <filter id="cardShadow" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
   </defs>
   <rect width="1200" height="340" fill="url(#bg)"/>
   <rect width="1200" height="340" fill="url(#grid)"/>
   <circle cx="1120" cy="40" r="140" fill="#d97706" opacity="0.06"/>
   <circle cx="740" cy="320" r="120" fill="#2563eb" opacity="0.06"/>
-  <rect x="56" y="64" width="210" height="28" rx="14" fill="#d97706" opacity="0.12"/>
-  <text x="161" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#d97706">PART 03 · CHAPTER 13</text>
+  <rect x="56" y="64" width="236" height="28" rx="14" fill="#d97706" opacity="0.12"/>
+  <text x="174" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#d97706">PART 03 · CHAPTER 13</text>
   <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="40" font-weight="800" fill="#0f172a">评估与持续改进</text>
   <text x="56" y="206" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" fill="#475569">多维 Benchmark · LLM-as-a-Judge · 奖励函数与迭代</text>
   <rect x="56" y="246" width="72" height="5" rx="2.5" fill="#d97706"/>
   <rect x="136" y="246" width="26" height="5" rx="2.5" fill="#2563eb" opacity="0.45"/>
   
-        <rect x="766" y="72" width="338" height="196" rx="14" fill="#fff" stroke="#d97706" stroke-width="1.8"/>
+        <rect x="766" y="72" width="338" height="196" rx="14" fill="#fff" stroke="#d97706" stroke-width="1.8" filter="url(#cardShadow)"/>
         <text x="788" y="104" font-size="12.5" font-weight="700" fill="#0f172a">BENCHMARK SCORECARD</text>
         <rect x="788" y="124" width="230" height="18" rx="6" fill="#2563eb"/><text x="1030" y="138" font-size="12" font-weight="700" fill="#2563eb">93% Pass</text>
         <rect x="788" y="156" width="210" height="18" rx="6" fill="#059669"/><text x="1010" y="170" font-size="12" font-weight="700" fill="#059669">91% Tool</text>

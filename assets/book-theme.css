@@ -292,3 +292,41 @@ nav.page-navigation {
   padding-top: 1.25rem;
   border-top: 1px solid var(--book-border-soft);
 }
+
+footer.footer {
+  border-top: 1px solid var(--book-border-soft);
+  color: var(--book-muted);
+  font-size: 0.84rem;
+}
+
+/* Reading Progress Bar */
+#book-reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #2563eb, #0ea5e9, #7c3aed);
+  z-index: 9999;
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  h1.title,
+  #title-block-header h1.title {
+    font-size: 1.65rem;
+  }
+  .chapter-hero {
+    border-radius: 10px;
+  }
+  table:not(.toy-table) {
+    display: block;
+    overflow-x: auto;
+  }
+}
