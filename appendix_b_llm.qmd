@@ -1,0 +1,88 @@
+# 附录B：LLM技术基础 {.unnumbered}
+
+本附录精简自原第3章的技术理论部分。如果你只关心 API 调用和 Agent 构建，可跳过。
+
+## 语言模型的核心思想
+
+语言模型计算词序列的概率。早期 **N-gram 模型**基于马尔可夫假设：一个词的出现只与前面有限个词有关。缺陷是数据稀疏性和泛化能力差。
+
+**词嵌入**用连续向量表示词——语义相近的词，向量在空间中位置相近：
+
+```python
+# 经典类比: king - man + woman ≈ queen
+result = embeddings["king"] - embeddings["man"] + embeddings["woman"]
+similarity = cosine_similarity(result, embeddings["queen"])
+```
+
+## Transformer 架构
+
+2017 年 Google 提出 Transformer，核心创新：舍弃循环结构，仅依赖**注意力机制**。
+
+### 自注意力
+
+每个词引入三个可学习的角色：
+- **Query (Q)**：当前词"查询"其他词
+- **Key (K)**：词被查询时的"标签"  
+- **Value (V)**：词本身携带的"内容"
+
+$$\mathrm{Attention}(Q, K, V) = \mathrm{softmax}\!\left(\frac{Q K^{T}}{\sqrt{d_k}}\right) V$$
+
+**多头注意力**：将 Q、K、V 切分为多份（"头"），每份独立计算后拼接。不同"头"关注不同类型的关联。
+
+### Decoder-Only 架构
+
+GPT 系列只保留解码器，工作模式为**自回归**：预测下一个词 → 拼接到输入 → 重复生成。GPT-4、Llama 等均基于此架构。
+
+## 采样参数
+
+| 参数 | 作用 | 建议 |
+|------|------|------|
+| **Temperature** | 控制随机性 | 事实: 0~0.3；对话: 0.7；创意: 1.0+ |
+| **Top-k** | 只从概率最高 k 个 token 采样 | 截断噪声 |
+| **Top-p** | 累积概率达 p 的最小 token 集合 | 动态适应分布 |
+
+优先级：**温度 → Top-k → Top-p**
+
+## BPE 分词
+
+计算机只能处理数字，文本须分词。现代 LLM 采用**子词分词**：常见词完整保留，罕见词拆为子词。
+
+**BPE 算法**（GPT 使用）：
+1. 词表初始化为所有基本字符
+2. 统计相邻 token 对频率，合并最高频的
+3. 重复直到词表达到预设大小
+
+```python
+from collections import Counter
+
+def get_stats(vocab):
+    pairs = Counter()
+    for word, freq in vocab.items():
+        symbols = word.split()
+        for i in range(len(symbols) - 1):
+            pairs[(symbols[i], symbols[i + 1])] += freq
+    return pairs
+
+def merge_vocab(pair, vocab):
+    bigram, replacement = " ".join(pair), "".join(pair)
+    return {w.replace(bigram, replacement): f for w, f in vocab.items()}
+
+# 完整示例: code/chapter03_llm_basics/bpe_tokenizer.py
+```
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="agent-toy" data-toy="appb-bpe-stepper"></div>
+```
+:::
+
+## 小结
+
+| 概念 | 一句话 |
+|------|--------|
+| N-gram | 前 N-1 个词预测下一个，数据稀疏 |
+| 词嵌入 | 语义相近则向量相近 |
+| 自注意力 | 每个词"看见"上下文中所有词 |
+| BPE | 常见词完整保留，罕见词拆子词 |
+
+配套代码：`code/chapter03_llm_basics/`

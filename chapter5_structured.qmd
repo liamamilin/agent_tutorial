@@ -1,0 +1,456 @@
+# 结构化输出
+
+![](images/clipboard-1946706444.png){width="350"}
+
+::: {.callout-note}
+## 上一章回顾
+
+第 4 章我们构建了一个健壮的对话 Agent——流式输出、自动重试、日志记录。但它仍然只能输出**自由文本**。当 Agent 需要与外部程序协作时（比如调用工具），程序无法可靠地解析自然语言。本章解决这个"语言障碍"——让 LLM 输出**结构化的、可被程序解析的数据**。
+:::
+
+## 为什么 Agent 需要结构化输出
+
+考虑一个场景：你想让 Agent 帮你**设置一个提醒**。
+
+如果 Agent 输出自由文本：
+
+```
+🤖: 好的，我已经帮你设置了一个提醒：明天下午3点开会。
+```
+
+程序如何从这个句子中提取「时间=明天下午3点」「动作=开会」？用正则？用另一个 LLM？无论哪种方式都不可靠。
+
+如果 Agent 输出结构化数据：
+
+```json
+{
+  "action": "set_reminder",
+  "time": "2026-05-23T15:00:00",
+  "title": "开会"
+}
+```
+
+程序只需要 `json.loads()` 就能精确获取所有参数。
+
+**结构化输出是 Agent 与程序世界之间的桥梁。** 没有它，Agent 永远只是一个"会说话的聊天机器人"。
+
+::: {.callout-tip}
+## 配套代码
+
+```bash
+python chapter05_structured/json_output.py         # JSON 输出基础
+python chapter05_structured/pydantic_validation.py  # Pydantic 校验
+python chapter05_structured/function_calling_basics.py  # Function Calling
+python chapter05_structured/tool_schema.py          # Tool Schema 详解
+python chapter05_structured/tool_choice.py          # tool_choice 参数
+python chapter05_structured/parse_tool_calls.py     # 解析 tool_calls
+python chapter05_structured/fc_vs_regex.py          # 原生 FC vs 正则
+python chapter05_structured/structured_agent.py     # 完整项目
+```
+:::
+
+## 让 LLM 输出 JSON
+
+### 基础方法：Prompt 约束
+
+最简单的方式是在 System Prompt 中明确要求 JSON 格式：
+
+```python
+response = client.chat.completions.create(
+    model=MODEL,
+    messages=[
+        {
+            "role": "system",
+            "content": "你是一个数据分析助手。始终以 JSON 格式回复，不要包含任何其他文本。"
+        },
+        {
+            "role": "user",
+            "content": "北京的天气如何？返回城市、温度、天气状况。"
+        },
+    ],
+    temperature=0.0,  # 降低温度提高确定性
+)
+
+# 期望输出:
+# {"city": "北京", "temperature": 25, "weather": "晴"}
+```
+
+### 问题：Prompt 约束不可靠
+
+仅靠 Prompt 存在三个问题：
+
+1. **模型可能不听话**：可能输出 `这是JSON格式：{"city": "北京"...}`——多了前缀文字
+2. **格式可能不一致**：有时输出 `{"temp": 25}`，有时 `{"temperature": 25}`
+3. **JSON 可能不合法**：尾逗号、未转义引号、注释
+
+```python
+# 现实是残酷的 —— 你需要做大量后处理
+def extract_json(text: str) -> dict:
+    """从 LLM 文本中尽力提取 JSON"""
+    import re, json
+
+    # 尝试匹配 ```json ... ``` 代码块
+    match = re.search(r"```json\s*(.*?)\s*```", text, re.DOTALL)
+    if match:
+        text = match.group(1)
+
+    # 尝试匹配 { ... } 
+    match = re.search(r"\{.*\}", text, re.DOTALL)
+    if match:
+        text = match.group(0)
+
+    return json.loads(text)  # 仍可能失败！
+```
+
+### 解决方案：JSON Mode
+
+OpenAI 在 GPT-4o 及以上模型支持 **JSON Mode**：
+
+```python
+response = client.chat.completions.create(
+    model=MODEL,  # 需要 gpt-4o 或 gpt-4o-mini 以上
+    messages=[
+        {"role": "system", "content": "以 JSON 格式回复。"},
+        {"role": "user", "content": "列出3种编程语言及其特点。"},
+    ],
+    response_format={"type": "json_object"},  # 强制 JSON 输出
+)
+```
+
+JSON Mode 保证输出**一定是合法的 JSON**。但有一个前提：**System Prompt 中必须出现 "JSON" 这个词**，否则会报错。
+
+## 用 Pydantic 校验 LLM 输出
+
+即使拿到了合法 JSON，你还需确保**字段名和类型正确**。Pydantic 是最佳工具：
+
+```python
+from pydantic import BaseModel, Field
+
+class WeatherReport(BaseModel):
+    city: str = Field(description="城市名称")
+    temperature: float = Field(description="摄氏度温度")
+    weather: str = Field(description="天气状况，如'晴'、'雨'")
+    humidity: int | None = Field(default=None, description="湿度百分比")
+
+# LLM 输出 JSON → Pydantic 校验
+raw = '{"city": "北京", "temperature": 25.5, "weather": "晴"}'
+try:
+    report = WeatherReport.model_validate_json(raw)
+    print(report.city)      # "北京"
+    print(report.temperature)  # 25.5
+except ValidationError as e:
+    print(f"校验失败: {e}")
+    # 可以在这里重试或修正
+```
+
+Pydantic 带来的核心工程收益：
+
+- **类型校验与转换**：将合法字符串数值转为目标类型，非法值立即拦截
+- **默认值与边界约束**：缺失字段自动填充，枚举/范围超限精确报错
+- **结构化错误反馈**：把 `ValidationError` 原文回传给 LLM，可构成自动修复闭环
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="agent-toy" data-toy="ch05-schema-validator"></div>
+```
+:::
+
+## OpenAI 原生 Function Calling
+
+JSON Mode + Pydantic 的方案虽然可行，但本质上是"先让模型输出 JSON，再解析"。OpenAI 提供了更优雅的方案：**Function Calling**。
+
+### 工作原理
+
+```
+用户: "北京天气怎么样？"
+        ↓
+┌──────────────────────────────┐
+│  LLM（收到 tools 定义）        │
+│  决策: 需要调用 get_weather   │
+│  输出: tool_calls: [{         │
+│    function: "get_weather",   │
+│    arguments: {"city":"北京"}  │
+│  }]                           │
+└──────────────────────────────┘
+        ↓
+┌──────────────────────────────┐
+│  你的代码                     │
+│  1. 解析 tool_calls           │
+│  2. 执行 get_weather("北京")  │
+│  3. 结果回填给 LLM            │
+└──────────────────────────────┘
+        ↓
+┌──────────────────────────────┐
+│  LLM（收到工具结果）           │
+│  "北京当前晴，25°C..."        │
+└──────────────────────────────┘
+```
+
+关键区别：模型**不生成工具调用字符串**，而是返回**结构化的 `tool_calls` 数组**。
+
+### 基础示例
+
+```python
+# 1. 定义工具
+tools = [{
+    "type": "function",
+    "function": {
+        "name": "get_weather",
+        "description": "查询指定城市的实时天气",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string",
+                    "description": "城市名称，如'北京'、'Shanghai'",
+                },
+            },
+            "required": ["city"],
+        },
+    },
+}]
+
+# 2. 发送请求（带上 tools）
+response = client.chat.completions.create(
+    model=MODEL,
+    messages=[{"role": "user", "content": "北京天气怎么样？"}],
+    tools=tools,
+    tool_choice="auto",  # 模型自行决定是否使用工具
+)
+
+# 3. 检查模型是否想调用工具
+msg = response.choices[0].message
+if msg.tool_calls:
+    tool_call = msg.tool_calls[0]
+    func_name = tool_call.function.name       # "get_weather"
+    func_args = json.loads(tool_call.function.arguments)  # {"city": "北京"}
+    print(f"模型想调用: {func_name}({func_args})")
+else:
+    print(f"模型直接回复: {msg.content}")
+```
+
+### Tool Schema 深入
+
+一个完整的 Tool Schema 支持丰富的参数类型：
+
+```python
+{
+    "type": "function",
+    "function": {
+        "name": "search_products",
+        "description": "搜索商品，支持多条件筛选",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "搜索关键词",
+                },
+                "max_price": {
+                    "type": "number",
+                    "description": "最高价格",
+                },
+                "in_stock": {
+                    "type": "boolean",
+                    "description": "是否只要现货",
+                },
+                "category": {
+                    "type": "string",
+                    "enum": ["电子产品", "图书", "服装", "食品"],
+                    "description": "商品类别",
+                },
+                "sort_by": {
+                    "type": "string",
+                    "enum": ["price", "rating", "sales"],
+                },
+            },
+            "required": ["query"],  # 只有 query 是必填的
+        },
+    },
+}
+```
+
+`enum` 约束特别有用——它告诉 LLM **只有这几个值可选**，避免输出无效参数。
+
+### tool_choice 参数
+
+`tool_choice` 控制模型**是否以及如何使用工具**：
+
+| 值 | 行为 | 使用场景 |
+|----|------|---------|
+| `"auto"`（默认） | 模型自行决定 | 通用场景，工具是可选能力 |
+| `"none"` | 禁止使用工具 | 普通对话，不需要工具 |
+| `"required"` | **必须**调用工具 | 任务明确需要外部操作 |
+| `{"type": "function", "function": {"name": "get_weather"}}` | 强制调用**指定工具** | 已知需要某个特定工具 |
+
+```python
+# 强制模型必须调用 get_weather
+response = client.chat.completions.create(
+    model=MODEL,
+    messages=[{"role": "user", "content": "随便说点什么"}],
+    tools=tools,
+    tool_choice={"type": "function", "function": {"name": "get_weather"}},
+)
+# 即使与天气无关，模型也会尝试调用 get_weather
+```
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="agent-toy" data-toy="ch05-fc-router"></div>
+```
+:::
+
+### 解析 tool_calls
+
+一个响应中可能有**多个** tool_calls（并行调用）：
+
+```python
+msg = response.choices[0].message
+
+for tool_call in msg.tool_calls:
+    print(f"ID: {tool_call.id}")            # 用于后续关联结果
+    print(f"函数: {tool_call.function.name}")
+    print(f"参数: {tool_call.function.arguments}")  # JSON 字符串！
+
+    # 解析参数
+    args = json.loads(tool_call.function.arguments)
+
+    # 执行工具
+    result = execute_tool(tool_call.function.name, **args)
+
+    # 将结果回填到消息历史
+    messages.append({
+        "role": "tool",
+        "tool_call_id": tool_call.id,
+        "content": result,
+    })
+```
+
+关键点：
+- `arguments` 是一个 **JSON 字符串**，需要 `json.loads()` 解析
+- 每个 tool_call 有唯一的 `id`，回填结果时必须对应
+- 回填消息的 role 是 `"tool"`（不是 `"function"`——那是旧版 API）
+
+## 原生 Function Calling vs 手写正则
+
+回顾第 4 章之前我们手写工具系统的解析方式：
+
+```python
+# 手写正则解析 —— 脆弱
+action = re.findall(r"Action:\s*(.*)", llm_output)[-1]
+tool_name, args = parse_tool_call(action)  # 自己写的解析函数
+```
+
+对比原生 Function Calling：
+
+| 维度 | 手写正则 | 原生 Function Calling |
+|------|---------|----------------------|
+| **可靠性** | 依赖 Prompt 格式，模型可能不遵守 | 模型专门训练的，输出结构化 |
+| **参数校验** | 需手动实现 | 模型按 schema 填充参数 |
+| **并行调用** | 难以表达多个工具调用 | 原生支持多个 tool_calls |
+| **灵活性** | Prompt 可完全自定义 | 受限于工具定义格式 |
+| **模型支持** | 任何模型都可以 | 需要模型支持 FC（GPT-4o+, Claude 3+） |
+
+**建议**：如果模型支持，**优先使用原生 Function Calling**。手写正则解析是降级方案（如使用本地模型或不支持 FC 的旧模型）。
+
+## 项目：结构化 Agent
+
+整合原生 Function Calling 和对话管理，构建一个能使用工具的 Agent：
+
+```python
+class StructuredAgent:
+    def __init__(self, name, system_prompt, tools=None):
+        self.name = name
+        self.system_prompt = system_prompt
+        self.tools = tools or []
+        self.history = [{"role": "system", "content": system_prompt}]
+
+    def run(self, user_input: str) -> str:
+        self.history.append({"role": "user", "content": user_input})
+
+        # 调用 LLM（带工具定义）
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=self.history,
+            tools=self.tools,
+            tool_choice="auto",
+        )
+
+        msg = response.choices[0].message
+
+        # 情况 1: 模型想调用工具
+        if msg.tool_calls:
+            # 记录 assistant 消息（含 tool_calls）
+            self.history.append({
+                "role": "assistant",
+                "content": msg.content,
+                "tool_calls": [
+                    {"id": tc.id, "type": "function",
+                     "function": {"name": tc.function.name,
+                                  "arguments": tc.function.arguments}}
+                    for tc in msg.tool_calls
+                ],
+            })
+
+            # 执行每个工具调用
+            for tc in msg.tool_calls:
+                args = json.loads(tc.function.arguments)
+                result = self._execute_tool(tc.function.name, args)
+                self.history.append({
+                    "role": "tool",
+                    "tool_call_id": tc.id,
+                    "content": result,
+                })
+
+            # 递归调用：将工具结果交给 LLM 继续处理
+            return self._continue()
+
+        # 情况 2: 模型直接回复文本
+        reply = msg.content
+        self.history.append({"role": "assistant", "content": reply})
+        return reply
+
+    def _continue(self) -> str:
+        """继续对话（工具结果已回填）"""
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=self.history,
+            tools=self.tools,
+            tool_choice="auto",
+        )
+        reply = response.choices[0].message.content
+        self.history.append({"role": "assistant", "content": reply})
+        return reply
+```
+
+完整代码见 `code/chapter05_structured/structured_agent.py`。
+
+## 本章小结
+
+本章为 Agent 装上了与程序世界沟通的"语言能力"：
+
+| 层级 | 方法 | 可靠性 |
+|------|------|--------|
+| Level 1 | Prompt 约束输出 JSON | ⭐⭐ 不可靠 |
+| Level 2 | JSON Mode（`response_format`） | ⭐⭐⭐ 保证合法 JSON |
+| Level 3 | JSON Mode + Pydantic 校验 | ⭐⭐⭐⭐ 类型安全 |
+| **Level 4** | **原生 Function Calling** | ⭐⭐⭐⭐⭐ 训练保证 |
+
+推荐的实践路径：
+
+1. 如果模型支持 FC → 用原生 Function Calling
+2. 如果需要额外校验 → FC + Pydantic 双重保险
+3. 如果模型不支持 FC → JSON Mode + Pydantic（降级方案）
+4. 只在玩具项目中使用手写正则
+
+::: {.callout-note}
+## 下一章预告
+
+有了结构化输出能力，Agent 终于可以"做事"了。第 6 章将正式构建**工具系统**——结合原生 Function Calling，让 Agent 能查询天气、搜索信息、执行代码。这是 Agent 与 ChatBot 的分水岭。
+:::
+
+## 练习
+
+1. 为 `StructuredAgent` 添加第二个工具（如计算器），测试模型是否能正确选择调用哪个工具。
+2. 使用 Pydantic 定义工具的返回结果模型，校验工具返回的数据格式是否一致。
+3. 对比同一个任务下，「手写正则解析」和「原生 Function Calling」的代码量、可靠性和可维护性。

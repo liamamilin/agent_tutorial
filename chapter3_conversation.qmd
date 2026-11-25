@@ -1,0 +1,490 @@
+# 构建完整对话 Agent
+
+![](images/clipboard-2328342517.png){width="350"}
+
+::: {.callout-note}
+## 上一章回顾
+
+第 2 章我们学会了调用 LLM API，并构建了一个简单的终端聊天机器人。但那个机器人有个致命缺陷：**每轮对话都是独立的**——它不记得你上一句说过什么。本章将为 Agent 添加"记忆"（对话历史管理），让它成为一个真正能进行多轮对话的智能体。
+:::
+
+## 从 ChatBot 到 Agent：还差什么？
+
+回顾第 2 章的 `SimpleChatBot`：
+
+```python
+def reply(self, user_input: str) -> str:
+    response = self.client.chat.completions.create(
+        model=self.model,
+        messages=[
+            {"role": "system", "content": self.system_prompt},
+            {"role": "user", "content": user_input},   # 只有当前输入！
+        ],
+    )
+    return response.choices[0].message.content
+```
+
+关键问题：`messages` 里**只有当前这一条用户消息**。模型不知道之前发生了什么。
+
+本章将逐步解决以下问题：
+
+| 问题 | 本章解决方案 |
+|------|-------------|
+| 无法多轮对话 | 对话历史列表，每轮追加 user + assistant |
+| System Prompt 随意写 | 三段式设计方法论 |
+| 长对话成本飙升 | Token 计数 + 截断策略 |
+| 记忆用户偏好 | 状态追踪 |
+
+::: {.callout-tip}
+## 配套代码
+
+本章代码位于 `code/chapter03_conversation/`，每个知识点对应一个独立文件：
+
+```bash
+python chapter03_conversation/message_roles.py        # 消息角色实验
+python chapter03_conversation/system_prompt_design.py  # System Prompt 设计
+python chapter03_conversation/roleplay_agent.py        # 角色扮演 Agent
+python chapter03_conversation/history_manager.py       # 历史管理对比
+python chapter03_conversation/token_counter.py         # Token 感知
+python chapter03_conversation/truncation.py            # 截断策略
+python chapter03_conversation/state_tracking.py        # 状态追踪
+python chapter03_conversation/conversational_agent.py  # 完整 Agent
+```
+:::
+
+## Message 角色详解
+
+Chat Completions API 的 `messages` 列表支持三种角色：
+
+```
+┌─────────────────────────────────────────────┐
+│  messages = [                                │
+│    {"role": "system",    "content": "..."},  │  ← 设定规则（最前）
+│    {"role": "user",      "content": "..."},  │  ← 用户输入
+│    {"role": "assistant", "content": "..."},  │  ← 模型之前的回复
+│    {"role": "user",      "content": "..."},  │  ← 用户输入
+│    ...                                       │
+│  ]                                           │
+└─────────────────────────────────────────────┘
+```
+
+### System：设定游戏规则
+
+System Prompt 是 `messages` 列表中的第一条。它告诉模型：
+
+- **你是谁**（身份）："你是一个资深 Python 工程师"
+- **你怎么做**（规则）："先给出答案，再解释原因"
+- **你不能做什么**（边界）："不要回答政治敏感问题"
+
+::: {.callout-important}
+System Prompt 会被模型**最优先关注**——它决定了模型的行为基调。但注意：在长对话中，靠后的消息可能获得更多"注意力"，system prompt 的效果可能被稀释。这是第 11 章"上下文工程"要解决的核心问题。
+:::
+
+### User 与 Assistant：对话的左右脚
+
+`user` 和 `assistant` 交替出现，构成对话的完整上下文。模型通过阅读历史中的 `assistant` 消息，知道自己"之前说过什么"。
+
+### 对比实验
+
+让我们用代码验证三种角色的作用：
+
+```python
+# 实验 1: 没有 system prompt
+r1 = call([{"role": "user", "content": "你是谁？"}])
+# → "我是ChatGPT，一个由OpenAI训练的AI助手..."
+
+# 实验 2: 有 system prompt —— 改变角色
+r2 = call([
+    {"role": "system", "content": "你是一个加勒比海盗船长。"},
+    {"role": "user", "content": "你是谁？"},
+])
+# → "哟呵呵！我是黑珍珠号的船长！"
+
+# 实验 3: 用 assistant 历史维持信息
+r3 = call([
+    {"role": "system", "content": "你是助教。"},
+    {"role": "user", "content": "我叫小明。"},
+    {"role": "assistant", "content": "好的，小明！"},
+    {"role": "user", "content": "我叫什么？"},
+])
+# → "你叫小明。"（通过历史消息保持上下文连贯）
+```
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="agent-toy" data-toy="ch03-role-sandbox"></div>
+```
+:::
+
+## System Prompt 设计方法论
+
+一个好的 System Prompt 遵循**三段式结构**：
+
+```
+┌──────────────────────────────────┐
+│ 1. 身份 (Identity)               │  ← 你是谁
+│    "你是一个资深 Python 工程师"    │
+├──────────────────────────────────┤
+│ 2. 规则 (Rules)                  │  ← 你怎么做
+│    "- 先给出简短定义再展开解释"    │
+│    "- 始终提供代码示例"           │
+├──────────────────────────────────┤
+│ 3. 约束 (Constraints)            │  ← 你不能做什么
+│    "- 不讨论非技术话题"           │
+│    "- 代码不超过 10 行"           │
+│    "- 结尾提出一个思考问题"        │
+└──────────────────────────────────┘
+```
+
+### 从简单到完整：一个 System Prompt 的进化
+
+```python
+# 基础版：只有身份
+"你是一个 Python 编程专家。"
+
+# 进阶版：身份 + 规则
+"""你是一个 Python 编程专家。
+规则：
+1. 先给出简短定义，再展开详细解释
+2. 使用类比帮助理解
+3. 如果有代码示例，注明 Python 版本"""
+
+# 完整版：身份 + 规则 + 约束
+"""你是一个 Python 编程专家，面向初学者教学。
+
+回答规则：
+1. 先给出一句话总结
+2. 用类比解释核心概念
+3. 给出不超过 5 行的代码示例
+
+约束：
+- 不使用专业术语而不加解释
+- 代码示例不超过 5 行
+- 结尾给出一个延伸思考问题"""
+```
+
+### 角色扮演 Agent
+
+结合三段式设计，可以轻松创建具有鲜明个性的 Agent：
+
+```python
+class RoleplayAgent:
+    def __init__(self, name, persona, tone_rules="", boundaries=""):
+        self.name = name
+        # 组装三段式 System Prompt
+        parts = [f"你是{name}。{persona}"]
+        if tone_rules:
+            parts.append(f"\n语气规则：{tone_rules}")
+        if boundaries:
+            parts.append(f"\n行为边界：{boundaries}")
+        parts.append("\n始终保持角色一致性。")
+
+        self.system_prompt = "\n".join(parts)
+        self.history = [{"role": "system", "content": self.system_prompt}]
+
+    def chat(self, user_input: str) -> str:
+        self.history.append({"role": "user", "content": user_input})
+        resp = client.chat.completions.create(
+            model=MODEL, messages=self.history, temperature=0.8,
+        )
+        reply = resp.choices[0].message.content
+        self.history.append({"role": "assistant", "content": reply})
+        return reply
+```
+
+测试两个不同角色：
+
+```python
+# 角色 1：程序员导师
+mentor = RoleplayAgent(
+    name="老码农",
+    persona="你有20年编程经验，喜欢用生活类比解释技术。",
+    tone_rules="带点幽默，偶尔自嘲。喜欢说'说白了就是'。",
+    boundaries="只回答技术问题。",
+)
+
+# 角色 2：文学评论家
+critic = RoleplayAgent(
+    name="文学君",
+    persona="你是一个饱读诗书的文学评论家。",
+    tone_rules="优雅、博学、引经据典。",
+    boundaries="只讨论文学话题。",
+)
+
+print(mentor.chat("什么是递归？"))
+# → "说白了就是一只狗追自己尾巴..."
+
+print(critic.chat("什么是递归？"))
+# → "这是一个技术问题，我更愿意与你讨论博尔赫斯..."
+```
+
+## 多轮对话历史管理
+
+### 核心原理
+
+LLM 本身**无状态**——每次 API 调用都是独立的。实现"记忆"的关键在于：**把之前所有的对话内容都作为 messages 发送回去**。
+
+```python
+class ConversationalAgent:
+    def __init__(self, name, system_prompt=""):
+        self.history = [{"role": "system", "content": system_prompt}]
+
+    def run(self, user_input: str) -> str:
+        # 1. 追加用户消息
+        self.history.append({"role": "user", "content": user_input})
+
+        # 2. 发送完整历史
+        resp = client.chat.completions.create(
+            model=MODEL, messages=self.history,
+        )
+        reply = resp.choices[0].message.content
+
+        # 3. 追加助手回复
+        self.history.append({"role": "assistant", "content": reply})
+        return reply
+```
+
+关键在于 `messages=self.history`——每次请求都携带**自对话开始以来的全部消息**。
+
+### 有历史 vs 无历史
+
+```
+--- 无历史版本 ---
+Q1: 我叫小明
+A1: 你好小明！
+Q2: 我叫什么名字？   ← 模型不记得了 ❌
+A2: 抱歉，我不知道你的名字。
+
+--- 有历史版本 ---
+Q1: 我叫小明
+A1: 你好小明！
+Q2: 我叫什么名字？   ← 模型记得！ ✅
+A2: 你叫小明。
+```
+
+## Token 感知与上下文窗口
+
+### 上下文窗口限制
+
+每个模型都有最大 token 限制。当对话历史超过这个限制时：
+
+- 模型会**直接报错**（400 错误）
+- 或被**自动截断**（不同服务商行为不同）
+
+| 模型 | 上下文窗口 |
+|------|-----------|
+| GPT-4o-mini | 128K tokens |
+| GPT-4o | 128K tokens |
+| Claude 3.5 Sonnet | 200K tokens |
+| DeepSeek-V3 | 128K tokens |
+
+128K tokens 听起来很大（约一本中篇小说），但长对话 + 工具调用结果 + 知识检索内容很容易填满它。
+
+### 精确计算 Token 数
+
+使用 `tiktoken` 库：
+
+```python
+import tiktoken
+
+def count_message_tokens(messages: list[dict], model="gpt-4o") -> int:
+    encoder = tiktoken.encoding_for_model(model)
+    total = 0
+    for msg in messages:
+        total += 4  # 每条消息的固定开销
+        total += len(encoder.encode(msg["content"]))
+    return total + 2
+
+# 使用
+tokens = count_message_tokens(agent.history)
+print(f"当前消耗: {tokens}/128000 tokens ({tokens/128000*100:.1f}%)")
+```
+
+### 构建 Token 感知的 Agent
+
+```python
+class TokenAwareAgent:
+    def run(self, user_input: str) -> str:
+        self.history.append({"role": "user", "content": user_input})
+
+        token_count = count_message_tokens(self.history)
+        usage_pct = token_count / 128000 * 100
+        print(f"[Token: {token_count}/128000 ({usage_pct:.1f}%)]")
+
+        if usage_pct > 80:
+            print("⚠️ 警告：上下文窗口即将耗尽！")
+
+        # ... 调用 LLM
+```
+
+## 对话历史截断
+
+当 Token 数接近上限，必须**丢弃部分历史**。三种策略：
+
+### 1. 滑动窗口（Sliding Window）
+
+保留**最近 N 条消息**，丢弃最早的。最简单、最常用。
+
+```python
+# 始终保留 system prompt，删除最旧的一对 user+assistant
+if len(history) > max_messages:
+    del history[1:3]  # 跳过 system，删除最旧的一对
+```
+
+### 2. 保留首轮（Keep First）
+
+保留**对话开头 + 最近的消息**，牺牲中间。适合首轮有重要上下文（如用户需求）的场景。
+
+### 3. 摘要压缩（Summary）
+
+用 LLM 将旧对话**摘要**为一段文本，替换原始消息。最智能，但成本最高（额外 LLM 调用）。
+
+```python
+class HistoryTruncator:
+    def __init__(self, max_tokens=4000, strategy="sliding_window"):
+        self.max_tokens = max_tokens
+        self.strategy = strategy
+
+    def truncate(self, history: list[dict]) -> list[dict]:
+        # 始终保留 system 消息
+        while count_tokens(history) > self.max_tokens:
+            if self.strategy == "sliding_window":
+                del history[1:3]  # 删除最旧的一对
+            # ... 其他策略
+        return history
+```
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="agent-toy" data-toy="ch03-truncation-sim"></div>
+```
+:::
+
+::: {.callout-tip}
+截断策略应按业务场景权衡：常规多轮问答优先使用**保留 System + 滑动窗口**；对早期约束强依赖的长会话可采用**摘要压缩**（第 11 章将进一步展开）。
+:::
+
+## 对话状态追踪
+
+除了原始对话文本，Agent 还可以维护一个**结构化状态字典**来记住关键信息：
+
+```python
+class StatefulAgent:
+    def __init__(self, name):
+        self.state = {}  # 结构化状态：{"name": "小明", "city": "北京"}
+        self.history = [...]
+
+    def run(self, user_input: str) -> str:
+        # ... 调用 LLM 获取回复 ...
+
+        # 从本轮对话中提取关键信息
+        extracted = self._extract_state(user_input, reply)
+        self.state.update(extracted)
+        return reply
+
+    def _extract_state(self, user_input, reply) -> dict:
+        """用 LLM 提取结构化信息"""
+        # 用一个小型 LLM 调用专门做信息提取
+        resp = client.chat.completions.create(
+            model=MODEL,
+            messages=[
+                {"role": "system", "content": "从对话中提取用户信息，返回 JSON。"},
+                {"role": "user", "content": f"用户: {user_input}\n助手: {reply}"},
+            ],
+            temperature=0.0,
+        )
+        return json.loads(resp.choices[0].message.content)
+```
+
+效果演示：
+
+```
+👤: 你好！我叫小明，在北京工作。
+🤖: 你好小明！北京是个很棒的城市...
+
+👤: 我在学 Python，目标是做网页应用。
+🤖: Python 做网页开发是个好选择...
+
+👤: 根据我的情况推荐学习路线。
+🤖: 小明你好！考虑到你在北京、目标是网页开发，
+    我推荐 Flask + Vue.js 的路线...
+
+提取的状态: {"name": "小明", "city": "北京",
+             "goal": "网页应用", "language": "Python"}
+```
+
+## 项目：完整对话 Agent
+
+整合本章所有能力——历史管理、System Prompt、Token 感知、截断策略：
+
+```python
+class ConversationalAgent:
+    """完整的对话 Agent"""
+
+    def __init__(self, name="小助手", system_prompt=None,
+                 max_history_tokens=8000):
+        self.name = name
+        self.max_history_tokens = max_history_tokens
+        self.system_prompt = system_prompt or f"你是{name}，..."
+        self.history = [{"role": "system", "content": self.system_prompt}]
+        self.encoder = tiktoken.encoding_for_model("gpt-4o")
+        self.total_tokens_used = 0
+
+    def run(self, user_input: str) -> str:
+        self.history.append({"role": "user", "content": user_input})
+        self._auto_truncate()  # Token 超限时自动截断
+
+        resp = self.client.chat.completions.create(
+            model=self.model, messages=self.history, temperature=0.7,
+        )
+        reply = resp.choices[0].message.content
+        self.total_tokens_used += resp.usage.total_tokens
+        self.history.append({"role": "assistant", "content": reply})
+        return reply
+
+    def count_tokens(self) -> int:
+        """精确计算当前历史 token 数"""
+        total = 0
+        for msg in self.history:
+            total += 4 + len(self.encoder.encode(msg["content"]))
+        return total + 2
+
+    def _auto_truncate(self):
+        """滑动窗口截断"""
+        while self.count_tokens() > self.max_history_tokens:
+            if len(self.history) <= 3:
+                break
+            del self.history[1:3]
+
+    def reset(self):
+        self.history = [{"role": "system", "content": self.system_prompt}]
+```
+
+完整代码见 `code/chapter03_conversation/conversational_agent.py`。
+
+## 本章小结
+
+本章填补了第 2 章中对话机器人的关键缺陷：
+
+| 能力 | 实现方式 | 关键代码 |
+|------|---------|---------|
+| **多轮对话** | 历史列表追加 user + assistant | `self.history.append(...)` |
+| **System Prompt** | 三段式设计（身份/规则/约束） | system prompt 置顶 |
+| **角色扮演** | System Prompt 定义人设 + 温度调节 | `temperature=0.8` |
+| **Token 感知** | tiktoken 精确计算 | `count_message_tokens()` |
+| **历史截断** | 滑动窗口 / 保留首轮 | `_auto_truncate()` |
+| **状态追踪** | LLM 提取结构化信息 | `_extract_state()` |
+
+现在的 `ConversationalAgent` 已经是一个**能记住上下文、管理 Token、截断历史**的完整对话 Agent。但它还缺少两个关键能力：**流式输出**（用户体验）和**错误处理**（健壮性）。下一章将解决这两个问题。
+
+::: {.callout-note}
+## 下一章预告
+
+第 4 章将让 Agent 的输出"逐字出现"（流式输出），并为其加上**重试、超时、降级**等生产级特性。你会看到一个从"能跑"到"可靠"的质变。
+:::
+
+## 练习
+
+1. 修改 `ConversationalAgent` 的截断策略为 `keep_first`，观察它对长对话中早期信息的保留效果。
+2. 为 `RoleplayAgent` 添加状态追踪：让角色记住用户的名字和偏好，并在后续对话中引用。
+3. 使用两个不同的 System Prompt（一个极简、一个详细三段式），让 Agent 回答同一个复杂问题，对比回答质量。

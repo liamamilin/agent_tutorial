@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "hello-agents"
+version = "0.1.0"
+description = "A lightweight agent framework for teaching"
+requires-python = ">=3.10"
+dependencies = [
+    "openai>=1.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]

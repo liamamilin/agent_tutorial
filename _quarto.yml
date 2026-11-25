@@ -1,0 +1,53 @@
+project:
+  type: book
+  resources:
+    - assets/**
+
+book:
+  title: "从零开始学习Agent"
+  subtitle: "动手构建你的第一个智能体"
+  author: "Liam"
+  date: "2026-11-24"
+  repo-url: https://github.com/liamamilin/agent_tutorial
+  chapters:
+    - index.qmd
+    - chapter2_api.qmd
+    - chapter3_conversation.qmd
+    - chapter4_streaming.qmd
+    - chapter5_structured.qmd
+    - chapter6_tools.qmd
+    - chapter7_reasoning.qmd
+    - chapter8_framework.qmd
+    - chapter9_memory.qmd
+    - chapter10_rag.qmd
+    - chapter11_context.qmd
+    - chapter12_multiagent.qmd
+    - chapter13_evaluation.qmd
+    - summary.qmd
+  appendices:
+    - appendix_a_history.qmd
+    - appendix_b_llm.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: assets/toys.css
+    include-after-body: assets/toys-loader.html
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-copy: true
+  pdf:
+    documentclass: scrreprt
+
+execute:
+  echo: true
+  freeze: auto
+  eval: false
+
+editor: visual

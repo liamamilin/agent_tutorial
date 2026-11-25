@@ -1,0 +1,9 @@
+Python 简介
+
+Python 是一种解释型、面向对象的编程语言，由 Guido van Rossum 于 1991 年首次发布。Python 的设计哲学强调代码的可读性和简洁的语法。
+
+Python 是动态类型语言，支持多种编程范式，包括面向对象、命令式、函数式和过程式编程。它拥有一个庞大的标准库，被广泛用于 Web 开发、数据科学、人工智能、自动化等领域。
+
+Python 的常见框架包括 Django（Web 开发）、Flask（轻量 Web）、NumPy 和 Pandas（数据分析）、PyTorch 和 TensorFlow（深度学习）。
+
+Python 的包管理工具 pip 可以方便地安装第三方库。Python 3 是当前主流版本，Python 2 已于 2020 年停止维护。

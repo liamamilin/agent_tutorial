@@ -1,0 +1,28 @@
+# Quarto build & cache
+/_book/
+/.quarto/
+/_freeze/
+*.log
+index.tex
+
+# R / RStudio
+.Rproj.user/
+.RData
+.Rhistory
+
+# Python & secrets
+.env
+code/.env
+.venv/
+code/.venv/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# IDE & OS
+.idea/
+.vscode/
+.DS_Store
+**/.DS_Store
+code.zip

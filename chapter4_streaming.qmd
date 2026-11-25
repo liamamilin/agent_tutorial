@@ -1,0 +1,364 @@
+# 流式输出与健壮性
+
+![](images/clipboard-2748334400.png){width="350"}
+
+::: {.callout-note}
+## 上一章回顾
+
+第 3 章我们构建了一个具备多轮对话能力的 `ConversationalAgent`。它能记住上下文、管理 Token、截断历史——但它有两个明显不足：**用户体验差**（等待完整回复才显示）和**脆弱**（一次网络波动就崩溃）。本章将解决这两个问题。
+:::
+
+## 为什么需要流式输出
+
+非流式模式下，用户发送消息后需要**等待完整回复**才能看到任何内容：
+
+```
+你: 解释一下量子计算
+[等待 5-10 秒，屏幕一片空白...]
+小助手: 量子计算是一种利用量子力学原理...（一次性全部显示）
+```
+
+这在长回答时体验尤其糟糕。流式输出（Streaming）让回复**逐字出现**：
+
+```
+你: 解释一下量子计算
+小助手: 量[出现]子[出现]计[出现]算[出现]是[出现]...
+```
+
+对于 Agent 来说，流式输出不仅是体验优化——它让用户在 Agent 执行多步推理（如 ReAct）时**实时看到思考过程**，这本身就是 Agent 可解释性的一部分。
+
+::: {.callout-tip}
+## 配套代码
+
+```bash
+python chapter04_streaming/streaming_basics.py   # 流式原理
+python chapter04_streaming/streaming_chat.py     # 流式对话
+python chapter04_streaming/error_types.py        # 错误分类
+python chapter04_streaming/retry_logic.py        # 重试逻辑
+python chapter04_streaming/timeout_handling.py   # 超时处理
+python chapter04_streaming/logging_setup.py      # 日志系统
+python chapter04_streaming/fallback.py           # 降级策略
+python chapter04_streaming/robust_agent.py       # 完整项目
+```
+:::
+
+## 流式输出的原理
+
+### 非流式 vs 流式
+
+```python
+# 非流式：等待完整响应
+resp = client.chat.completions.create(
+    model=MODEL, messages=[...], stream=False,
+)
+print(resp.choices[0].message.content)  # 一次性拿到全部文字
+
+# 流式：逐 chunk 接收
+stream = client.chat.completions.create(
+    model=MODEL, messages=[...], stream=True,
+)
+for chunk in stream:                    # 每收到一个 chunk 就处理
+    delta = chunk.choices[0].delta
+    if delta.content:
+        print(delta.content, end="", flush=True)  # 逐字打印
+```
+
+关键区别：`stream=True` 返回一个**迭代器**，模型每生成一段文字就立刻返回一个 `chunk`，而不是等全部生成完。
+
+### Chunk 的结构
+
+每个流式 chunk 包含：
+
+```python
+chunk.choices[0].delta.content  # 新生成的文字片段（可能为 None）
+chunk.choices[0].finish_reason  # 终止原因（通常为 None，直到最后一个 chunk）
+chunk.usage                     # Token 消耗（仅在最后一个 chunk，需开启 stream_options）
+```
+
+::: {.callout-important}
+流式模式下 `finish_reason` 只在**最后一个 chunk** 中有值。如果需要获取 token 消耗，需在请求中添加 `stream_options={"include_usage": True}`。
+:::
+
+### 首字延迟（TTFT）与感知体验
+
+```
+非流式:   [======================== 等待 5s ========================]→一次性输出
+流式:     [0.5s]→首字出现→逐字显示→...→[5s]完成
+            ↑
+        首字延迟（TTFT）从 5s 降至 0.5s
+```
+
+流式输出不减少总生成耗时，但它大幅压缩 **TTFT（Time To First Token）**，显著降低用户的等待焦虑。
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="agent-toy" data-toy="ch04-streaming-race"></div>
+```
+:::
+
+## 实现流式 Agent
+
+将流式输出集成到第 3 章的 `ConversationalAgent` 中：
+
+```python
+class StreamingAgent:
+    def run(self, user_input: str, stream: bool = True) -> str:
+        self.history.append({"role": "user", "content": user_input})
+        if stream:
+            return self._run_streaming()
+        else:
+            return self._run_non_streaming()
+
+    def _run_streaming(self) -> str:
+        print(f"{self.name}: ", end="", flush=True)
+
+        stream = self.client.chat.completions.create(
+            model=self.model,
+            messages=self.history,
+            temperature=0.7,
+            stream=True,
+        )
+
+        full_reply = ""
+        for chunk in stream:
+            delta = chunk.choices[0].delta
+            if delta.content:
+                full_reply += delta.content
+                print(delta.content, end="", flush=True)
+
+        print()
+        self.history.append({"role": "assistant", "content": full_reply})
+        return full_reply
+```
+
+完整代码见 `code/chapter04_streaming/streaming_chat.py`，支持运行时切换流式/非流式模式。
+
+## API 错误处理
+
+### 错误分类
+
+生产环境中，API 调用可能因各种原因失败。关键问题是：**哪些错误值得重试，哪些需要修改请求？**
+
+| 错误类型 | 示例 | 可重试？ | 应对策略 |
+|---------|------|---------|---------|
+| `RateLimitError` | 请求频率超限 | ✅ 是 | 等待后重试 |
+| `APITimeoutError` | 请求超时 | ✅ 是 | 增大 timeout 并重试 |
+| `APIConnectionError` | 网络波动 | ✅ 是 | 短暂等待后重试 |
+| 5xx Server Error | 服务器内部错误 | ✅ 是 | 等待后重试 |
+| `AuthenticationError` | API Key 无效 | ❌ 否 | 检查密钥配置 |
+| `BadRequestError` | Token 超限/参数错误 | ❌ 否 | 截断历史或修正参数 |
+
+```python
+from openai import (
+    RateLimitError, APITimeoutError, APIConnectionError,
+    AuthenticationError, BadRequestError, APIError,
+)
+
+RETRYABLE = (RateLimitError, APITimeoutError, APIConnectionError)
+
+def is_retryable(error: Exception) -> bool:
+    if isinstance(error, RETRYABLE):
+        return True
+    if isinstance(error, APIError):
+        status = getattr(error, "status_code", None)
+        return status is not None and status >= 500  # 5xx
+    return False
+```
+
+## 指数退避重试
+
+重试不是简单的"马上再来一次"——如果所有客户端同时重试，会加剧服务器压力。**指数退避（Exponential Backoff）** 是标准做法：
+
+```python
+import random
+
+def exponential_backoff(attempt: int, base: float = 1.0, max_delay: float = 60.0) -> float:
+    """每次重试等待时间翻倍 + 随机抖动"""
+    delay = base * (2 ** attempt)
+    jitter = random.uniform(0, delay * 0.5)  # 避免"惊群效应"
+    return min(delay + jitter, max_delay)
+
+# attempt 0: ~1.0s
+# attempt 1: ~2.0s
+# attempt 2: ~4.0s
+# attempt 3: ~8.0s
+```
+
+::: {.callout-tip}
+**随机抖动（Jitter）** 是分布式系统的关键设计。如果 1000 个客户端同时超时并在精确的 1s 后同时重试，服务器会被瞬间打垮。随机延迟将这些重试分散在时间轴上。
+:::
+
+完整的重试逻辑：
+
+```python
+def call_with_retry(messages, max_retries=3) -> str:
+    last_error = None
+    for attempt in range(max_retries + 1):
+        try:
+            resp = client.chat.completions.create(
+                model=MODEL, messages=messages, temperature=0.7,
+            )
+            return resp.choices[0].message.content
+        except Exception as e:
+            last_error = e
+            if not is_retryable(e):
+                raise  # 不可重试，直接抛出
+            if attempt < max_retries:
+                delay = exponential_backoff(attempt)
+                print(f"重试 {attempt+1}/{max_retries}, 等待 {delay:.1f}s")
+                time.sleep(delay)
+    raise last_error
+```
+
+## 超时处理
+
+无限等待是不可接受的。始终为 API 调用设置 timeout：
+
+```python
+resp = client.chat.completions.create(
+    model=MODEL,
+    messages=messages,
+    timeout=30.0,  # 30 秒后抛出 APITimeoutError
+)
+```
+
+超时时间建议：
+
+| 场景 | timeout |
+|------|---------|
+| 短对话（<100 tokens） | 10-15s |
+| 中等对话（100-500 tokens） | 30s |
+| 复杂推理 / 长回复 | 60-120s |
+| 流式输出 | 连接 5-10s，读取 60-120s |
+
+## 日志系统
+
+每次 API 调用都应被记录——这对调试和成本分析至关重要：
+
+```python
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.StreamHandler(),          # 控制台
+        logging.FileHandler("agent.log"),  # 文件
+    ],
+)
+
+logger = logging.getLogger("Agent")
+
+# 每次调用记录：
+logger.info(
+    f"[Call #{id}] 成功 | "
+    f"耗时={elapsed:.2f}s | "
+    f"tokens: in={pt} out={ct} | "
+    f"费用≈${cost:.6f}"
+)
+```
+
+## 降级策略
+
+当主模型不可用时，按优先级降级：
+
+```
+Level 1: 本地缓存     → 对常见问候/简单问题，零延迟零成本
+Level 2: 主模型       → gpt-4o-mini（首选）
+Level 3: 备选模型     → 另一个可用模型
+Level 4: 静态降级     → "服务暂时不可用，请稍后再试"
+```
+
+```python
+LOCAL_CACHE = {
+    "你好": "你好！有什么可以帮你的？",
+    "再见": "再见！祝你愉快！",
+}
+
+class RobustLLMClient:
+    def chat(self, messages) -> tuple[str, str]:
+        user_msg = messages[-1]["content"].strip()
+
+        # Level 1: 本地缓存
+        for key, reply in LOCAL_CACHE.items():
+            if key in user_msg:
+                return reply, "cache"
+
+        # Level 2: 主模型
+        try:
+            return self._call_model(self.primary_model, messages), "primary"
+        except Exception:
+            pass
+
+        # Level 3: 备选模型
+        try:
+            return self._call_model(self.fallback_model, messages), "fallback"
+        except Exception:
+            pass
+
+        # Level 4: 静态降级
+        return "抱歉，服务暂时不可用。请稍后再试。", "static"
+```
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="agent-toy" data-toy="ch04-retry-backoff"></div>
+```
+:::
+
+## 项目：健壮 Agent
+
+整合本章所有能力——流式输出 + 重试 + 超时 + 日志 + 降级：
+
+```python
+class RobustAgent:
+    def __init__(self, name="小助手", max_retries=3, timeout=30.0):
+        self.name = name
+        self.max_retries = max_retries
+        self.timeout = timeout
+        self.history = [{"role": "system", "content": f"你是{name}..."}]
+        # ... (完整代码见 robust_agent.py)
+
+    def run(self, user_input: str, stream: bool = True) -> str:
+        self.history.append({"role": "user", "content": user_input})
+        try:
+            reply = self._call_llm(stream=stream)  # 内部有重试
+        except Exception as e:
+            logger.error(f"LLM 调用最终失败: {e}")
+            reply = "抱歉，我暂时无法处理。请稍后再试。"
+        self.history.append({"role": "assistant", "content": reply})
+        return reply
+```
+
+完整代码见 `code/chapter04_streaming/robust_agent.py`，支持：
+
+- `/stats` 查看累计 Token 消耗和费用
+- `/reset` 重置对话
+- 自动重试与降级
+
+## 本章小结
+
+本章将 Agent 从"能跑"提升到了"可靠"：
+
+| 能力 | 核心实现 | 效果 |
+|------|---------|------|
+| **流式输出** | `stream=True` + chunk 迭代 | 首字延迟降到 0.5s |
+| **错误分类** | 区分可重试/不可重试 | 不浪费重试次数 |
+| **指数退避** | `delay * 2^attempt + jitter` | 避免惊群效应 |
+| **超时控制** | `timeout` 参数 | 不无限等待 |
+| **日志系统** | `logging` + 文件持久化 | 可追溯、可审计 |
+| **降级策略** | 缓存 → 主模型 → 备选 → 静态 | 提升可用性 |
+
+至此，我们的 Agent 已经是一个**能对话、有记忆、流式输出、健壮**的完整对话系统。但它仍然只会"说"，不会"做"。在加上工具之前，还需要一个关键能力：**让 LLM 输出结构化的、可被程序解析的内容**。这是下一章的主题。
+
+::: {.callout-note}
+## 下一章预告
+
+第 5 章将解决 Agent 与程序之间的"语言障碍"——如何让 LLM 输出 JSON、如何使用 OpenAI 原生的 Function Calling 机制、如何用 Pydantic 校验输出。这是从"对话 Agent"到"工具 Agent"的最后一块拼图。
+:::
+
+## 练习
+
+1. 修改 `RobustAgent`，添加流式输出速度控制（如每 3 个 chunk 才刷新一次终端），观察对用户体验的影响。
+2. 在 `call_with_retry` 中添加"最大总等待时间"限制（如总重试时间不超过 60s，超过则降级）。
+3. 为 `RobustAgent` 添加一个 `/history` 命令，在终端中打印对话历史摘要（参考第 3 章的实现）。
