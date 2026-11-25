@@ -35,10 +35,13 @@ format:
     theme:
       - cosmo
       - brand
-    css: assets/toys.css
+    css:
+      - assets/book-theme.css
+      - assets/toys.css
     include-after-body: assets/toys-loader.html
     toc: true
     toc-depth: 3
+    toc-title: "本页目录"
     number-sections: true
     code-fold: true
     code-copy: true

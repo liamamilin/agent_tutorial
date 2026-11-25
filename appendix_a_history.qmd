@@ -1,7 +1,6 @@
 # 附录A：智能体简史 {.unnumbered}
 
-![](https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/2-figures/1757246501849-00.png)
-
+![](images/hero-appa.svg){.chapter-hero width="100%"}
 本附录精简自原第2章，为感兴趣的读者提供历史背景。如果你更关注动手实践，可随时跳回第2章继续构建 Agent。
 
 ## 符号主义时代

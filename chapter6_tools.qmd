@@ -1,7 +1,6 @@
 # 给 Agent 装上手脚：工具系统
 
-![](images/clipboard-1946706444.png){width="350"}
-
+![](images/hero-ch06.svg){.chapter-hero width="100%"}
 ::: {.callout-note}
 ## 上一章回顾
 

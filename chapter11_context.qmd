@@ -1,7 +1,6 @@
 # 上下文工程
 
-![](images/clipboard-2748334400.png){width="350"}
-
+![](images/hero-ch11.svg){.chapter-hero width="100%"}
 ::: {.callout-note}
 ## 上一章回顾
 

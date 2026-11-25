@@ -1,7 +1,6 @@
 # 记忆系统
 
-![](images/clipboard-1299158429.png){width="350"}
-
+![](images/hero-ch09.svg){.chapter-hero width="100%"}
 ::: {.callout-note}
 ## 上一章回顾
 

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340" role="img" aria-label="上下文工程">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#f0fdfa"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#0f766e" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="340" fill="url(#bg)"/>
+  <rect width="1200" height="340" fill="url(#grid)"/>
+  <circle cx="1120" cy="40" r="140" fill="#0f766e" opacity="0.06"/>
+  <circle cx="740" cy="320" r="120" fill="#4f46e5" opacity="0.06"/>
+  <rect x="56" y="64" width="210" height="28" rx="14" fill="#0f766e" opacity="0.12"/>
+  <text x="161" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#0f766e">PART 03 · CHAPTER 11</text>
+  <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="40" font-weight="800" fill="#0f172a">上下文工程</text>
+  <text x="56" y="206" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" fill="#475569">优先级组装 · 压缩策略 · Token 预算与前缀缓存</text>
+  <rect x="56" y="246" width="72" height="5" rx="2.5" fill="#0f766e"/>
+  <rect x="136" y="246" width="26" height="5" rx="2.5" fill="#4f46e5" opacity="0.45"/>
+  
+        <rect x="766" y="76" width="338" height="188" rx="14" fill="#fff" stroke="#0f766e" stroke-width="1.8"/>
+        <text x="788" y="108" font-size="13" font-weight="700" fill="#0f172a">CONTEXT WINDOW BUDGET (8K / 128K)</text>
+        <rect x="788" y="126" width="294" height="24" rx="8" fill="#f1f5f9"/>
+        <rect x="788" y="126" width="66" height="24" rx="8" fill="#2563eb"/>
+        <rect x="858" y="126" width="84" height="24" rx="4" fill="#7c3aed"/>
+        <rect x="946" y="126" width="82" height="24" rx="4" fill="#059669"/>
+        <rect x="1032" y="126" width="50" height="24" rx="6" fill="#d97706"/>
+        <text x="788" y="178" font-size="11.5" fill="#475569">■ System   ■ RAG   ■ History   ■ Output Reserve</text>
+        <rect x="788" y="198" width="294" height="44" rx="10" fill="#ecfdf5" stroke="#059669"/>
+        <text x="935" y="225" text-anchor="middle" font-size="12.5" font-weight="700" fill="#059669">Static Prefix First → KV Cache Hit 93%+</text>
+</svg>

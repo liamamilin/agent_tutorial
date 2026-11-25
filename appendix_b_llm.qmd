@@ -1,5 +1,7 @@
 # 附录B：LLM技术基础 {.unnumbered}
 
+![](images/hero-appb.svg){.chapter-hero width="100%"}
+
 本附录精简自原第3章的技术理论部分。如果你只关心 API 调用和 Agent 构建，可跳过。
 
 ## 语言模型的核心思想

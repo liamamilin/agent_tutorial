@@ -1,7 +1,6 @@
 # 让 Agent 学会思考：推理范式
 
-![](images/clipboard-1946706444.png){width="350"}
-
+![](images/hero-ch07.svg){.chapter-hero width="100%"}
 ::: {.callout-note}
 ## 上一章回顾
 

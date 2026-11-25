@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340" role="img" aria-label="智能体简史">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#475569" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="340" fill="url(#bg)"/>
+  <rect width="1200" height="340" fill="url(#grid)"/>
+  <circle cx="1120" cy="40" r="140" fill="#475569" opacity="0.06"/>
+  <circle cx="740" cy="320" r="120" fill="#2563eb" opacity="0.06"/>
+  <rect x="56" y="64" width="210" height="28" rx="14" fill="#475569" opacity="0.12"/>
+  <text x="161" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#475569">APPENDIX A</text>
+  <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="40" font-weight="800" fill="#0f172a">智能体简史</text>
+  <text x="56" y="206" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" fill="#475569">从 1966 年 ELIZA 规则系统到现代大语言模型时代</text>
+  <rect x="56" y="246" width="72" height="5" rx="2.5" fill="#475569"/>
+  <rect x="136" y="246" width="26" height="5" rx="2.5" fill="#2563eb" opacity="0.45"/>
+  
+        <line x1="780" y1="170" x2="1096" y2="170" stroke="#2563eb" stroke-width="3"/>
+        <circle cx="810" cy="170" r="10" fill="#475569"/><text x="810" y="144" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">1966</text><text x="810" y="202" text-anchor="middle" font-size="11.5" fill="#64748b">ELIZA</text>
+        <circle cx="938" cy="170" r="10" fill="#2563eb"/><text x="938" y="144" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">2016</text><text x="938" y="202" text-anchor="middle" font-size="11.5" fill="#64748b">AlphaGo</text>
+        <circle cx="1066" cy="170" r="12" fill="#2563eb"/><text x="1066" y="144" text-anchor="middle" font-size="12" font-weight="700" fill="#2563eb">2022+</text><text x="1066" y="202" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2563eb">LLM Agents</text>
+</svg>

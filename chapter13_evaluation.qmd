@@ -1,7 +1,6 @@
 # 评估与持续改进
 
-![](images/clipboard-765920405.png){width="350"}
-
+![](images/hero-ch13.svg){.chapter-hero width="100%"}
 ::: {.callout-note}
 ## 上一章回顾
 

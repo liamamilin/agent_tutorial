@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340" role="img" aria-label="API 调用与第一个 Agent">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#eef2ff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#2563eb" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="340" fill="url(#bg)"/>
+  <rect width="1200" height="340" fill="url(#grid)"/>
+  <circle cx="1120" cy="40" r="140" fill="#2563eb" opacity="0.06"/>
+  <circle cx="740" cy="320" r="120" fill="#6366f1" opacity="0.06"/>
+  <rect x="56" y="64" width="210" height="28" rx="14" fill="#2563eb" opacity="0.12"/>
+  <text x="161" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#2563eb">PART 01 · CHAPTER 02</text>
+  <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="40" font-weight="800" fill="#0f172a">API 调用与第一个 Agent</text>
+  <text x="56" y="206" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" fill="#475569">请求载荷 · 采样温度 · Token 计费与客户端封装</text>
+  <rect x="56" y="246" width="72" height="5" rx="2.5" fill="#2563eb"/>
+  <rect x="136" y="246" width="26" height="5" rx="2.5" fill="#6366f1" opacity="0.45"/>
+  
+        <rect x="760" y="72" width="128" height="196" rx="14" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+        <text x="824" y="102" text-anchor="middle" font-size="13" font-weight="700" fill="#2563eb">REQUEST</text>
+        <rect x="778" y="118" width="92" height="22" rx="6" fill="#eff6ff"/><text x="824" y="133" text-anchor="middle" font-size="11" fill="#1e3a8a">model</text>
+        <rect x="778" y="148" width="92" height="22" rx="6" fill="#eff6ff"/><text x="824" y="163" text-anchor="middle" font-size="11" fill="#1e3a8a">messages[]</text>
+        <rect x="778" y="178" width="92" height="22" rx="6" fill="#eff6ff"/><text x="824" y="193" text-anchor="middle" font-size="11" fill="#1e3a8a">temperature</text>
+        <rect x="778" y="208" width="92" height="22" rx="6" fill="#eff6ff"/><text x="824" y="223" text-anchor="middle" font-size="11" fill="#1e3a8a">max_tokens</text>
+        <path d="M896 146 H954 M944 138 L956 146 L944 154" stroke="#2563eb" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M956 196 H898 M908 188 L896 196 L908 204" stroke="#6366f1" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <rect x="966" y="72" width="136" height="196" rx="14" fill="#2563eb"/>
+        <text x="1034" y="102" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">RESPONSE</text>
+        <rect x="984" y="122" width="100" height="28" rx="7" fill="rgba(255,255,255,0.18)"/><text x="1034" y="140" text-anchor="middle" font-size="11" fill="#fff">choices[0]</text>
+        <rect x="984" y="160" width="100" height="28" rx="7" fill="rgba(255,255,255,0.18)"/><text x="1034" y="178" text-anchor="middle" font-size="11" fill="#fff">usage.tokens</text>
+        <rect x="984" y="198" width="100" height="28" rx="7" fill="rgba(255,255,255,0.18)"/><text x="1034" y="216" text-anchor="middle" font-size="11" fill="#fff">finish_reason</text>
+</svg>

@@ -1,7 +1,6 @@
 # API 调用与第一个 Agent
 
-![](images/clipboard-2328342517.png){width="350"}
-
+![](images/hero-ch02.svg){.chapter-hero width="100%"}
 ::: {.callout-note}
 ## 上一章回顾
 

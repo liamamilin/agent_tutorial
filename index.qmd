@@ -1,7 +1,6 @@
 # 认识智能体 {.unnumbered}
 
-![](https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/1-figures/1757242319667-0.png)
-
+![](images/hero-ch01.svg){.chapter-hero width="100%"}
 ## 什么是智能体
 
 在人工智能领域，**智能体（Agent）** 是指能够通过传感器感知环境，并自主地借助执行器采取行动，以实现特定目标的实体。

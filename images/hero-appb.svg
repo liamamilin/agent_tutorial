@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340" role="img" aria-label="大语言模型原理基础">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#334155" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="340" fill="url(#bg)"/>
+  <rect width="1200" height="340" fill="url(#grid)"/>
+  <circle cx="1120" cy="40" r="140" fill="#334155" opacity="0.06"/>
+  <circle cx="740" cy="320" r="120" fill="#6366f1" opacity="0.06"/>
+  <rect x="56" y="64" width="210" height="28" rx="14" fill="#334155" opacity="0.12"/>
+  <text x="161" y="83" text-anchor="middle" font-family="Inter, -apple-system, PingFang SC, sans-serif" font-size="12" font-weight="700" letter-spacing="1.2" fill="#334155">APPENDIX B</text>
+  <text x="56" y="156" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="40" font-weight="800" fill="#0f172a">大语言模型原理基础</text>
+  <text x="56" y="206" font-family="Inter, -apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="18" fill="#475569">词嵌入 · Transformer 自注意力 · 采样与 BPE 分词</text>
+  <rect x="56" y="246" width="72" height="5" rx="2.5" fill="#334155"/>
+  <rect x="136" y="246" width="26" height="5" rx="2.5" fill="#6366f1" opacity="0.45"/>
+  
+    <rect x="768" y="84" width="334" height="172" rx="14" fill="#fff" stroke="#6366f1" stroke-width="1.8"/>
+    <text x="790" y="114" font-size="12.5" font-weight="700" fill="#6366f1">BPE SUBWORD MERGE</text>
+    <rect x="790" y="132" width="44" height="32" rx="6" fill="#eff6ff"/><text x="812" y="153" text-anchor="middle" font-size="13" font-family="monospace" fill="#1e3a8a">l</text>
+    <rect x="842" y="132" width="44" height="32" rx="6" fill="#eff6ff"/><text x="864" y="153" text-anchor="middle" font-size="13" font-family="monospace" fill="#1e3a8a">o</text>
+    <rect x="894" y="132" width="44" height="32" rx="6" fill="#eff6ff"/><text x="916" y="153" text-anchor="middle" font-size="13" font-family="monospace" fill="#1e3a8a">w</text>
+    <text x="954" y="153" font-size="16" font-weight="700" fill="#6366f1">→</text>
+    <rect x="980" y="132" width="96" height="32" rx="6" fill="#6366f1"/><text x="1028" y="153" text-anchor="middle" font-size="13" font-family="monospace" font-weight="700" fill="#fff">low&lt;/w&gt;</text>
+    <text x="790" y="208" font-size="12" fill="#475569">Attention(Q, K, V) = softmax(QKᵀ / √dₖ) V</text>
+</svg>

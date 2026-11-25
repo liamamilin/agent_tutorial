@@ -1,7 +1,6 @@
 # 自建轻量 Agent 框架
 
-![](images/clipboard-1827757676.png){width="350"}
-
+![](images/hero-ch08.svg){.chapter-hero width="100%"}
 ::: {.callout-note}
 ## 上一章回顾
 

@@ -1,0 +1,294 @@
+/* Modern Editorial Technical Book Theme for 《从零开始学习Agent》 */
+
+:root {
+  --book-bg: #ffffff;
+  --book-sidebar-bg: #f8fafc;
+  --book-surface: #ffffff;
+  --book-surface-muted: #f8fafc;
+  --book-border: #e2e8f0;
+  --book-border-soft: #eef2f6;
+  --book-text: #1e293b;
+  --book-heading: #0f172a;
+  --book-muted: #64748b;
+  --book-accent: #2563eb;
+  --book-accent-soft: #eff6ff;
+  --book-code-bg: #f1f5f9;
+  --book-code-text: #1e3a8a;
+  --book-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --book-font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+}
+
+body {
+  font-family: var(--book-font-sans);
+  color: var(--book-text);
+  background-color: var(--book-bg);
+  font-size: 15.8px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Main reading column */
+main.content {
+  max-width: 780px;
+  padding-top: 1.5rem;
+  padding-bottom: 4rem;
+}
+
+/* Typography hierarchy */
+h1, h2, h3, h4, .title {
+  color: var(--book-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1.title,
+#title-block-header h1.title {
+  font-size: 2.05rem;
+  line-height: 1.25;
+  margin-bottom: 1.15rem;
+  letter-spacing: -0.03em;
+}
+
+h1 .header-section-number {
+  color: var(--book-accent);
+  font-weight: 700;
+  margin-right: 0.35rem;
+}
+
+h2 {
+  font-size: 1.38rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--book-border-soft);
+}
+
+h3 {
+  font-size: 1.12rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.65rem;
+  color: #1e293b;
+}
+
+p {
+  margin-bottom: 1.05rem;
+}
+
+/* Chapter Hero Banner */
+.chapter-hero,
+main.content > p:first-of-type > img,
+main.content section > p:first-of-type > img[src*="hero-"] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--book-border);
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.05);
+  margin: 0.4rem 0 1.65rem 0;
+  background: #f8fafc;
+}
+
+/* Left Sidebar */
+#quarto-sidebar {
+  background-color: var(--book-sidebar-bg);
+  border-right: 1px solid var(--book-border-soft);
+  padding-top: 1.25rem;
+}
+
+.sidebar-title {
+  font-weight: 700;
+  font-size: 1.08rem;
+  letter-spacing: -0.02em;
+  color: var(--book-heading);
+}
+
+.sidebar-navigation .sidebar-item-text.sidebar-link {
+  border-radius: 8px;
+  padding: 0.34rem 0.65rem;
+  margin: 0.1rem 0;
+  font-size: 0.89rem;
+  color: #475569;
+  transition: background-color 0.14s ease, color 0.14s ease;
+}
+
+.sidebar-navigation .sidebar-item-text.sidebar-link:hover {
+  background-color: #eef2f7;
+  color: var(--book-heading);
+}
+
+.sidebar-navigation .sidebar-item-text.sidebar-link.active {
+  background-color: var(--book-accent-soft);
+  color: var(--book-accent);
+  font-weight: 600;
+}
+
+.sidebar-search .aa-Autocomplete .aa-Form {
+  border-radius: 8px;
+  border: 1px solid var(--book-border);
+  background: #ffffff;
+}
+
+/* Right TOC */
+#quarto-margin-sidebar {
+  font-size: 0.84rem;
+}
+
+#TOC #toc-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--book-muted);
+  margin-bottom: 0.6rem;
+}
+
+#TOC .nav-link {
+  color: var(--book-muted);
+  padding: 0.24rem 0 0.24rem 0.75rem;
+  border-left: 2px solid transparent;
+  transition: color 0.14s ease, border-color 0.14s ease;
+}
+
+#TOC .nav-link:hover {
+  color: var(--book-heading);
+}
+
+#TOC .nav-link.active {
+  color: var(--book-accent);
+  border-left-color: var(--book-accent);
+  font-weight: 600;
+}
+
+/* Inline Code — replace harsh Bootstrap magenta */
+p code,
+li code,
+td code,
+th code,
+.callout code {
+  font-family: var(--book-font-mono);
+  font-size: 0.84em;
+  color: var(--book-code-text);
+  background-color: var(--book-code-bg);
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  padding: 0.12em 0.42em;
+  word-break: break-word;
+}
+
+/* Code Blocks */
+div.sourceCode,
+pre:not(.toy-code) {
+  border-radius: 10px;
+  border: 1px solid var(--book-border);
+  background-color: #f8fafc !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  margin: 1.1rem 0 1.35rem;
+}
+
+pre.sourceCode,
+pre:not(.toy-code) {
+  padding: 0.95rem 1.1rem;
+  font-family: var(--book-font-mono);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+div.sourceCode code,
+pre:not(.toy-code) code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* Refined Callouts */
+div.callout {
+  border-radius: 12px !important;
+  border: 1px solid var(--book-border) !important;
+  border-left-width: 4px !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  margin: 1.35rem 0;
+  overflow: hidden;
+}
+
+div.callout-note {
+  border-left-color: #2563eb !important;
+  background-color: #f8fbff !important;
+}
+
+div.callout-tip {
+  border-left-color: #059669 !important;
+  background-color: #f4fdf9 !important;
+}
+
+div.callout-important {
+  border-left-color: #d97706 !important;
+  background-color: #fffdf5 !important;
+}
+
+div.callout .callout-header {
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 0.65rem 1rem !important;
+  background-color: transparent !important;
+}
+
+div.callout .callout-body-container {
+  padding: 0.15rem 1rem 0.75rem !important;
+  font-size: 0.93rem;
+}
+
+/* Tables */
+table:not(.toy-table) {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.3rem 0 1.6rem;
+  font-size: 0.91rem;
+  border: 1px solid var(--book-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+table:not(.toy-table) thead th {
+  background-color: var(--book-surface-muted);
+  color: var(--book-heading);
+  font-weight: 700;
+  border-bottom: 1px solid var(--book-border);
+  padding: 0.65rem 0.85rem;
+}
+
+table:not(.toy-table) tbody td {
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid var(--book-border-soft);
+  vertical-align: top;
+}
+
+table:not(.toy-table) tbody tr:last-child td {
+  border-bottom: none;
+}
+
+table:not(.toy-table) tbody tr:hover {
+  background-color: #fafcff;
+}
+
+/* Links */
+main.content a:not(.btn):not(.nav-link) {
+  color: var(--book-accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.25);
+  transition: border-color 0.14s ease;
+}
+
+main.content a:not(.btn):not(.nav-link):hover {
+  border-bottom-color: var(--book-accent);
+}
+
+/* Page Navigation Footer */
+nav.page-navigation {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--book-border-soft);
+}
